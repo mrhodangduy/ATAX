@@ -1,0 +1,6 @@
+framework module Pods_ATAX {
+  umbrella header "Pods-ATAX-umbrella.h"
+
+  export *
+  module * { export * }
+}
