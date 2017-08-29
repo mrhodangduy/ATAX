@@ -8,13 +8,13 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class SplashVC: UIViewController {
 
     @IBOutlet weak var imageAtax: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
+        imageAtax.alpha = 0
         
         
         UIView.animate(withDuration: 3, animations: { 

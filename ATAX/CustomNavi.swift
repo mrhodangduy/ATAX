@@ -1,19 +1,24 @@
 //
-//  SignUpViewController.swift
+//  CustomNavi.swift
 //  ATAX
 //
-//  Created by QTS Coder on 8/29/17.
+//  Created by Paul on 8/30/17.
 //  Copyright © 2017 David. All rights reserved.
 //
 
 import UIKit
 
-class SignUpViewController: UIViewController {
+class CustomNavi: UINavigationController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        
+        self.navigationBar.isTranslucent = false
+        self.navigationBar.barTintColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
+        self.navigationBar.tintColor = .white
+        self.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -21,13 +26,6 @@ class SignUpViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func gobackSignIn(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
-    }
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.view.endEditing(true)
-    }
-
 
     /*
     // MARK: - Navigation

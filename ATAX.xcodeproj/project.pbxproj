@@ -18,13 +18,19 @@
 		63A642961F55664E00436ED8 /* SourceSansPro-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 63A642881F55664E00436ED8 /* SourceSansPro-SemiBold.ttf */; };
 		63A642981F556AC900436ED8 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A642971F556AC900436ED8 /* HomeViewController.swift */; };
 		63A6429A1F55718D00436ED8 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A642991F55718D00436ED8 /* SignUpViewController.swift */; };
-		63A6429C1F55735100436ED8 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A6429B1F55735100436ED8 /* File.swift */; };
+		63A6429C1F55735100436ED8 /* RoundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A6429B1F55735100436ED8 /* RoundView.swift */; };
 		63A6429E1F557FC100436ED8 /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A6429D1F557FC100436ED8 /* RoundButton.swift */; };
 		63A8F0741F555C40004FB344 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A8F0731F555C40004FB344 /* AppDelegate.swift */; };
-		63A8F0761F555C40004FB344 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A8F0751F555C40004FB344 /* ViewController.swift */; };
+		63A8F0761F555C40004FB344 /* SplashVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A8F0751F555C40004FB344 /* SplashVC.swift */; };
 		63A8F0791F555C40004FB344 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63A8F0771F555C40004FB344 /* Main.storyboard */; };
 		63A8F07B1F555C40004FB344 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63A8F07A1F555C40004FB344 /* Assets.xcassets */; };
 		63A8F07E1F555C40004FB344 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63A8F07C1F555C40004FB344 /* LaunchScreen.storyboard */; };
+		DA97F91B1F55D1D3002384BF /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA97F91A1F55D1D3002384BF /* ForgotPasswordViewController.swift */; };
+		DA97F9201F55DB83002384BF /* CustomNavi.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA97F91F1F55DB83002384BF /* CustomNavi.swift */; };
+		DA97F9221F55DC9D002384BF /* MyTaxesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA97F9211F55DC9D002384BF /* MyTaxesViewController.swift */; };
+		DA97F9241F55DCA8002384BF /* DocumentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA97F9231F55DCA8002384BF /* DocumentsViewController.swift */; };
+		DA97F9261F55DCC2002384BF /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA97F9251F55DCC2002384BF /* MessagesViewController.swift */; };
+		DA97F9281F55DCCD002384BF /* MoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA97F9271F55DCCD002384BF /* MoreViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,17 +45,23 @@
 		63A642881F55664E00436ED8 /* SourceSansPro-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-SemiBold.ttf"; sourceTree = "<group>"; };
 		63A642971F556AC900436ED8 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		63A642991F55718D00436ED8 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
-		63A6429B1F55735100436ED8 /* File.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
+		63A6429B1F55735100436ED8 /* RoundView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundView.swift; sourceTree = "<group>"; };
 		63A6429D1F557FC100436ED8 /* RoundButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
 		63A8F0701F555C40004FB344 /* ATAX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ATAX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		63A8F0731F555C40004FB344 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		63A8F0751F555C40004FB344 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		63A8F0751F555C40004FB344 /* SplashVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashVC.swift; sourceTree = "<group>"; };
 		63A8F0781F555C40004FB344 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		63A8F07A1F555C40004FB344 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		63A8F07D1F555C40004FB344 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		63A8F07F1F555C40004FB344 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B7D3AD4986722D605028410D /* Pods-ATAX.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ATAX.release.xcconfig"; path = "Pods/Target Support Files/Pods-ATAX/Pods-ATAX.release.xcconfig"; sourceTree = "<group>"; };
 		CF27E2C936776EE1113740EE /* Pods-ATAX.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ATAX.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ATAX/Pods-ATAX.debug.xcconfig"; sourceTree = "<group>"; };
+		DA97F91A1F55D1D3002384BF /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
+		DA97F91F1F55DB83002384BF /* CustomNavi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomNavi.swift; sourceTree = "<group>"; };
+		DA97F9211F55DC9D002384BF /* MyTaxesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyTaxesViewController.swift; sourceTree = "<group>"; };
+		DA97F9231F55DCA8002384BF /* DocumentsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentsViewController.swift; sourceTree = "<group>"; };
+		DA97F9251F55DCC2002384BF /* MessagesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
+		DA97F9271F55DCCD002384BF /* MoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,7 +93,7 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		63A642731F55661800436ED8 /* Font */ = {
+		63A642731F55661800436ED8 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
 				63A642861F55664E00436ED8 /* SourceSansPro-Light.ttf */,
@@ -91,7 +103,7 @@
 				63A642751F55663C00436ED8 /* OpenSans-Regular.ttf */,
 				63A642761F55663C00436ED8 /* OpenSans-SemiBold.ttf */,
 			);
-			name = Font;
+			name = Resource;
 			sourceTree = "<group>";
 		};
 		63A8F0671F555C40004FB344 = {
@@ -115,21 +127,51 @@
 		63A8F0721F555C40004FB344 /* ATAX */ = {
 			isa = PBXGroup;
 			children = (
-				63A6429B1F55735100436ED8 /* File.swift */,
+				DA97F91E1F55D7BB002384BF /* Model */,
+				DA97F91D1F55D7B5002384BF /* Controller */,
+				DA97F91C1F55D7AF002384BF /* View */,
+				63A642731F55661800436ED8 /* Resource */,
 				63A8F0731F555C40004FB344 /* AppDelegate.swift */,
-				63A8F0751F555C40004FB344 /* ViewController.swift */,
-				63A8F0771F555C40004FB344 /* Main.storyboard */,
 				63A8F07A1F555C40004FB344 /* Assets.xcassets */,
 				63A8F07C1F555C40004FB344 /* LaunchScreen.storyboard */,
 				63A8F07F1F555C40004FB344 /* Info.plist */,
-				63A6426F1F555FBE00436ED8 /* IntroVC.swift */,
-				63A642711F55627E00436ED8 /* Text.swift */,
-				63A642971F556AC900436ED8 /* HomeViewController.swift */,
-				63A642991F55718D00436ED8 /* SignUpViewController.swift */,
-				63A6429D1F557FC100436ED8 /* RoundButton.swift */,
-				63A642731F55661800436ED8 /* Font */,
 			);
 			path = ATAX;
+			sourceTree = "<group>";
+		};
+		DA97F91C1F55D7AF002384BF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				63A8F0771F555C40004FB344 /* Main.storyboard */,
+				63A6429D1F557FC100436ED8 /* RoundButton.swift */,
+				63A6429B1F55735100436ED8 /* RoundView.swift */,
+				DA97F91F1F55DB83002384BF /* CustomNavi.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		DA97F91D1F55D7B5002384BF /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				63A8F0751F555C40004FB344 /* SplashVC.swift */,
+				63A6426F1F555FBE00436ED8 /* IntroVC.swift */,
+				63A642971F556AC900436ED8 /* HomeViewController.swift */,
+				63A642991F55718D00436ED8 /* SignUpViewController.swift */,
+				DA97F91A1F55D1D3002384BF /* ForgotPasswordViewController.swift */,
+				DA97F9211F55DC9D002384BF /* MyTaxesViewController.swift */,
+				DA97F9231F55DCA8002384BF /* DocumentsViewController.swift */,
+				DA97F9251F55DCC2002384BF /* MessagesViewController.swift */,
+				DA97F9271F55DCCD002384BF /* MoreViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		DA97F91E1F55D7BB002384BF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				63A642711F55627E00436ED8 /* Text.swift */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -267,12 +309,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA97F9201F55DB83002384BF /* CustomNavi.swift in Sources */,
 				63A6429E1F557FC100436ED8 /* RoundButton.swift in Sources */,
+				DA97F9261F55DCC2002384BF /* MessagesViewController.swift in Sources */,
 				63A6429A1F55718D00436ED8 /* SignUpViewController.swift in Sources */,
 				63A642981F556AC900436ED8 /* HomeViewController.swift in Sources */,
-				63A6429C1F55735100436ED8 /* File.swift in Sources */,
-				63A8F0761F555C40004FB344 /* ViewController.swift in Sources */,
+				63A6429C1F55735100436ED8 /* RoundView.swift in Sources */,
+				63A8F0761F555C40004FB344 /* SplashVC.swift in Sources */,
+				DA97F9281F55DCCD002384BF /* MoreViewController.swift in Sources */,
+				DA97F9221F55DC9D002384BF /* MyTaxesViewController.swift in Sources */,
+				DA97F91B1F55D1D3002384BF /* ForgotPasswordViewController.swift in Sources */,
 				63A8F0741F555C40004FB344 /* AppDelegate.swift in Sources */,
+				DA97F9241F55DCA8002384BF /* DocumentsViewController.swift in Sources */,
 				63A642721F55627E00436ED8 /* Text.swift in Sources */,
 				63A642701F555FBE00436ED8 /* IntroVC.swift in Sources */,
 			);

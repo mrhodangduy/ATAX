@@ -1,14 +1,14 @@
 //
-//  SignUpViewController.swift
+//  ForgotPasswordViewController.swift
 //  ATAX
 //
-//  Created by QTS Coder on 8/29/17.
+//  Created by Paul on 8/29/17.
 //  Copyright © 2017 David. All rights reserved.
 //
 
 import UIKit
 
-class SignUpViewController: UIViewController {
+class ForgotPasswordViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +21,7 @@ class SignUpViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func gobackSignIn(_ sender: Any) {
+    @IBAction func CancelAction(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

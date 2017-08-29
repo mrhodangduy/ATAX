@@ -29,7 +29,15 @@ class HomeViewController: UIViewController {
         self.present(signupVC, animated: true, completion: nil)
         
     }
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
 
+    @IBAction func forgotPass(_ sender: Any) {
+        
+        let forgotPswVC = storyboard?.instantiateViewController(withIdentifier: "forgotPsw") as! ForgotPasswordViewController
+        self.present(forgotPswVC, animated: true, completion: nil)
+    }
     /*
     // MARK: - Navigation
 
