@@ -16,11 +16,12 @@ class SplashVC: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         imageAtax.alpha = 0
         
-        
-        UIView.animate(withDuration: 3, animations: { 
+        let signinVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "signinVC") as! HomeViewController
+        UIView.animate(withDuration: 2, animations: {
             self.imageAtax.alpha = 1
         }) { (action) in
-            self.performSegue(withIdentifier: "intro", sender: nil)
+//            self.performSegue(withIdentifier: "intro", sender: nil)
+            self.show(signinVC, sender: self)
         }
         
     }

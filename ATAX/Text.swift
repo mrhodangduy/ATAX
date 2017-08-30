@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import UIKit
+
 
 let Intro1 = "Welcome to ATAX Cloud\nLet’s Get Your Taxes Done"
 let Intro2 = "Snap Photos of Your\nTax Documents"
