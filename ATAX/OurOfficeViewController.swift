@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SafariServices
 
 class OurOfficeViewController: UIViewController {
 
@@ -29,4 +30,34 @@ class OurOfficeViewController: UIViewController {
     @IBAction func getDirectionAction(_ sender: Any) {
     }
 
+    @IBAction func connectSocial(_ sender: UIButton) {
+        
+       
+        if sender.tag == 1
+        {
+            let svc = SFSafariViewController(url: fbLink!, entersReaderIfAvailable: false)
+            svc.delegate = self
+            self.present(svc, animated: true, completion: nil)
+        } else if sender.tag == 2
+        {
+            let svc = SFSafariViewController(url: ttLink!, entersReaderIfAvailable: false)
+            svc.delegate = self
+            self.present(svc, animated: true, completion: nil)
+        }
+        else
+        {
+            let svc = SFSafariViewController(url: youtubeLink!, entersReaderIfAvailable: false)
+            svc.delegate = self
+            self.present(svc, animated: true, completion: nil)
+        }
+    
+    }
+}
+
+
+extension OurOfficeViewController: SFSafariViewControllerDelegate
+{
+    func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
+        controller.dismiss(animated: true, completion: nil)
+    }
 }

@@ -46,7 +46,8 @@ extension MyTaxesViewController: UITableViewDataSource
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: "firstcell")
             
-            cell?.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "bg_green"))
+            cell?.backgroundColor = #colorLiteral(red: 0.3514387012, green: 0.721385479, blue: 0.02334157191, alpha: 1)
+            
             
             return cell!
             
@@ -76,6 +77,7 @@ extension MyTaxesViewController: UITableViewDataSource
         }
         
     }
+
     
 }
 
@@ -85,12 +87,26 @@ extension MyTaxesViewController: UITableViewDelegate
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 0
         {
-            //push to tax screen
+            let livecalVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "livecalVC") as! LiveCallViewController
+            
+            self.navigationController?.pushViewController(livecalVC, animated: true)
         }
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 10))
+        
+        headerView.backgroundColor = UIColor.clear
+        
+        return headerView
+    }
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 10.0
     }
     
 }
@@ -118,23 +134,29 @@ extension MyTaxesViewController: UICollectionViewDelegate
         
         print(indexPath.row)
         switch indexPath.row {
+            
         case 0:
             let myTaxesVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "mytaxesVC") as! MyTaxViewController
             
             self.navigationController?.pushViewController(myTaxesVC, animated: true)
+            
         case 1:
             print("Document")
+            
         case 2:
             let contacttaxproVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "contacttaxpro") as! ContactTaxProViewController
             
             self.present(contacttaxproVC, animated: true, completion: nil)
+            
         case 3:
-            let url = URL(string: "https://sa.www4.irs.gov/irfof/lang/en/irfofgetstatus.jsp")
-            let sarafi = SFSafariViewController(url: url!)
+            let sarafi = SFSafariViewController(url: refundLink!)
+            sarafi.delegate = self
             self.present(sarafi, animated: true, completion: nil)
+            
         case 4:
             let ourofficeVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ourofficeVC") as! OurOfficeViewController
             self.navigationController?.pushViewController(ourofficeVC, animated: true)
+            
         case 5:
             print("Notification")
 
@@ -152,6 +174,14 @@ extension MyTaxesViewController: UICollectionViewDelegateFlowLayout
         let height = width / 1.1
         
         return CGSize(width: width, height: height)
+    }
+}
+
+extension MyTaxesViewController: SFSafariViewControllerDelegate
+{
+    func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
+        controller.dismiss(animated: true, completion: nil)
+        
     }
 }
 

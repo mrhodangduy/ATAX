@@ -15,7 +15,7 @@ class CustomNavi: UINavigationController {
         
         
         self.navigationBar.isTranslucent = false
-        self.navigationBar.barTintColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
+        self.navigationBar.barTintColor = #colorLiteral(red: 0.3647058824, green: 0.4156862745, blue: 0.8745098039, alpha: 1)
         self.navigationBar.tintColor = .white
         self.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         

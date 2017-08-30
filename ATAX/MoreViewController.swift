@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SafariServices
 
 class MoreViewController: UIViewController {
 
@@ -21,15 +22,37 @@ class MoreViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    @IBAction func connectSocial(_ sender: UIButton) {
+        
+        
+        if sender.tag == 1
+        {
+            let svc = SFSafariViewController(url: ataxLink!, entersReaderIfAvailable: false)
+            svc.delegate = self
+            self.present(svc, animated: true, completion: nil)
+        } else if sender.tag == 2
+        {
+            let svc = SFSafariViewController(url: taxnewLink!, entersReaderIfAvailable: false)
+            svc.delegate = self
+            self.present(svc, animated: true, completion: nil)
+        }
+        else
+        {
+            let svc = SFSafariViewController(url: irsWebLink!, entersReaderIfAvailable: false)
+            svc.delegate = self
+            self.present(svc, animated: true, completion: nil)
+        }
+        
     }
-    */
 
+    
+}
+
+
+
+extension MoreViewController: SFSafariViewControllerDelegate
+{
+    func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
+        controller.dismiss(animated: true, completion: nil)
+    }
 }
