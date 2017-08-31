@@ -18,8 +18,14 @@ class IntroVC: UIViewController {
 
         paer_onboarding.dataSource = self
         startButton.isHidden = true
-        // Do any additional setup after loading the view.
+        
     }
+    
+    @IBAction func skipIntro(_ sender: UIButton)
+    {
+        
+    }
+    
 }
 
 

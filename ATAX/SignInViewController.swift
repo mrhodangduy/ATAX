@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HomeViewController: UIViewController {
+class SignInViewController: UIViewController {
 
  
     @IBOutlet weak var btnsignup: UIButton!
@@ -21,6 +21,12 @@ class HomeViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    @IBAction func signInAction(_ sender: UIButton) {
+        
+        
+        let homeVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeVC")
+        self.present(homeVC, animated: false, completion: nil)
     }
     
     @IBAction func SignUpAction(_ sender: Any)

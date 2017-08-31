@@ -11,10 +11,13 @@ import SafariServices
 
 class MoreViewController: UIViewController {
 
+    @IBOutlet weak var menuButton: UIBarButtonItem!
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        //setup SlideMenu
+        
+        setupSlideMenu(item: menuButton, controller: self)
     }
 
     override func didReceiveMemoryWarning() {

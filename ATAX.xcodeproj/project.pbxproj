@@ -23,8 +23,10 @@
 		631E81E81F56B26B00149665 /* MessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631E81E71F56B26B00149665 /* MessageTableViewCell.swift */; };
 		631E81EA1F56B5FC00149665 /* UploadDocumentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631E81E91F56B5FC00149665 /* UploadDocumentViewController.swift */; };
 		631E81EC1F56B60D00149665 /* MakePaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631E81EB1F56B60D00149665 /* MakePaymentViewController.swift */; };
-		631E81EE1F56C9D100149665 /* Extention-Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631E81ED1F56C9D100149665 /* Extention-Color.swift */; };
+		631E81EE1F56C9D100149665 /* Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631E81ED1F56C9D100149665 /* Extention.swift */; };
 		631E81F01F56CF7700149665 /* NewTaxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631E81EF1F56CF7700149665 /* NewTaxViewController.swift */; };
+		632F85EB1F57ADAA00D0E88D /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632F85EA1F57ADAA00D0E88D /* MenuViewController.swift */; };
+		632F85EE1F57F2D700D0E88D /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 632F85ED1F57F2D700D0E88D /* SWRevealViewController.m */; };
 		63A642701F555FBE00436ED8 /* IntroVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A6426F1F555FBE00436ED8 /* IntroVC.swift */; };
 		63A642721F55627E00436ED8 /* Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A642711F55627E00436ED8 /* Text.swift */; };
 		63A642771F55663C00436ED8 /* OpenSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 63A642741F55663C00436ED8 /* OpenSans-Light.ttf */; };
@@ -33,7 +35,7 @@
 		63A642941F55664E00436ED8 /* SourceSansPro-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 63A642861F55664E00436ED8 /* SourceSansPro-Light.ttf */; };
 		63A642951F55664E00436ED8 /* SourceSansPro-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 63A642871F55664E00436ED8 /* SourceSansPro-Regular.ttf */; };
 		63A642961F55664E00436ED8 /* SourceSansPro-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 63A642881F55664E00436ED8 /* SourceSansPro-SemiBold.ttf */; };
-		63A642981F556AC900436ED8 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A642971F556AC900436ED8 /* HomeViewController.swift */; };
+		63A642981F556AC900436ED8 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A642971F556AC900436ED8 /* SignInViewController.swift */; };
 		63A6429A1F55718D00436ED8 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A642991F55718D00436ED8 /* SignUpViewController.swift */; };
 		63A6429C1F55735100436ED8 /* RoundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A6429B1F55735100436ED8 /* RoundView.swift */; };
 		63A6429E1F557FC100436ED8 /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A6429D1F557FC100436ED8 /* RoundButton.swift */; };
@@ -68,8 +70,12 @@
 		631E81E71F56B26B00149665 /* MessageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageTableViewCell.swift; sourceTree = "<group>"; };
 		631E81E91F56B5FC00149665 /* UploadDocumentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadDocumentViewController.swift; sourceTree = "<group>"; };
 		631E81EB1F56B60D00149665 /* MakePaymentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MakePaymentViewController.swift; sourceTree = "<group>"; };
-		631E81ED1F56C9D100149665 /* Extention-Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extention-Color.swift"; sourceTree = "<group>"; };
+		631E81ED1F56C9D100149665 /* Extention.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extention.swift; sourceTree = "<group>"; };
 		631E81EF1F56CF7700149665 /* NewTaxViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewTaxViewController.swift; sourceTree = "<group>"; };
+		632F85E61F57A1D600D0E88D /* ATAX-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ATAX-Bridging-Header.h"; sourceTree = "<group>"; };
+		632F85EA1F57ADAA00D0E88D /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		632F85EC1F57F2D700D0E88D /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
+		632F85ED1F57F2D700D0E88D /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		63A6426F1F555FBE00436ED8 /* IntroVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroVC.swift; sourceTree = "<group>"; };
 		63A642711F55627E00436ED8 /* Text.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Text.swift; sourceTree = "<group>"; };
 		63A642741F55663C00436ED8 /* OpenSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Light.ttf"; sourceTree = "<group>"; };
@@ -78,7 +84,7 @@
 		63A642861F55664E00436ED8 /* SourceSansPro-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Light.ttf"; sourceTree = "<group>"; };
 		63A642871F55664E00436ED8 /* SourceSansPro-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Regular.ttf"; sourceTree = "<group>"; };
 		63A642881F55664E00436ED8 /* SourceSansPro-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-SemiBold.ttf"; sourceTree = "<group>"; };
-		63A642971F556AC900436ED8 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		63A642971F556AC900436ED8 /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		63A642991F55718D00436ED8 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		63A6429B1F55735100436ED8 /* RoundView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundView.swift; sourceTree = "<group>"; };
 		63A6429D1F557FC100436ED8 /* RoundButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
@@ -129,6 +135,16 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		632F85E51F57A1B300D0E88D /* Lib Menu */ = {
+			isa = PBXGroup;
+			children = (
+				632F85EC1F57F2D700D0E88D /* SWRevealViewController.h */,
+				632F85ED1F57F2D700D0E88D /* SWRevealViewController.m */,
+				632F85E61F57A1D600D0E88D /* ATAX-Bridging-Header.h */,
+			);
+			name = "Lib Menu";
+			sourceTree = "<group>";
+		};
 		63A642731F55661800436ED8 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
@@ -163,6 +179,7 @@
 		63A8F0721F555C40004FB344 /* ATAX */ = {
 			isa = PBXGroup;
 			children = (
+				632F85E51F57A1B300D0E88D /* Lib Menu */,
 				DA97F91E1F55D7BB002384BF /* Model */,
 				DA97F91D1F55D7B5002384BF /* Controller */,
 				DA97F91C1F55D7AF002384BF /* View */,
@@ -199,7 +216,7 @@
 			children = (
 				63A8F0751F555C40004FB344 /* SplashVC.swift */,
 				63A6426F1F555FBE00436ED8 /* IntroVC.swift */,
-				63A642971F556AC900436ED8 /* HomeViewController.swift */,
+				63A642971F556AC900436ED8 /* SignInViewController.swift */,
 				63A642991F55718D00436ED8 /* SignUpViewController.swift */,
 				DA97F91A1F55D1D3002384BF /* ForgotPasswordViewController.swift */,
 				DA97F9211F55DC9D002384BF /* MyTaxesViewController.swift */,
@@ -214,6 +231,7 @@
 				631E81EB1F56B60D00149665 /* MakePaymentViewController.swift */,
 				631E81EF1F56CF7700149665 /* NewTaxViewController.swift */,
 				DA694B0D1F5728D800457AF4 /* LiveCallViewController.swift */,
+				632F85EA1F57ADAA00D0E88D /* MenuViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -223,7 +241,7 @@
 			children = (
 				63A642711F55627E00436ED8 /* Text.swift */,
 				631E81D91F5670EF00149665 /* MyTax.swift */,
-				631E81ED1F56C9D100149665 /* Extention-Color.swift */,
+				631E81ED1F56C9D100149665 /* Extention.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -263,6 +281,7 @@
 				TargetAttributes = {
 					63A8F06F1F555C40004FB344 = {
 						CreatedOnToolsVersion = 8.3.2;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -373,9 +392,11 @@
 				DA97F9261F55DCC2002384BF /* MessagesViewController.swift in Sources */,
 				631E81D41F5661A300149665 /* MyTaxesTableViewCell.swift in Sources */,
 				631E81DE1F567EDB00149665 /* ContactTaxProViewController.swift in Sources */,
+				632F85EB1F57ADAA00D0E88D /* MenuViewController.swift in Sources */,
+				632F85EE1F57F2D700D0E88D /* SWRevealViewController.m in Sources */,
 				63A6429A1F55718D00436ED8 /* SignUpViewController.swift in Sources */,
-				631E81EE1F56C9D100149665 /* Extention-Color.swift in Sources */,
-				63A642981F556AC900436ED8 /* HomeViewController.swift in Sources */,
+				631E81EE1F56C9D100149665 /* Extention.swift in Sources */,
+				63A642981F556AC900436ED8 /* SignInViewController.swift in Sources */,
 				63A6429C1F55735100436ED8 /* RoundView.swift in Sources */,
 				631E81D01F564D0600149665 /* CustomTabbar.swift in Sources */,
 				631E81E81F56B26B00149665 /* MessageTableViewCell.swift in Sources */,
@@ -518,10 +539,13 @@
 			baseConfigurationReference = CF27E2C936776EE1113740EE /* Pods-ATAX.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = ATAX/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.qtsvn.paul.ATAX;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "ATAX/ATAX-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -531,10 +555,12 @@
 			baseConfigurationReference = B7D3AD4986722D605028410D /* Pods-ATAX.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = ATAX/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.qtsvn.paul.ATAX;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "ATAX/ATAX-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

@@ -11,6 +11,7 @@ import UIKit
 class DocumentsViewController: UIViewController {
 
     @IBOutlet weak var documentTableView: UITableView!
+    @IBOutlet weak var menuButton: UIBarButtonItem!
     
     let documentList = Document.initData()
     
@@ -19,6 +20,10 @@ class DocumentsViewController: UIViewController {
         
         documentTableView.dataSource = self
         documentTableView.delegate = self
+
+         //setup SlideMenu
+        
+        setupSlideMenu(item: menuButton, controller: self)
 
     }
 

@@ -11,6 +11,7 @@ import UIKit
 class MessagesViewController: UIViewController {
 
     @IBOutlet weak var messageTableView: UITableView!
+    @IBOutlet weak var menuButton: UIBarButtonItem!
     
     let messageList = Message.initData()
     
@@ -20,7 +21,9 @@ class MessagesViewController: UIViewController {
         messageTableView.delegate = self
         messageTableView.dataSource = self
         
-        // Do any additional setup after loading the view.
+        //setup SlideMenu
+        
+        setupSlideMenu(item: menuButton, controller: self)
     }
 
 }
@@ -41,10 +44,16 @@ extension MessagesViewController: UITableViewDataSource
         
         return cell
     }
+    
+    
 }
 
 extension MessagesViewController: UITableViewDelegate
 {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60
+    }
+    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 10))
         headerView.backgroundColor = UIColor.clear
@@ -54,6 +63,11 @@ extension MessagesViewController: UITableViewDelegate
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 10.0
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: false)
+    }
+    
 }
 
 

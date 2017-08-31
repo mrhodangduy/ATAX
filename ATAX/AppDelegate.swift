@@ -19,7 +19,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         application.statusBarStyle = .lightContent
         
         
-        
         return true
     }
 

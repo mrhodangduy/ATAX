@@ -12,27 +12,38 @@ import SafariServices
 class MyTaxesViewController: UIViewController {
     
     let imageList = [#imageLiteral(resourceName: "menu_mytaxes"), #imageLiteral(resourceName: "menu_documents"),#imageLiteral(resourceName: "menu_contacttaxpro"),#imageLiteral(resourceName: "menu_refundstatus"),#imageLiteral(resourceName: "menu_ouroffice"), #imageLiteral(resourceName: "menu_notifications")]
-
+    
     
     @IBOutlet weak var mytaxesTableView: UITableView!
+    @IBOutlet weak var menuButton: UIBarButtonItem!
     
     override func viewDidLoad() {
-        super.viewDidLoad()        
+        super.viewDidLoad()
         
         mytaxesTableView.dataSource = self
         mytaxesTableView.delegate = self
         print(((self.view.frame.size.width - CGFloat(45)) / CGFloat(2)) / CGFloat(1.1) * CGFloat(3) + CGFloat(10))
         
-
-        // Do any additional setup after loading the view.
+        //setup SlideMenu
+        
+        setupSlideMenu(item: menuButton, controller: self)
+        revealViewController().rearViewRevealWidth = (self.view.bounds.size.width) * CGFloat(0.7)
+        
     }
-
+    
     @IBAction func addNewTax(_ sender: Any) {
         let newTaxVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "newtax") as! NewTaxViewController
         
         self.present(newTaxVC, animated: true, completion: nil)
     }
     
+    func pushtoMyTax()
+    {
+        let myTaxesVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "mytaxesVC") as! MyTaxViewController
+        
+        self.navigationController?.pushViewController(myTaxesVC, animated: true)
+    }
+        
 }
 
 extension MyTaxesViewController: UITableViewDataSource
@@ -77,7 +88,7 @@ extension MyTaxesViewController: UITableViewDataSource
         }
         
     }
-
+    
     
 }
 
@@ -136,12 +147,11 @@ extension MyTaxesViewController: UICollectionViewDelegate
         switch indexPath.row {
             
         case 0:
-            let myTaxesVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "mytaxesVC") as! MyTaxViewController
-            
-            self.navigationController?.pushViewController(myTaxesVC, animated: true)
+            self.pushtoMyTax()
             
         case 1:
-            print("Document")
+            
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: notifi_documentkey), object: self)
             
         case 2:
             let contacttaxproVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "contacttaxpro") as! ContactTaxProViewController
@@ -158,8 +168,9 @@ extension MyTaxesViewController: UICollectionViewDelegate
             self.navigationController?.pushViewController(ourofficeVC, animated: true)
             
         case 5:
-            print("Notification")
-
+            
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: notifi_messagekey), object: self)
+            
         default:
             return
         }
