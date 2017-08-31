@@ -12,7 +12,7 @@ class SplashVC: UIViewController {
 
     @IBOutlet weak var imageAtax: UIImageView!
     
-    let loginStatus = true
+    let loginStatus = false
     
     override func viewDidLoad() {
         super.viewDidLoad()

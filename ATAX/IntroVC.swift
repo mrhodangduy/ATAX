@@ -23,12 +23,11 @@ class IntroVC: UIViewController {
     
     @IBAction func skipIntro(_ sender: UIButton)
     {
-        
+        let signinVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "signinVC") as! SignInViewController
+        self.present(signinVC, animated: false, completion: nil)
     }
     
 }
-
-
 
 extension IntroVC: PaperOnboardingDataSource
 {
@@ -39,8 +38,8 @@ extension IntroVC: PaperOnboardingDataSource
     
     func onboardingItemAtIndex(_ index: Int) -> OnboardingItemInfo {
         
-        let titleFont = UIFont(name: "OpenSans-SemiBold", size: 30) ?? UIFont.boldSystemFont(ofSize: 25)
-        let descriptionFont = UIFont(name: "SourceSansPro-Light", size: 14) ?? UIFont.boldSystemFont(ofSize: 12)
+        let titleFont = UIFont(name: "OpenSans-SemiBold", size: 20) ?? UIFont.boldSystemFont(ofSize: 20)
+        let descriptionFont = UIFont(name: "SourceSansPro-Light", size: 12) ?? UIFont.boldSystemFont(ofSize: 12)
         
         
         var items = [OnboardingItemInfo]()

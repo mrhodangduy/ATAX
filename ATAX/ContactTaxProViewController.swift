@@ -16,7 +16,7 @@ class ContactTaxProViewController: UIViewController {
         tv_Message.text = "Enter your message here"
         tv_Message.textColor = UIColor.lightGray
         tv_Message.delegate = self
-        tv_Message.becomeFirstResponder()
+//        tv_Message.becomeFirstResponder()
 
         // Do any additional setup after loading the view.
     }
@@ -48,4 +48,5 @@ extension ContactTaxProViewController: UITextViewDelegate
             tv_Message.textColor = UIColor.lightGray
         }
     }
+    
 }

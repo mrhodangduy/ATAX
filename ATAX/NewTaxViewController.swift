@@ -19,8 +19,6 @@ class NewTaxViewController: UIViewController {
     @IBOutlet weak var data1Tableview: UITableView!
     @IBOutlet var viewData1: UIView!
     
-    var originalCenter: CGPoint!
-    var originalCenter1: CGPoint!
     var backgroundView: UIView!
     
     
@@ -49,24 +47,17 @@ class NewTaxViewController: UIViewController {
         backgroundView.alpha = 0
         
         view.addSubview(backgroundView)
-        
         view.addSubview(viewData)
         view.addSubview(viewData1)
         
-        let widthView = view.frame.size.width * (8/10)
+        let widthView = view.frame.size.width * (18/20)
         let heightView = view.frame.size.height * (6/8)
         
-        viewData.center = view.center
-        viewData1.center = view.center
-        
-        viewData.frame = CGRect(x: view.frame.size.width * (1/10), y: view.frame.size.height * (1/8), width: widthView, height: heightView)
+        viewData.frame = CGRect(x: view.frame.size.width * (1/20), y: view.frame.size.height * (1/8), width: widthView, height: heightView)
         viewData1.frame = viewData.frame
         
         viewData.alpha = 0
         viewData1.alpha = 0
-        
-        originalCenter = viewData.center
-        originalCenter1 = viewData1.center
         
     }
     
@@ -82,30 +73,29 @@ class NewTaxViewController: UIViewController {
         
         viewData.alpha = 0
         self.backgroundView.alpha = 0
-        
         viewData1.alpha = 0
         
     }
     
     @IBAction func selctTaxYear(_ sender: UIButton) {
+        
         viewData.transform = CGAffineTransform(scaleX: 1, y: 1)
-        UIView.animate(withDuration: 1.5, delay: 0, usingSpringWithDamping: 0.3, initialSpringVelocity: 0, options: .curveEaseIn, animations: {
+        UIView.animate(withDuration: 2.0, delay: 0, usingSpringWithDamping: 0.3, initialSpringVelocity: 0, options: .curveEaseIn, animations: {
             self.viewData.transform = .identity
         }) { (done) in
-            
-            self.viewData.center = self.originalCenter
-            self.viewData.layer.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+
         }
         self.backgroundView.alpha = 0.7
         self.viewData.alpha = 1
     }
     
     @IBAction func taxType(_ sender: UIButton) {
+        
         viewData1.transform = CGAffineTransform(scaleX: 1, y: 1)
-        UIView.animate(withDuration: 1.5, delay: 0, usingSpringWithDamping: 0.2, initialSpringVelocity: 0, options: .curveEaseIn, animations: {
+        UIView.animate(withDuration: 2.0, delay: 0, usingSpringWithDamping: 0.3, initialSpringVelocity: 0, options: .curveEaseIn, animations: {
             self.viewData1.transform = .identity
         }) { (done) in
-            self.viewData1.center = self.originalCenter1
+
         }
         self.backgroundView.alpha = 0.7
         self.viewData1.alpha = 1
@@ -154,6 +144,8 @@ extension NewTaxViewController: UITableViewDataSource, UITableViewDelegate
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        tableView.deselectRow(at: indexPath, animated: true)
+        
         if tableView.tag == 1
         {
             self.txt_SelectTaxYear.text = taxYear[indexPath.row]
@@ -172,5 +164,7 @@ extension NewTaxViewController: UITableViewDataSource, UITableViewDelegate
             return
         }
     }
+    
+    
 }
 

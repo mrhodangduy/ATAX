@@ -51,6 +51,7 @@
 		DA97F9241F55DCA8002384BF /* DocumentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA97F9231F55DCA8002384BF /* DocumentsViewController.swift */; };
 		DA97F9261F55DCC2002384BF /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA97F9251F55DCC2002384BF /* MessagesViewController.swift */; };
 		DA97F9281F55DCCD002384BF /* MoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA97F9271F55DCCD002384BF /* MoreViewController.swift */; };
+		DAA3C4821F58891D001F0DC7 /* TextFieldMaxLength.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA3C4811F58891D001F0DC7 /* TextFieldMaxLength.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -104,6 +105,7 @@
 		DA97F9231F55DCA8002384BF /* DocumentsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentsViewController.swift; sourceTree = "<group>"; };
 		DA97F9251F55DCC2002384BF /* MessagesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
 		DA97F9271F55DCCD002384BF /* MoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreViewController.swift; sourceTree = "<group>"; };
+		DAA3C4811F58891D001F0DC7 /* TextFieldMaxLength.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldMaxLength.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -242,6 +244,7 @@
 				63A642711F55627E00436ED8 /* Text.swift */,
 				631E81D91F5670EF00149665 /* MyTax.swift */,
 				631E81ED1F56C9D100149665 /* Extention.swift */,
+				DAA3C4811F58891D001F0DC7 /* TextFieldMaxLength.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -411,6 +414,7 @@
 				63A8F0741F555C40004FB344 /* AppDelegate.swift in Sources */,
 				631E81D81F566F9200149665 /* MyTaxTableViewCell.swift in Sources */,
 				631E81D21F56592000149665 /* MyTaxesCollectionViewcell.swift in Sources */,
+				DAA3C4821F58891D001F0DC7 /* TextFieldMaxLength.swift in Sources */,
 				631E81E41F56ABB800149665 /* RoundImageView.swift in Sources */,
 				DA97F9241F55DCA8002384BF /* DocumentsViewController.swift in Sources */,
 				631E81DA1F5670EF00149665 /* MyTax.swift in Sources */,

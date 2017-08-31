@@ -36,5 +36,13 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>LSApplicationCategoryType</key>
+	<string></string>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>Select photo from Library</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Take picture for TAX</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Select photo from Library</string>
 </dict>
 </plist>

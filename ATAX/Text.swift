@@ -34,6 +34,7 @@ let irsWebLink = URL(string: "https://www.irs.gov/")
 let taxYear = ["2008","2009","2010","2011","2012","2013","2014","2015","2016","2017"]
 let taxTypelist = ["Personal","Sales","Amendment","ParterShip065","Estate1041","Other"]
 let documentType = ["1098","1098T","1099G","Donations","Passport","W2G"]
+let invoiceList:[String] = []
 
 
 

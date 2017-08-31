@@ -19,4 +19,7 @@ extension UIViewController
         controller.view.addGestureRecognizer(controller.revealViewController().tapGestureRecognizer())
         controller.view.addGestureRecognizer(controller.revealViewController().panGestureRecognizer())
     }
+    
+    
 }
+
