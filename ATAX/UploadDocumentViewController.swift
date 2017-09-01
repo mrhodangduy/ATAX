@@ -9,6 +9,7 @@
 import UIKit
 
 class UploadDocumentViewController: UIViewController {
+    @IBOutlet weak var scrollView: UIScrollView!
     
     @IBOutlet weak var tv_Note: UITextView!
     @IBOutlet var viewData: UIView!
@@ -19,10 +20,13 @@ class UploadDocumentViewController: UIViewController {
     @IBOutlet weak var txt_typeOfDocument: UITextField!
     
     var backgroundView: UIView!
+    var imageStatus = false
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        createTapGestureScrollview(withscrollview: scrollView)
         
         tv_Note.text = "Note (Optional)"
         tv_Note.textColor = UIColor.lightGray
@@ -75,33 +79,17 @@ class UploadDocumentViewController: UIViewController {
     }
     
     @IBAction func selectTaxAction(_ sender: UIButton)
+        
     {
-        viewData.transform = CGAffineTransform(scaleX: 1, y: 1)
-        UIView.animate(withDuration: 2.0, delay: 0, usingSpringWithDamping: 0.3, initialSpringVelocity: 0, options: .curveEaseIn, animations: {
-            self.viewData.transform = .identity
-        }) { (done) in
-            
-        }
-        self.backgroundView.alpha = 0.7
-        self.viewData.alpha = 1
+        createAnimatePopup(from: viewData, with: backgroundView)
     }
+    
     @IBAction func typeOfDocumentAction(_ sender: UIButton) {
         
-        viewData1.transform = CGAffineTransform(scaleX: 1, y: 1)
-        UIView.animate(withDuration: 1.5, delay: 0, usingSpringWithDamping: 0.3, initialSpringVelocity: 0, options: .curveEaseIn, animations: {
-            self.viewData1.transform = .identity
-        }) { (done) in
-            
-        }
-        self.backgroundView.alpha = 0.7
-        self.viewData1.alpha = 1
-        
+        createAnimatePopup(from: viewData1, with: backgroundView)
         
     }
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+    
     @IBAction func getPicture(_ sender: Any) {
         
         displayAlert(title: nil, mess: nil, type: .actionSheet)
@@ -111,10 +99,6 @@ class UploadDocumentViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        view.endEditing(true)
-        
-    }
     
     func displayAlert(title: String?, mess: String?, type: UIAlertControllerStyle)
     {
@@ -139,7 +123,6 @@ class UploadDocumentViewController: UIViewController {
             print("Select from Library")            
             self.getPhotoFrom(type: .photoLibrary)
             
-            
         }
         
         let btnCan = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
@@ -160,6 +143,36 @@ class UploadDocumentViewController: UIViewController {
         self.present(imagePicker, animated: true, completion: nil)
     }
     
+    @IBAction func uploadDocumentAction(_ sender: UIButton) {
+        
+        let checkkey = checkValidateTextField(tf1: txt_selectTax, tf2: txt_typeOfDocument, tf3: nil, tf4: nil, tf5: nil, tf6: nil)
+        
+        switch checkkey {
+        case 1:
+            alertMissingText(mess: "Select Tax is required", textField: nil)
+            
+        case 2:
+            alertMissingText(mess: "Type of Document is required", textField: nil)
+        default:
+            if imageStatus == false
+            {
+                alertMissingText(mess: "Image is required", textField: nil)
+            }
+            else
+            {
+                alertMissingText(mess: "Upload done", textField: nil)
+                
+                let tabbarContrl = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "tabbarController") as! UITabBarController
+                
+                tabbarContrl.selectedIndex = 1
+                
+            }
+        }
+        
+    }
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
+    }
     
 }
 
@@ -174,7 +187,7 @@ extension UploadDocumentViewController: UITextViewDelegate
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
-        if tv_Note.text.isEmpty
+        if tv_Note.text.characters.count == 0
         {
             tv_Note.text = "Note (Optional)"
             tv_Note.textColor = UIColor.lightGray
@@ -244,12 +257,12 @@ extension UploadDocumentViewController: UITableViewDataSource, UITableViewDelega
         }
     }
     
-    
 }
 
 extension UploadDocumentViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate
 {
     public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        imageStatus = true
         picker.dismiss(animated: true, completion: nil)
     }
 }

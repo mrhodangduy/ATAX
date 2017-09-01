@@ -10,8 +10,11 @@ import UIKit
 
 class ForgotPasswordViewController: UIViewController {
 
+    @IBOutlet weak var txt_Email: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        txt_Email.delegate = self
 
         // Do any additional setup after loading the view.
     }
@@ -27,16 +30,32 @@ class ForgotPasswordViewController: UIViewController {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
-
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    @IBAction func resetPasswordAction(_ sender: UIButton) {
+        
+        let emailvalidate = isValidEmail(testStr: txt_Email.text!)
+        
+        if txt_Email.text?.characters.count == 0
+        {
+            alertMissingText(mess: "Email is required", textField: txt_Email)
+        }
+        else if emailvalidate == false
+        {
+            alertMissingText(mess: "Email is incorrect format", textField: txt_Email)
+        }
+            
+        else
+        {
+            print("Reset Password send")
+            self.dismiss(animated: true, completion: nil)
+        }
     }
-    */
+   
+}
 
+extension ForgotPasswordViewController: UITextFieldDelegate
+{
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        txt_Email.resignFirstResponder()
+        return true
+    }
 }

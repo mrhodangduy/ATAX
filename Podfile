@@ -7,5 +7,7 @@ target 'ATAX' do
 
   # Pods for ATAX
 	pod 'paper-onboarding'
+    pod "SVProgressHUD", :git => 'https://github.com/SVProgressHUD/SVProgressHUD.git'
+
 
 end

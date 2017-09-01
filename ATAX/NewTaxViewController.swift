@@ -50,10 +50,10 @@ class NewTaxViewController: UIViewController {
         view.addSubview(viewData)
         view.addSubview(viewData1)
         
-        let widthView = view.frame.size.width * (18/20)
+        let widthView = view.frame.size.width * (16/20)
         let heightView = view.frame.size.height * (6/8)
         
-        viewData.frame = CGRect(x: view.frame.size.width * (1/20), y: view.frame.size.height * (1/8), width: widthView, height: heightView)
+        viewData.frame = CGRect(x: view.frame.size.width * (2/20), y: view.frame.size.height * (1/8), width: widthView, height: heightView)
         viewData1.frame = viewData.frame
         
         viewData.alpha = 0
@@ -62,7 +62,23 @@ class NewTaxViewController: UIViewController {
     }
     
     @IBAction func saveAndContinueAction(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
+        
+        let checkKey = checkValidateTextField(tf1: txt_SelectTaxYear, tf2: txt_TaxType, tf3: nil, tf4: nil, tf5: nil, tf6: nil)
+        
+        switch checkKey {
+            
+        case 1:
+            alertMissingText(mess: "Select Tax Year is required", textField: nil)
+            
+        case 2:
+            alertMissingText(mess: "Tax Type is required", textField: nil)
+        default:
+            print("Save sucessful")
+            
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: notifi_closemenukey), object: nil)
+            self.dismiss(animated: true, completion: nil)
+        }
+        
     }
     
     @IBAction func cancelAction(_ sender: Any) {
@@ -79,27 +95,13 @@ class NewTaxViewController: UIViewController {
     
     @IBAction func selctTaxYear(_ sender: UIButton) {
         
-        viewData.transform = CGAffineTransform(scaleX: 1, y: 1)
-        UIView.animate(withDuration: 2.0, delay: 0, usingSpringWithDamping: 0.3, initialSpringVelocity: 0, options: .curveEaseIn, animations: {
-            self.viewData.transform = .identity
-        }) { (done) in
-
-        }
-        self.backgroundView.alpha = 0.7
-        self.viewData.alpha = 1
+            createAnimatePopup(from: viewData, with: backgroundView)
+    
     }
     
     @IBAction func taxType(_ sender: UIButton) {
         
-        viewData1.transform = CGAffineTransform(scaleX: 1, y: 1)
-        UIView.animate(withDuration: 2.0, delay: 0, usingSpringWithDamping: 0.3, initialSpringVelocity: 0, options: .curveEaseIn, animations: {
-            self.viewData1.transform = .identity
-        }) { (done) in
-
-        }
-        self.backgroundView.alpha = 0.7
-        self.viewData1.alpha = 1
-        
+        createAnimatePopup(from: viewData1, with: backgroundView)
     }
     
 }

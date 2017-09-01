@@ -29,6 +29,8 @@ class MyTaxesViewController: UIViewController {
         setupSlideMenu(item: menuButton, controller: self)
         revealViewController().rearViewRevealWidth = (self.view.bounds.size.width) * CGFloat(0.7)
         
+        NotificationCenter.default.addObserver(self, selector: #selector(MyTaxesViewController.pushtoMyTax), name: NSNotification.Name(rawValue: notifi_closemenukey), object: nil)
+        
     }
     
     @IBAction func addNewTax(_ sender: Any) {

@@ -14,15 +14,19 @@ class MakePaymentViewController: UIViewController {
     @IBOutlet weak var dataTableview: UITableView!
     @IBOutlet weak var txt_taxinfo: UITextField!
     @IBOutlet weak var nameOnCard: UITextField!
-    @IBOutlet weak var cardNumber: NSLayoutConstraint!
+    @IBOutlet weak var cardNumber: UITextField!
     @IBOutlet weak var expMonth: UITextField!
     @IBOutlet weak var expYear: UITextField!
     @IBOutlet weak var cvvCode: UITextField!
+    
+    @IBOutlet weak var scrollView: UIScrollView!
     
     var backgroundView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        createTapGestureScrollview(withscrollview: scrollView)
         
         setupViewData()
         
@@ -32,6 +36,8 @@ class MakePaymentViewController: UIViewController {
         dataTableview.delegate = self        
         
         dataTableview.tag = 1
+        
+        nameOnCard.delegate = self
         
         // Do any additional setup after loading the view.
     }
@@ -53,9 +59,32 @@ class MakePaymentViewController: UIViewController {
         
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    @IBAction func paymentAction(_ sender: UIButton) {
+        
+        let checkkey = checkValidateTextField(tf1: txt_taxinfo, tf2: nameOnCard, tf3: cardNumber, tf4: expMonth, tf5: expYear, tf6: cvvCode)
+        
+        switch checkkey {
+        case 1:
+            alertMissingText(mess: "Invoice is required", textField: nil)
+            
+        case 2:
+            alertMissingText(mess: "Name on card is required", textField: nameOnCard)
+            
+        case 3:
+            alertMissingText(mess: "Card number is required", textField: cardNumber)
+            
+        case 4:
+            alertMissingText(mess: "Exp Month is required", textField: expMonth)
+            
+        case 5:
+            alertMissingText(mess: "Exp Year is required", textField: expYear)
+            
+        case 6:
+            alertMissingText(mess: "Security code is required", textField: cvvCode)
+        default:
+            alertMissingText(mess: "Maked payment", textField: nil)
+        }
+        
     }
     
     @IBAction func CancelAction(_ sender: Any) {
@@ -63,14 +92,7 @@ class MakePaymentViewController: UIViewController {
     }
     @IBAction func invoiceAction(_ sender: UIButton) {
         
-        viewData.transform = CGAffineTransform(scaleX: 1, y: 1)
-        UIView.animate(withDuration: 2.0, delay: 0, usingSpringWithDamping: 0.3, initialSpringVelocity: 0, options: .curveEaseIn, animations: {
-            self.viewData.transform = .identity
-        }) { (done) in
-            
-        }
-        self.backgroundView.alpha = 0.7
-        self.viewData.alpha = 1
+        createAnimatePopup(from: viewData, with: backgroundView)
 
     }
     
@@ -98,12 +120,19 @@ extension MakePaymentViewController: UITableViewDataSource, UITableViewDelegate
         
         tableView.deselectRow(at: indexPath, animated: true)
         
-        self.txt_taxinfo.text = taxYear[indexPath.row]
+        self.txt_taxinfo.text = invoiceList[indexPath.row]
         self.viewData.alpha  = 0
         self.backgroundView.alpha = 0
         
     }
     
+}
+
+extension MakePaymentViewController: UITextFieldDelegate
+{
     
 }
+
+
+
 

@@ -7,26 +7,86 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class SignInViewController: UIViewController {
-
- 
+    
+    
     @IBOutlet weak var btnsignup: UIButton!
-
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var txt_Email: UITextField!
+    @IBOutlet weak var txt_Password: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        txt_Email.delegate = self
+        txt_Password.delegate = self
+        
+        createTapGestureScrollview(withscrollview: scrollView)
+        
     }
+    
+    func login()
+    {
+        let checkKey = checkValidateTextField(tf1: txt_Email, tf2: txt_Password, tf3: nil, tf4: nil, tf5: nil, tf6: nil)
+        
+        switch checkKey {
+            
+        case 1:
+            alertMissingText(mess: "Email is required", textField: txt_Email)
+            
+        case 2:
+            alertMissingText(mess: "Password is required", textField: txt_Password)
+            
+        default:
+            
+            let emailvalidate = isValidEmail(testStr: txt_Email.text!)
+            
+            if emailvalidate == false
+            {
+                alertMissingText(mess: "Email is incorrect format", textField: txt_Email)
+            }
+            else
+            {
+                let homeVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeVC")
+                self.present(homeVC, animated: false, completion: nil)
+                
+            }
+            
+        }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
+    
     @IBAction func signInAction(_ sender: UIButton) {
         
+        let checkKey = checkValidateTextField(tf1: txt_Email, tf2: txt_Password, tf3: nil, tf4: nil, tf5: nil, tf6: nil)
         
-        let homeVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeVC")
-        self.present(homeVC, animated: false, completion: nil)
+        switch checkKey {
+            
+        case 1:
+            alertMissingText(mess: "Email is required", textField: txt_Email)
+            
+        case 2:
+            alertMissingText(mess: "Password is required", textField: txt_Password)
+            
+        default:
+            
+            let emailvalidate = isValidEmail(testStr: txt_Email.text!)
+            
+            if emailvalidate == false
+            {
+                alertMissingText(mess: "Email is incorrect format", textField: txt_Email)
+            }
+            else
+            {
+                let homeVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeVC")
+                self.present(homeVC, animated: false, completion: nil)
+
+            }
+            
+        }
+        
     }
     
     @IBAction func SignUpAction(_ sender: Any)
@@ -35,23 +95,38 @@ class SignInViewController: UIViewController {
         self.present(signupVC, animated: true, completion: nil)
         
     }
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.view.endEditing(true)
-    }
-
+    
     @IBAction func forgotPass(_ sender: Any) {
         
         let forgotPswVC = storyboard?.instantiateViewController(withIdentifier: "forgotPsw") as! ForgotPasswordViewController
         self.present(forgotPswVC, animated: true, completion: nil)
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+        
 }
+
+extension SignInViewController: UITextFieldDelegate
+{
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        switch textField.tag {
+            
+        case 1:
+            txt_Password.becomeFirstResponder()
+            
+        case 2:
+            
+            login()
+        
+        default:
+            textField.resignFirstResponder()
+        }
+                
+        return true
+    }
+}
+
+
+
+
+
+
