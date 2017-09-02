@@ -46,8 +46,14 @@ class UploadDocumentViewController: UIViewController {
         dataTableview.tag = 1
         data1Tablview.tag = 2
         
+        setupNotification()
+        
         
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self)
     }
     
     func setupViewData()

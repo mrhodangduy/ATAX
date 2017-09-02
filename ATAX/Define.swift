@@ -7,6 +7,10 @@
 //
 
 
+let defaults = UserDefaults.standard
+let appDell = UIApplication.shared.delegate as! AppDelegate
+
+
 let notificationKey_MyTaxFromMenu = "gotoMyTaxFromMenu"
 let notifi_documentkey = "notifi_documentkey"
 let notifi_messagekey = "notifi_messagekey"

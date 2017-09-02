@@ -25,6 +25,12 @@ class SignInViewController: UIViewController {
         
         createTapGestureScrollview(withscrollview: scrollView)
         
+        setupNotification()
+        
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self)
     }
     
     func login()
@@ -51,6 +57,8 @@ class SignInViewController: UIViewController {
             {
                 let homeVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeVC")
                 self.present(homeVC, animated: false, completion: nil)
+                
+                defaults.set(true, forKey: "isLoggedin")
                 
             }
             
@@ -80,6 +88,8 @@ class SignInViewController: UIViewController {
             }
             else
             {
+                defaults.set(true, forKey: "isLoggedin")
+
                 let homeVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeVC")
                 self.present(homeVC, animated: false, completion: nil)
 

@@ -80,9 +80,10 @@ class MenuViewController: UIViewController {
         let alert = UIAlertController(title: title, message: mess, preferredStyle: type)
         let btnDell  = UIAlertAction(title: "Logout", style: .destructive) { (action) in
             
+            defaults.set(false, forKey: "isLoggedin")
             print("Logged Out")
-            self.dismiss(animated: false, completion: nil)
-            
+            let signinVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "signinVC") as! SignInViewController
+            self.present(signinVC, animated: false, completion: nil)
         }
         let btnCan = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         alert.addAction(btnDell)

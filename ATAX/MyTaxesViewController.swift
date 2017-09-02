@@ -17,12 +17,14 @@ class MyTaxesViewController: UIViewController {
     @IBOutlet weak var mytaxesTableView: UITableView!
     @IBOutlet weak var menuButton: UIBarButtonItem!
     
+    let imageRatio: CGFloat = 556/501
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         mytaxesTableView.dataSource = self
         mytaxesTableView.delegate = self
-        print(((self.view.frame.size.width - CGFloat(45)) / CGFloat(2)) / CGFloat(1.1) * CGFloat(3) + CGFloat(10))
+        print(((self.view.frame.size.width - CGFloat(45)) / CGFloat(2)) / imageRatio * CGFloat(3) + CGFloat(20))
         
         //setup SlideMenu
         
@@ -84,7 +86,8 @@ extension MyTaxesViewController: UITableViewDataSource
             return 44
             
         case 1:
-            return ((self.view.frame.size.width - CGFloat(45)) / CGFloat(2)) / CGFloat(1.1) * CGFloat(3) + CGFloat(10)
+            return ((((self.view.frame.size.width - CGFloat(45)) / CGFloat(2)) / imageRatio) * CGFloat(3)) + CGFloat(20)
+            
         default:
             return 0
         }
@@ -184,7 +187,7 @@ extension MyTaxesViewController: UICollectionViewDelegateFlowLayout
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         let width  =  (self.view.frame.size.width - CGFloat(45)) / CGFloat(2)
-        let height = width / 1.1
+        let height = width / imageRatio
         
         return CGSize(width: width, height: height)
     }

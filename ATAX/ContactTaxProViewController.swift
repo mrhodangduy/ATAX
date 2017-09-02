@@ -17,8 +17,17 @@ class ContactTaxProViewController: UIViewController {
         tv_Message.text = "Enter your message here"
         tv_Message.textColor = UIColor.lightGray
         tv_Message.delegate = self
+        
+        createTapGestureScrollview(withscrollview: scrollView)
+        
+        setupNotification()
 
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     @IBAction func sendMessageAction(_ sender: UIButton) {
         
         if (tv_Message.textColor == UIColor.lightGray) && tv_Message.text.isEmpty
@@ -37,7 +46,8 @@ class ContactTaxProViewController: UIViewController {
     @IBAction func cancelAction(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
     }
-       
+    
+    
 }
 
 extension ContactTaxProViewController: UITextViewDelegate

@@ -28,7 +28,7 @@
 		632F85EB1F57ADAA00D0E88D /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632F85EA1F57ADAA00D0E88D /* MenuViewController.swift */; };
 		632F85EE1F57F2D700D0E88D /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 632F85ED1F57F2D700D0E88D /* SWRevealViewController.m */; };
 		63A642701F555FBE00436ED8 /* IntroVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A6426F1F555FBE00436ED8 /* IntroVC.swift */; };
-		63A642721F55627E00436ED8 /* Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A642711F55627E00436ED8 /* Text.swift */; };
+		63A642721F55627E00436ED8 /* Define.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A642711F55627E00436ED8 /* Define.swift */; };
 		63A642771F55663C00436ED8 /* OpenSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 63A642741F55663C00436ED8 /* OpenSans-Light.ttf */; };
 		63A642781F55663C00436ED8 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 63A642751F55663C00436ED8 /* OpenSans-Regular.ttf */; };
 		63A642791F55663C00436ED8 /* OpenSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 63A642761F55663C00436ED8 /* OpenSans-SemiBold.ttf */; };
@@ -78,7 +78,7 @@
 		632F85EC1F57F2D700D0E88D /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		632F85ED1F57F2D700D0E88D /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		63A6426F1F555FBE00436ED8 /* IntroVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroVC.swift; sourceTree = "<group>"; };
-		63A642711F55627E00436ED8 /* Text.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Text.swift; sourceTree = "<group>"; };
+		63A642711F55627E00436ED8 /* Define.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Define.swift; sourceTree = "<group>"; };
 		63A642741F55663C00436ED8 /* OpenSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Light.ttf"; sourceTree = "<group>"; };
 		63A642751F55663C00436ED8 /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
 		63A642761F55663C00436ED8 /* OpenSans-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-SemiBold.ttf"; sourceTree = "<group>"; };
@@ -181,6 +181,7 @@
 		63A8F0721F555C40004FB344 /* ATAX */ = {
 			isa = PBXGroup;
 			children = (
+				DAA572ED1F5962AB004A898B /* Storyboard */,
 				632F85E51F57A1B300D0E88D /* Lib Menu */,
 				DA97F91E1F55D7BB002384BF /* Model */,
 				DA97F91D1F55D7B5002384BF /* Controller */,
@@ -197,7 +198,6 @@
 		DA97F91C1F55D7AF002384BF /* View */ = {
 			isa = PBXGroup;
 			children = (
-				63A8F0771F555C40004FB344 /* Main.storyboard */,
 				63A6429D1F557FC100436ED8 /* RoundButton.swift */,
 				63A6429B1F55735100436ED8 /* RoundView.swift */,
 				DA97F91F1F55DB83002384BF /* CustomNavi.swift */,
@@ -241,12 +241,20 @@
 		DA97F91E1F55D7BB002384BF /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				63A642711F55627E00436ED8 /* Text.swift */,
+				63A642711F55627E00436ED8 /* Define.swift */,
 				631E81D91F5670EF00149665 /* MyTax.swift */,
 				631E81ED1F56C9D100149665 /* Extention.swift */,
 				DAA3C4811F58891D001F0DC7 /* TextFieldMaxLength.swift */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		DAA572ED1F5962AB004A898B /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				63A8F0771F555C40004FB344 /* Main.storyboard */,
+			);
+			name = Storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -420,7 +428,7 @@
 				631E81E41F56ABB800149665 /* RoundImageView.swift in Sources */,
 				DA97F9241F55DCA8002384BF /* DocumentsViewController.swift in Sources */,
 				631E81DA1F5670EF00149665 /* MyTax.swift in Sources */,
-				63A642721F55627E00436ED8 /* Text.swift in Sources */,
+				63A642721F55627E00436ED8 /* Define.swift in Sources */,
 				63A642701F555FBE00436ED8 /* IntroVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

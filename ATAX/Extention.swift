@@ -26,7 +26,7 @@ extension UIViewController
         mainView.transform = CGAffineTransform(scaleX: 0.01, y: 0.01)
         backGroundView.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
         
-        UIView.animate(withDuration: 0.4, animations: {
+        UIView.animate(withDuration: 0.3, animations: {
             mainView.transform = .identity
             backGroundView.transform = .identity
         }, completion: nil)
@@ -114,11 +114,53 @@ extension UIViewController
     {
         view.endEditing(true)
     }
+    
     func createTapGestureScrollview(withscrollview scrollView:UIScrollView)
     {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(UIViewController.tapToClose))
         scrollView.addGestureRecognizer(tapGesture)
     }
+    
+    func keyboardShow(sender: Notification)
+    {
+        let userINFO:[String: AnyObject] = sender.userInfo! as! [String : AnyObject]
+        
+        let keyboardSize: CGSize = ((userINFO[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue.size)!
+        let offset:CGSize = ((userINFO[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.size)!
+        
+        
+        if keyboardSize.height == offset.height
+        {
+            if self.view.frame.origin.y == 0
+            {
+                UIView.animate(withDuration: 0.1, animations: {
+                    self.view.frame.origin.y -= 100 //keyboardSize.height
+                })
+            }
+        }
+        else
+        {
+            UIView.animate(withDuration: 0.1, animations: {
+                self.view.frame.origin.y += 100  - offset.height
+            })
+        }
+    }
+    
+    func keyboardHide(sender: Notification)
+    {
+//        let userINFO:[String: AnyObject] = sender.userInfo! as! [String : AnyObject]
+//        
+//        let keyboardSize: CGSize = ((userINFO[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue.size)!
+        
+        self.view.frame.origin.y += 100
+    }
+    
+    func setupNotification()
+    {
+        NotificationCenter.default.addObserver(self, selector: #selector(UIViewController.keyboardShow(sender:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(UIViewController.keyboardHide(sender:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    }
+
     
 }
 

@@ -12,12 +12,23 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
-
+    var currenTimesOfOpenApp:Int = 0
+    
+    func saveTimeOpenApp()
+    {
+        defaults.set(currenTimesOfOpenApp, forKey: "timeOfOpenApp")
+    }
+    func getCurrentTimeOpenApp() -> Int
+    {
+        return defaults.integer(forKey: "timeOfOpenApp") + 1
+    }
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
         application.statusBarStyle = .lightContent
         
+        self.currenTimesOfOpenApp = getCurrentTimeOpenApp()
         
         return true
     }
@@ -41,6 +52,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
+        
+        self.saveTimeOpenApp()
+        
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
