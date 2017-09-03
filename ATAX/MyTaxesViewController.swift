@@ -11,7 +11,7 @@ import SafariServices
 
 class MyTaxesViewController: UIViewController {
     
-    let imageList = [#imageLiteral(resourceName: "menu_mytaxes"), #imageLiteral(resourceName: "menu_documents"),#imageLiteral(resourceName: "menu_contacttaxpro"),#imageLiteral(resourceName: "menu_refundstatus"),#imageLiteral(resourceName: "menu_ouroffice"), #imageLiteral(resourceName: "menu_notifications")]
+    let imageList = [#imageLiteral(resourceName: "menu_mytaxes"), #imageLiteral(resourceName: "menu_documents"),#imageLiteral(resourceName: "menu_contacttaxpro"),#imageLiteral(resourceName: "menu_refundstatus"),#imageLiteral(resourceName: "menu_ouroffice"), #imageLiteral(resourceName: "menu_notifications")]    
     
     
     @IBOutlet weak var mytaxesTableView: UITableView!
@@ -24,7 +24,6 @@ class MyTaxesViewController: UIViewController {
         
         mytaxesTableView.dataSource = self
         mytaxesTableView.delegate = self
-        print(((self.view.frame.size.width - CGFloat(45)) / CGFloat(2)) / imageRatio * CGFloat(3) + CGFloat(20))
         
         //setup SlideMenu
         

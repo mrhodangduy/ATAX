@@ -45,7 +45,6 @@ class SignUpViewController: UIViewController {
         
     }
     
-    
     @IBAction func signUpAction(_ sender: UIButton) {
         
         let checkkey = checkValidateTextField(tf1: txt_Firstname, tf2: txt_Lastname, tf3: txt_Email, tf4: txt_Mobilephone, tf5: txt_password, tf6: txt_CofirmPass)
@@ -76,13 +75,13 @@ class SignUpViewController: UIViewController {
             alertMissingText(mess: "Confirm Password is required", textField: txt_CofirmPass)
             
         default:
-            
+                        
             let emailvalidate = isValidEmail(testStr: txt_Email.text!)
             
             if txt_CofirmPass.text != txt_password.text
             {
                 txt_CofirmPass.text = nil
-                alertMissingText(mess: "Comfirm password does not match", textField: txt_CofirmPass)
+                alertMissingText(mess: "Confirm password does not match", textField: txt_CofirmPass)
             }
             else if emailvalidate == false
             {
@@ -90,12 +89,14 @@ class SignUpViewController: UIViewController {
             }
             else
             {
+                
+                 ManagerWS.signUpUser(firstName: txt_Firstname.text!, lastName: txt_Lastname.text!, email: txt_Email.text!, phone: txt_Mobilephone.text!, password: txt_password.text!)                
+                
                 print("Sign Up Sucessfully")
                 defaults.set(true, forKey: "isLoggedin")
 
                 let homeVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeVC")
                 self.present(homeVC, animated: false, completion: nil)
-               
                 
             }
         }
@@ -151,7 +152,6 @@ class SignUpViewController: UIViewController {
                 
                 let homeVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeVC")
                 self.present(homeVC, animated: false, completion: nil)
-                
                 
             }
         }

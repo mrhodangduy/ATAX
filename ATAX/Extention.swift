@@ -8,6 +8,8 @@
 
 import Foundation
 import UIKit
+import Alamofire
+import SVProgressHUD
 
 extension UIViewController
 {
@@ -15,7 +17,7 @@ extension UIViewController
     {
         item.target = revealViewController()
         item.action = #selector(SWRevealViewController.revealToggle(_:))
-      
+        
         controller.view.addGestureRecognizer(controller.revealViewController().tapGestureRecognizer())
         controller.view.addGestureRecognizer(controller.revealViewController().panGestureRecognizer())
     }
@@ -38,7 +40,7 @@ extension UIViewController
     }
     
     func alertMissingText(mess: String, textField: UITextField?)
-
+        
     {
         let alert = UIAlertController(title: "ATAX", message: mess, preferredStyle: .alert)
         let btnOK = UIAlertAction(title: "OK", style: .default) { (action) in
@@ -134,23 +136,23 @@ extension UIViewController
             if self.view.frame.origin.y == 0
             {
                 UIView.animate(withDuration: 0.1, animations: {
-                    self.view.frame.origin.y -= 100 //keyboardSize.height
+                    self.view.frame.origin.y -= keyboardSize.height
                 })
             }
         }
         else
         {
             UIView.animate(withDuration: 0.1, animations: {
-                self.view.frame.origin.y += 100  - offset.height
+                self.view.frame.origin.y += keyboardSize.height - offset.height
             })
         }
     }
     
     func keyboardHide(sender: Notification)
     {
-//        let userINFO:[String: AnyObject] = sender.userInfo! as! [String : AnyObject]
-//        
-//        let keyboardSize: CGSize = ((userINFO[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue.size)!
+        //        let userINFO:[String: AnyObject] = sender.userInfo! as! [String : AnyObject]
+        //
+        //        let keyboardSize: CGSize = ((userINFO[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue.size)!
         
         self.view.frame.origin.y += 100
     }
@@ -160,7 +162,9 @@ extension UIViewController
         NotificationCenter.default.addObserver(self, selector: #selector(UIViewController.keyboardShow(sender:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(UIViewController.keyboardHide(sender:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
-
+    
+    
+        
     
 }
 

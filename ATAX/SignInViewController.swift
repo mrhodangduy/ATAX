@@ -8,6 +8,7 @@
 
 import UIKit
 import SVProgressHUD
+import Alamofire
 
 class SignInViewController: UIViewController {
     
@@ -16,6 +17,8 @@ class SignInViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var txt_Email: UITextField!
     @IBOutlet weak var txt_Password: UITextField!
+    
+    var userInfo = [UserInformation]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +29,9 @@ class SignInViewController: UIViewController {
         createTapGestureScrollview(withscrollview: scrollView)
         
         setupNotification()
+        
+        //
+        
         
     }
     
@@ -63,7 +69,7 @@ class SignInViewController: UIViewController {
             }
             
         }
-
+        
     }
     
     @IBAction func signInAction(_ sender: UIButton) {
@@ -88,11 +94,23 @@ class SignInViewController: UIViewController {
             }
             else
             {
-                defaults.set(true, forKey: "isLoggedin")
-
-                let homeVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeVC")
-                self.present(homeVC, animated: false, completion: nil)
-
+                
+                UserInformation.login(username: txt_Email.text!, password: txt_Password.text!, complete: { (status) in
+                    if status
+                    {
+                        defaults.set(true, forKey: "isLoggedin")
+                        let homeVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeVC")
+                        
+                        self.present(homeVC, animated: false, completion: nil)
+                        
+                    }
+                    else
+                    {
+                        self.alertMissingText(mess: "The user name or password is incorrect.", textField: nil)
+                    }
+                    
+                })
+                                
             }
             
         }
@@ -111,7 +129,7 @@ class SignInViewController: UIViewController {
         let forgotPswVC = storyboard?.instantiateViewController(withIdentifier: "forgotPsw") as! ForgotPasswordViewController
         self.present(forgotPswVC, animated: true, completion: nil)
     }
-        
+    
 }
 
 extension SignInViewController: UITextFieldDelegate
@@ -126,11 +144,11 @@ extension SignInViewController: UITextFieldDelegate
         case 2:
             
             login()
-        
+            
         default:
             textField.resignFirstResponder()
         }
-                
+        
         return true
     }
 }

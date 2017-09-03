@@ -7,6 +7,10 @@
 //
 
 
+
+
+let URL_WS = "https://api.mytaxesdonelive.com/"
+
 let defaults = UserDefaults.standard
 let appDell = UIApplication.shared.delegate as! AppDelegate
 

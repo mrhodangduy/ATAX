@@ -45,6 +45,9 @@
 		63A8F07B1F555C40004FB344 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63A8F07A1F555C40004FB344 /* Assets.xcassets */; };
 		63A8F07E1F555C40004FB344 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63A8F07C1F555C40004FB344 /* LaunchScreen.storyboard */; };
 		DA694B0E1F5728D800457AF4 /* LiveCallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA694B0D1F5728D800457AF4 /* LiveCallViewController.swift */; };
+		DA86F1131F5ACC9C00F577C6 /* DefineStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA86F1121F5ACC9C00F577C6 /* DefineStruct.swift */; };
+		DA86F1151F5AEC5200F577C6 /* ManageWS.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA86F1141F5AEC5200F577C6 /* ManageWS.swift */; };
+		DA86F1171F5AFBFE00F577C6 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA86F1161F5AFBFE00F577C6 /* Default-568h@2x.png */; };
 		DA97F91B1F55D1D3002384BF /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA97F91A1F55D1D3002384BF /* ForgotPasswordViewController.swift */; };
 		DA97F9201F55DB83002384BF /* CustomNavi.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA97F91F1F55DB83002384BF /* CustomNavi.swift */; };
 		DA97F9221F55DC9D002384BF /* MyTaxesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA97F9211F55DC9D002384BF /* MyTaxesViewController.swift */; };
@@ -99,6 +102,9 @@
 		B7D3AD4986722D605028410D /* Pods-ATAX.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ATAX.release.xcconfig"; path = "Pods/Target Support Files/Pods-ATAX/Pods-ATAX.release.xcconfig"; sourceTree = "<group>"; };
 		CF27E2C936776EE1113740EE /* Pods-ATAX.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ATAX.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ATAX/Pods-ATAX.debug.xcconfig"; sourceTree = "<group>"; };
 		DA694B0D1F5728D800457AF4 /* LiveCallViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveCallViewController.swift; sourceTree = "<group>"; };
+		DA86F1121F5ACC9C00F577C6 /* DefineStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefineStruct.swift; sourceTree = "<group>"; };
+		DA86F1141F5AEC5200F577C6 /* ManageWS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageWS.swift; sourceTree = "<group>"; };
+		DA86F1161F5AFBFE00F577C6 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		DA97F91A1F55D1D3002384BF /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		DA97F91F1F55DB83002384BF /* CustomNavi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomNavi.swift; sourceTree = "<group>"; };
 		DA97F9211F55DC9D002384BF /* MyTaxesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyTaxesViewController.swift; sourceTree = "<group>"; };
@@ -163,6 +169,7 @@
 		63A8F0671F555C40004FB344 = {
 			isa = PBXGroup;
 			children = (
+				DA86F1161F5AFBFE00F577C6 /* Default-568h@2x.png */,
 				63A8F0721F555C40004FB344 /* ATAX */,
 				63A8F0711F555C40004FB344 /* Products */,
 				1C17859B8D04E41AFBFA1292 /* Pods */,
@@ -245,6 +252,8 @@
 				631E81D91F5670EF00149665 /* MyTax.swift */,
 				631E81ED1F56C9D100149665 /* Extention.swift */,
 				DAA3C4811F58891D001F0DC7 /* TextFieldMaxLength.swift */,
+				DA86F1121F5ACC9C00F577C6 /* DefineStruct.swift */,
+				DA86F1141F5AEC5200F577C6 /* ManageWS.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -323,6 +332,7 @@
 				63A642951F55664E00436ED8 /* SourceSansPro-Regular.ttf in Resources */,
 				63A642781F55663C00436ED8 /* OpenSans-Regular.ttf in Resources */,
 				63A642941F55664E00436ED8 /* SourceSansPro-Light.ttf in Resources */,
+				DA86F1171F5AFBFE00F577C6 /* Default-568h@2x.png in Resources */,
 				63A8F07E1F555C40004FB344 /* LaunchScreen.storyboard in Resources */,
 				63A8F07B1F555C40004FB344 /* Assets.xcassets in Resources */,
 				63A642771F55663C00436ED8 /* OpenSans-Light.ttf in Resources */,
@@ -342,11 +352,13 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-ATAX/Pods-ATAX-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/paper-onboarding/paper_onboarding.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/paper_onboarding.framework",
 			);
@@ -417,6 +429,7 @@
 				63A8F0761F555C40004FB344 /* SplashVC.swift in Sources */,
 				DA97F9281F55DCCD002384BF /* MoreViewController.swift in Sources */,
 				DA97F9221F55DC9D002384BF /* MyTaxesViewController.swift in Sources */,
+				DA86F1151F5AEC5200F577C6 /* ManageWS.swift in Sources */,
 				DA97F91B1F55D1D3002384BF /* ForgotPasswordViewController.swift in Sources */,
 				631E81D61F5669DE00149665 /* MyTaxViewController.swift in Sources */,
 				631E81E21F56A49300149665 /* DocumentTableViewCell.swift in Sources */,
@@ -428,6 +441,7 @@
 				631E81E41F56ABB800149665 /* RoundImageView.swift in Sources */,
 				DA97F9241F55DCA8002384BF /* DocumentsViewController.swift in Sources */,
 				631E81DA1F5670EF00149665 /* MyTax.swift in Sources */,
+				DA86F1131F5ACC9C00F577C6 /* DefineStruct.swift in Sources */,
 				63A642721F55627E00436ED8 /* Define.swift in Sources */,
 				63A642701F555FBE00436ED8 /* IntroVC.swift in Sources */,
 			);

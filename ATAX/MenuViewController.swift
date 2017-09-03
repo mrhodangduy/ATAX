@@ -12,9 +12,24 @@ import SafariServices
 
 class MenuViewController: UIViewController {
     
+    @IBOutlet weak var imageAvatar: RoundImageView!
+    @IBOutlet weak var lbl_userName: UILabel!
+    @IBOutlet weak var lbl_Email: UILabel!
+    var userInfo = [UserInformation]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let token = UserDefaults.standard.object(forKey: "tokenString") as! String
+        UserInformation.getUserInfo(withToken: token) { (user) in
+            self.userInfo = user!
+            DispatchQueue.main.async {
+                self.lbl_userName.text = self.userInfo[0].fullName
+                self.lbl_Email.text = self.userInfo.last?.email
+//                self.imageAvatar.image = UIImage(named: <#T##String#>)
+            }
+            
+        }
         
     }
     
