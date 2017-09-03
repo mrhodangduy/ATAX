@@ -9,7 +9,7 @@
 import UIKit
 
 class ContactTaxProViewController: UIViewController {
-
+    
     @IBOutlet weak var tv_Message: RoundTextView!
     @IBOutlet weak var scrollView: UIScrollView!
     override func viewDidLoad() {
@@ -21,7 +21,7 @@ class ContactTaxProViewController: UIViewController {
         createTapGestureScrollview(withscrollview: scrollView)
         
         setupNotification()
-
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -30,17 +30,27 @@ class ContactTaxProViewController: UIViewController {
     
     @IBAction func sendMessageAction(_ sender: UIButton) {
         
-        if (tv_Message.textColor == UIColor.lightGray) && tv_Message.text.isEmpty
+        if Connectivity.isConnectedToInternet
         {
-            alertMissingText(mess: "Message is required", textField: nil)
-            tv_Message.becomeFirstResponder()
+            if (tv_Message.textColor == UIColor.lightGray) && tv_Message.text.isEmpty
+            {
+                alertMissingText(mess: "Message is required", textField: nil)
+                tv_Message.becomeFirstResponder()
+            }
+            else
+            {
+                print("Your message is sent")
+                dismiss(animated: true, completion: nil)
+                
+            }
+            
         }
         else
+            
         {
-            print("Your message is sent")
-            dismiss(animated: true, completion: nil)
-
+            alertMissingText(mess: "The Internet connetion appears to be offline.", textField: nil)
         }
+        
     }
     
     @IBAction func cancelAction(_ sender: UIButton) {

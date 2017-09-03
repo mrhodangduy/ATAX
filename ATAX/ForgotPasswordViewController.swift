@@ -45,8 +45,35 @@ class ForgotPasswordViewController: UIViewController {
             
         else
         {
-            print("Reset Password send")
-            self.dismiss(animated: true, completion: nil)
+            
+            if Connectivity.isConnectedToInternet
+            {
+                UserInformation.ForgotPassword(email: txt_Email.text!, compete: { (status) in
+                    
+                    if status
+                    {
+                        
+                        let alert = UIAlertController(title: "ATAX", message: (defaults.object(forKey: "notification") as? String)!, preferredStyle: .alert)
+                        let btnOK = UIAlertAction(title: "OK", style: .default) { (action) in
+                            print("Reset Password send")
+                            self.dismiss(animated: true, completion: nil)
+                        }
+                        
+                        alert.addAction(btnOK)
+                        self.present(alert, animated: true, completion: nil)
+                        
+                    }
+                    else
+                    {
+                        self.alertMissingText(mess: (defaults.object(forKey: "notification") as? String)!, textField: nil)
+                    }
+                })
+            }
+            else
+            {
+                alertMissingText(mess: "The Internet connetion appears to be offline.", textField: nil)
+            }
+            
         }
     }
    

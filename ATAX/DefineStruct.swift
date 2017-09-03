@@ -10,38 +10,6 @@ import Foundation
 import Alamofire
 import SVProgressHUD
 
-class SignInStatus
-{
-    
-    
-    static func SignInActionStatus(username:String, password: String) -> Bool
-    {
-        let url  = URL(string: URL_WS + "token")
-        let parameter: Parameters = ["grant_type":"password", "username": username, "password": password]
-        let httpHeader: HTTPHeaders = ["Content-Type":"application/x-www-form-urlencoded"]
-        var status:Bool?
-        
-        Alamofire.request(url!, method: HTTPMethod.post, parameters: parameter, encoding: URLEncoding.httpBody, headers: httpHeader).responseJSON { (response) in
-            
-            if response.response?.statusCode == 200
-            {
-                let jsonResut = response.result.value as? [String: AnyObject]
-                let token = jsonResut?["access_token"] as! String
-                print(token)
-                UserDefaults.standard.set(token, forKey: "token")
-                status = true
-            }
-            else
-            {
-                status = false
-            }
-            
-        }
-        return status!
-        
-    }
-}
-
 
 struct UserInformation
 {
@@ -95,7 +63,6 @@ struct UserInformation
                 print("Error")
             }
             completion(userInfo)
-            
         }
         
     }
@@ -107,12 +74,10 @@ struct UserInformation
         let httpHeader: HTTPHeaders = ["Content-Type":"application/x-www-form-urlencoded"]
         var isLoggedIn:Bool = Bool.init()
         
-        SVProgressHUD.show()
+        SVProgressHUD.show(withStatus: "Loading...")
         DispatchQueue.global(qos: .default).async(execute: {() -> Void in
             
             Alamofire.request(url!, method: HTTPMethod.post, parameters: parameter, encoding: URLEncoding.httpBody, headers: httpHeader).responseJSON { (response) in
-                
-                
                 
                 if response.response?.statusCode == 200
                 {
@@ -123,12 +88,19 @@ struct UserInformation
                     
                     print("=====\(UserDefaults.standard.object(forKey: "tokenString") as! String)\n\n")
                     
-                    let token = UserDefaults.standard.object(forKey: "tokenString") as! String
+                    let token = defaults.object(forKey: "tokenString") as! String
+                    defaults.synchronize()
                     isLoggedIn = true
                     
                     getUserInfo(withToken: token, completion: { (users) in
                         
                         print(users!)
+                        let fullname = users?.last?.fullName
+                        let email = users?.last?.email
+                        
+                        defaults.set(fullname, forKey: "userName")
+                        defaults.set(email, forKey: "email")
+                        defaults.synchronize()
                         
                     })
 
@@ -148,10 +120,87 @@ struct UserInformation
             
         })
         
+    }
+    
+    static func signUpUser(firstName: String, lastName: String, email: String, phone: String, password: String,complete: @escaping (Bool) -> ())
+
+    {
+        let url = URL(string: URL_WS + "v1/account/register")
+        
+        let parameter: Parameters = ["firstname":firstName, "lastname": lastName, "email": email, "phone": phone, "password":password]
+        let httpHeader: HTTPHeaders = ["Content-Type":"application/x-www-form-urlencoded"]
+        
+        var isSignedUp:Bool = Bool.init()
+        
+        SVProgressHUD.show(withStatus: "Loading...")
+        DispatchQueue.global(qos: .default).async { 
+            Alamofire.request(url!, method: HTTPMethod.post, parameters: parameter, encoding: URLEncoding.httpBody, headers: httpHeader).responseJSON { (response) in
+                print(response)
+                
+                if response.response?.statusCode == 200
+                {
+                    let jsonResult = response.result.value as? [String: AnyObject]
+                    let isSucess = jsonResult?["isSuccess"] as? Bool
+                    let notification = jsonResult?["notification"] as? String
+                    defaults.set(notification!, forKey: "notification")
+                    defaults.synchronize()
+                    
+                    if isSucess! == true
+                    {
+                        
+                        isSignedUp = true
+                    }
+                    else
+                    {
+                        isSignedUp = false
+                    }
+                    
+                    complete(isSignedUp)
+                    DispatchQueue.main.async(execute: {() -> Void in
+                        SVProgressHUD.dismiss()
+                    })
+                }
+            }
+        }
         
     }
     
-    
+    static func ForgotPassword(email: String, compete: @escaping (Bool) -> ())
+    {
+        let url = URL(string: URL_WS + "v1/account/forgotpassword?email=" + email)
+        let httpHeader: HTTPHeaders = ["Content-Type":"application/x-www-form-urlencoded"]
+        
+        var isSentMail: Bool = Bool.init()
+        
+        SVProgressHUD.show(withStatus: "Sending...")
+        DispatchQueue.global(qos: .default).async { 
+            Alamofire.request(url!, method: HTTPMethod.get, parameters: nil, encoding: URLEncoding.httpBody, headers: httpHeader).responseJSON(completionHandler: { (response) in
+                
+                print(response.response!)
+                
+                let jsonResult = response.result.value as? [String: AnyObject]
+                let isSuccess = jsonResult?["isSuccess"] as? Bool
+                let notificationforgot  = jsonResult?["notification"] as? String
+                defaults.set(notificationforgot!, forKey: "notification")
+                defaults.synchronize()
+                
+                if isSuccess!
+                {
+                    isSentMail = true
+                }
+                else
+                {
+                    isSentMail = false
+                }
+                compete(isSentMail)
+                DispatchQueue.main.async(execute: { 
+                    SVProgressHUD.dismiss()
+                })
+                
+            })
+        }
+    }
+
     
 }
 

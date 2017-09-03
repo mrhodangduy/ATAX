@@ -39,38 +39,6 @@ class SignInViewController: UIViewController {
         NotificationCenter.default.removeObserver(self)
     }
     
-    func login()
-    {
-        let checkKey = checkValidateTextField(tf1: txt_Email, tf2: txt_Password, tf3: nil, tf4: nil, tf5: nil, tf6: nil)
-        
-        switch checkKey {
-            
-        case 1:
-            alertMissingText(mess: "Email is required", textField: txt_Email)
-            
-        case 2:
-            alertMissingText(mess: "Password is required", textField: txt_Password)
-            
-        default:
-            
-            let emailvalidate = isValidEmail(testStr: txt_Email.text!)
-            
-            if emailvalidate == false
-            {
-                alertMissingText(mess: "Email is incorrect format", textField: txt_Email)
-            }
-            else
-            {
-                let homeVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeVC")
-                self.present(homeVC, animated: false, completion: nil)
-                
-                defaults.set(true, forKey: "isLoggedin")
-                
-            }
-            
-        }
-        
-    }
     
     @IBAction func signInAction(_ sender: UIButton) {
         
@@ -95,22 +63,31 @@ class SignInViewController: UIViewController {
             else
             {
                 
-                UserInformation.login(username: txt_Email.text!, password: txt_Password.text!, complete: { (status) in
-                    if status
-                    {
-                        defaults.set(true, forKey: "isLoggedin")
-                        let homeVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeVC")
+                if Connectivity.isConnectedToInternet
+                {
+                    UserInformation.login(username: txt_Email.text!, password: txt_Password.text!, complete: { (status) in
                         
-                        self.present(homeVC, animated: false, completion: nil)
+                        if status
+                        {
+                            defaults.set(true, forKey: "isLoggedin")
+                            defaults.synchronize()
+                            let homeVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeVC")
+                            
+                            self.present(homeVC, animated: false, completion: nil)
+                            
+                        }
+                        else
+                        {
+                            self.alertMissingText(mess: "The user name or password is incorrect.", textField: nil)
+                        }
                         
-                    }
-                    else
-                    {
-                        self.alertMissingText(mess: "The user name or password is incorrect.", textField: nil)
-                    }
-                    
-                })
-                                
+                    })
+                }
+                else
+                {
+                    self.alertMissingText(mess: "The Internet connetion appears to be offline.", textField: nil)
+                }
+                
             }
             
         }
@@ -140,10 +117,6 @@ extension SignInViewController: UITextFieldDelegate
             
         case 1:
             txt_Password.becomeFirstResponder()
-            
-        case 2:
-            
-            login()
             
         default:
             textField.resignFirstResponder()

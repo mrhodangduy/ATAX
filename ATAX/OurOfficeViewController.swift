@@ -11,7 +11,7 @@ import SafariServices
 import MapKit
 
 class OurOfficeViewController: UIViewController {
-
+    
     @IBOutlet weak var mapViewOffice: MKMapView!
     
     let regionRadius: CLLocationDistance = 1000
@@ -19,12 +19,12 @@ class OurOfficeViewController: UIViewController {
     let long:CLLocationDegrees = -73.905283
     
     var manager:CLLocationManager!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupMapView()
-
+        
         // Do any additional setup after loading the view.
     }
     
@@ -58,19 +58,28 @@ class OurOfficeViewController: UIViewController {
     
     @IBAction func getDirectionAction(_ sender: UIButton) {
         
-        let location = CLLocationCoordinate2DMake(lat, long)
-        let span = MKCoordinateRegionMakeWithDistance(location, regionRadius, regionRadius)
+        if Connectivity.isConnectedToInternet
+        {
+            let location = CLLocationCoordinate2DMake(lat, long)
+            let span = MKCoordinateRegionMakeWithDistance(location, regionRadius, regionRadius)
+            
+            let options = [MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: span.center), MKLaunchOptionsMapSpanKey: NSValue(mkCoordinateSpan: span.span)]
+            
+            let placeMark = MKPlacemark(coordinate: location)
+            let mapItem = MKMapItem(placemark: placeMark)
+            mapItem.name = "5536 Broadway, Bronx, NY 10463"
+            mapItem.openInMaps(launchOptions: options)
+            
+        }
+        else
+        {
+            alertMissingText(mess: "The Internet connetion appears to be offline.", textField: nil)
+        }
         
-        let options = [MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: span.center), MKLaunchOptionsMapSpanKey: NSValue(mkCoordinateSpan: span.span)]
-        
-        let placeMark = MKPlacemark(coordinate: location)
-        let mapItem = MKMapItem(placemark: placeMark)
-        mapItem.name = "5536 Broadway, Bronx, NY 10463"
-        mapItem.openInMaps(launchOptions: options)
     }
     
     
-
+    
     @IBAction func backAction(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
@@ -82,9 +91,9 @@ class OurOfficeViewController: UIViewController {
         self.present(contacttaxproVC, animated: true, completion: nil)
     }
     
-   
+    
     @IBAction func connectSocial(_ sender: UIButton) {
-       
+        
         if sender.tag == 1
         {
             let svc = SFSafariViewController(url: fbLink!, entersReaderIfAvailable: false)
@@ -103,7 +112,7 @@ class OurOfficeViewController: UIViewController {
             svc.delegate = self
             self.present(svc, animated: true, completion: nil)
         }
-    
+        
     }
 }
 
