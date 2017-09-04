@@ -20,6 +20,7 @@ struct UserInformation
     let phone:String
     let fullName: String
     let imageAvatarLink: String
+    let contactId: Int
     
     enum ErrorHandle: Error {
         case missing(String)
@@ -33,6 +34,8 @@ struct UserInformation
         guard let phone = json["phone"] as? String else { throw ErrorHandle.missing("phone is missing")}
         guard let fullName = json["fullName"] as? String else { throw ErrorHandle.missing("fullName is missing")}
         guard let imageAvatarLink = json["userImageFullPath"] as? String else { throw ErrorHandle.missing("imageAvatarLink is missing")}
+        guard let contactId = json["contactId"] as? Int else { throw ErrorHandle.missing("contactId is missing")}
+        
         
         self.firstName = firstName
         self.lastName = lastName
@@ -40,6 +43,7 @@ struct UserInformation
         self.phone = phone
         self.fullName = fullName
         self.imageAvatarLink = imageAvatarLink
+        self.contactId = contactId
         
     }
     
@@ -204,24 +208,6 @@ struct UserInformation
     
 }
 
-struct TaxInfomation
-{
-    let title: String
-    let year: Int
-    let taxType: Int
-    let status: String
-    let createDate: String
-}
 
-struct MessaseInfomation
-{
-    let subject: String
-    let messageContent: String
-    let date: String
-    let status: String
-    let isSuccess: Bool
-    let priority: String
-    let senderProfileImageUrl: String
-    let from: String
-}
+
 

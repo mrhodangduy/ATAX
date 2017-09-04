@@ -43,10 +43,10 @@
 		63A8F0761F555C40004FB344 /* SplashVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A8F0751F555C40004FB344 /* SplashVC.swift */; };
 		63A8F0791F555C40004FB344 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63A8F0771F555C40004FB344 /* Main.storyboard */; };
 		63A8F07B1F555C40004FB344 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63A8F07A1F555C40004FB344 /* Assets.xcassets */; };
+		DA08ED431F5CEC0D00FF9C4B /* DefineTaxes.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA08ED421F5CEC0D00FF9C4B /* DefineTaxes.swift */; };
 		DA31AB491F5C5DAE0081D3A0 /* Connectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA31AB481F5C5DAE0081D3A0 /* Connectivity.swift */; };
 		DA694B0E1F5728D800457AF4 /* LiveCallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA694B0D1F5728D800457AF4 /* LiveCallViewController.swift */; };
-		DA86F1131F5ACC9C00F577C6 /* DefineStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA86F1121F5ACC9C00F577C6 /* DefineStruct.swift */; };
-		DA86F1151F5AEC5200F577C6 /* ManageWS.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA86F1141F5AEC5200F577C6 /* ManageWS.swift */; };
+		DA86F1131F5ACC9C00F577C6 /* DefineUserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA86F1121F5ACC9C00F577C6 /* DefineUserInfo.swift */; };
 		DA97F91B1F55D1D3002384BF /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA97F91A1F55D1D3002384BF /* ForgotPasswordViewController.swift */; };
 		DA97F9201F55DB83002384BF /* CustomNavi.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA97F91F1F55DB83002384BF /* CustomNavi.swift */; };
 		DA97F9221F55DC9D002384BF /* MyTaxesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA97F9211F55DC9D002384BF /* MyTaxesViewController.swift */; };
@@ -54,6 +54,8 @@
 		DA97F9261F55DCC2002384BF /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA97F9251F55DCC2002384BF /* MessagesViewController.swift */; };
 		DA97F9281F55DCCD002384BF /* MoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA97F9271F55DCCD002384BF /* MoreViewController.swift */; };
 		DAA3C4821F58891D001F0DC7 /* TextFieldMaxLength.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA3C4811F58891D001F0DC7 /* TextFieldMaxLength.swift */; };
+		DAC0A0011F5D7D400054AF0B /* ManagerWS_Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC0A0001F5D7D400054AF0B /* ManagerWS_Document.swift */; };
+		DAC0A0031F5DAC8E0054AF0B /* ManageWS_Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC0A0021F5DAC8E0054AF0B /* ManageWS_Message.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -99,10 +101,10 @@
 		63A8F07F1F555C40004FB344 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B7D3AD4986722D605028410D /* Pods-ATAX.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ATAX.release.xcconfig"; path = "Pods/Target Support Files/Pods-ATAX/Pods-ATAX.release.xcconfig"; sourceTree = "<group>"; };
 		CF27E2C936776EE1113740EE /* Pods-ATAX.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ATAX.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ATAX/Pods-ATAX.debug.xcconfig"; sourceTree = "<group>"; };
+		DA08ED421F5CEC0D00FF9C4B /* DefineTaxes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefineTaxes.swift; sourceTree = "<group>"; };
 		DA31AB481F5C5DAE0081D3A0 /* Connectivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Connectivity.swift; sourceTree = "<group>"; };
 		DA694B0D1F5728D800457AF4 /* LiveCallViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveCallViewController.swift; sourceTree = "<group>"; };
-		DA86F1121F5ACC9C00F577C6 /* DefineStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefineStruct.swift; sourceTree = "<group>"; };
-		DA86F1141F5AEC5200F577C6 /* ManageWS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageWS.swift; sourceTree = "<group>"; };
+		DA86F1121F5ACC9C00F577C6 /* DefineUserInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefineUserInfo.swift; sourceTree = "<group>"; };
 		DA97F91A1F55D1D3002384BF /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		DA97F91F1F55DB83002384BF /* CustomNavi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomNavi.swift; sourceTree = "<group>"; };
 		DA97F9211F55DC9D002384BF /* MyTaxesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyTaxesViewController.swift; sourceTree = "<group>"; };
@@ -110,6 +112,8 @@
 		DA97F9251F55DCC2002384BF /* MessagesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
 		DA97F9271F55DCCD002384BF /* MoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreViewController.swift; sourceTree = "<group>"; };
 		DAA3C4811F58891D001F0DC7 /* TextFieldMaxLength.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldMaxLength.swift; sourceTree = "<group>"; };
+		DAC0A0001F5D7D400054AF0B /* ManagerWS_Document.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagerWS_Document.swift; sourceTree = "<group>"; };
+		DAC0A0021F5DAC8E0054AF0B /* ManageWS_Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageWS_Message.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -248,9 +252,11 @@
 				631E81D91F5670EF00149665 /* MyTax.swift */,
 				631E81ED1F56C9D100149665 /* Extention.swift */,
 				DAA3C4811F58891D001F0DC7 /* TextFieldMaxLength.swift */,
-				DA86F1121F5ACC9C00F577C6 /* DefineStruct.swift */,
-				DA86F1141F5AEC5200F577C6 /* ManageWS.swift */,
+				DA86F1121F5ACC9C00F577C6 /* DefineUserInfo.swift */,
 				DA31AB481F5C5DAE0081D3A0 /* Connectivity.swift */,
+				DA08ED421F5CEC0D00FF9C4B /* DefineTaxes.swift */,
+				DAC0A0001F5D7D400054AF0B /* ManagerWS_Document.swift */,
+				DAC0A0021F5DAC8E0054AF0B /* ManageWS_Message.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -410,6 +416,7 @@
 				63A6429E1F557FC100436ED8 /* RoundButton.swift in Sources */,
 				631E81DC1F567E3E00149665 /* RoundTextView.swift in Sources */,
 				DA97F9261F55DCC2002384BF /* MessagesViewController.swift in Sources */,
+				DAC0A0031F5DAC8E0054AF0B /* ManageWS_Message.swift in Sources */,
 				631E81D41F5661A300149665 /* MyTaxesTableViewCell.swift in Sources */,
 				631E81DE1F567EDB00149665 /* ContactTaxProViewController.swift in Sources */,
 				632F85EB1F57ADAA00D0E88D /* MenuViewController.swift in Sources */,
@@ -424,20 +431,21 @@
 				63A8F0761F555C40004FB344 /* SplashVC.swift in Sources */,
 				DA97F9281F55DCCD002384BF /* MoreViewController.swift in Sources */,
 				DA97F9221F55DC9D002384BF /* MyTaxesViewController.swift in Sources */,
-				DA86F1151F5AEC5200F577C6 /* ManageWS.swift in Sources */,
 				DA31AB491F5C5DAE0081D3A0 /* Connectivity.swift in Sources */,
 				DA97F91B1F55D1D3002384BF /* ForgotPasswordViewController.swift in Sources */,
+				DAC0A0011F5D7D400054AF0B /* ManagerWS_Document.swift in Sources */,
 				631E81D61F5669DE00149665 /* MyTaxViewController.swift in Sources */,
 				631E81E21F56A49300149665 /* DocumentTableViewCell.swift in Sources */,
 				631E81F01F56CF7700149665 /* NewTaxViewController.swift in Sources */,
 				63A8F0741F555C40004FB344 /* AppDelegate.swift in Sources */,
 				631E81D81F566F9200149665 /* MyTaxTableViewCell.swift in Sources */,
 				631E81D21F56592000149665 /* MyTaxesCollectionViewcell.swift in Sources */,
+				DA08ED431F5CEC0D00FF9C4B /* DefineTaxes.swift in Sources */,
 				DAA3C4821F58891D001F0DC7 /* TextFieldMaxLength.swift in Sources */,
 				631E81E41F56ABB800149665 /* RoundImageView.swift in Sources */,
 				DA97F9241F55DCA8002384BF /* DocumentsViewController.swift in Sources */,
 				631E81DA1F5670EF00149665 /* MyTax.swift in Sources */,
-				DA86F1131F5ACC9C00F577C6 /* DefineStruct.swift in Sources */,
+				DA86F1131F5ACC9C00F577C6 /* DefineUserInfo.swift in Sources */,
 				63A642721F55627E00436ED8 /* Define.swift in Sources */,
 				63A642701F555FBE00436ED8 /* IntroVC.swift in Sources */,
 			);

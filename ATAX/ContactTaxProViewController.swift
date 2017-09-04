@@ -12,6 +12,8 @@ class ContactTaxProViewController: UIViewController {
     
     @IBOutlet weak var tv_Message: RoundTextView!
     @IBOutlet weak var scrollView: UIScrollView!
+    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         tv_Message.text = "Enter your message here"
@@ -20,12 +22,7 @@ class ContactTaxProViewController: UIViewController {
         
         createTapGestureScrollview(withscrollview: scrollView)
         
-        setupNotification()
         
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        NotificationCenter.default.removeObserver(self)
     }
     
     @IBAction func sendMessageAction(_ sender: UIButton) {
@@ -63,11 +60,13 @@ class ContactTaxProViewController: UIViewController {
 extension ContactTaxProViewController: UITextViewDelegate
 {
     func textViewDidBeginEditing(_ textView: UITextView) {
+        
         if tv_Message.textColor == UIColor.lightGray
         {
             tv_Message.text = nil
             tv_Message.textColor = UIColor.black
         }
+        scrollView.setContentOffset(CGPoint(x: 0, y: 70), animated: true)
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
@@ -76,6 +75,7 @@ extension ContactTaxProViewController: UITextViewDelegate
             tv_Message.text = "Enter your message here"
             tv_Message.textColor = UIColor.lightGray
         }
+        scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
     }
     
 }

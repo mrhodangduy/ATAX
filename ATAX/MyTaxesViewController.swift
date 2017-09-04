@@ -22,6 +22,8 @@ class MyTaxesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let date = 
+        
         mytaxesTableView.dataSource = self
         mytaxesTableView.delegate = self
         

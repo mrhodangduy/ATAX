@@ -31,14 +31,8 @@ class SignUpViewController: UIViewController {
         
         createTapGestureScrollview(withscrollview: scrollView)
         
-        setupNotification()
-                
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-        NotificationCenter.default.removeObserver(self)
-        
-    }    
     
     @IBAction func mobilePhoneformat(_ sender: UITextField) {
         sender.text = formattedNumber(number: txt_Mobilephone.text!)
@@ -157,6 +151,19 @@ extension SignUpViewController: UITextFieldDelegate
         }
         
         return true
+    }
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        
+        switch textField.tag {
+        case 1...2:
+            return
+        default:
+            scrollView.setContentOffset(CGPoint(x: 0, y: 150), animated: true)
+        }
+        
+    }
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
     }
 }
 

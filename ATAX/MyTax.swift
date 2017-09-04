@@ -27,34 +27,4 @@ struct MyTaxes {
     }
 }
 
-struct Document {
-    let taxDocument: String
-    let uploadDay: String
-    
-    static func initData() -> [Document]
-    {
-        let taxDocument = "Tax Document 2017"
-        let uploadDay = "August 01, 2017 12:00"
-        
-        let item = Document(taxDocument: taxDocument, uploadDay: uploadDay)
-        let tax = [Document](repeatElement(item, count: 10))
-        
-        return tax
-    }
-}
 
-struct Message {
-    let messageTitle: String
-    let sendDay: String
-    
-    static func initData() -> [Message]
-    {
-        let taxDocument = "Message Title"
-        let uploadDay = "August 01, 2017 12:00"
-        
-        let item = Message(messageTitle: taxDocument, sendDay: uploadDay)
-        let tax = [Message](repeatElement(item, count: 10))
-        
-        return tax
-    }
-}

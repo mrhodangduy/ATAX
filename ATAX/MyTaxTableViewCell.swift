@@ -14,6 +14,7 @@ class MyTaxTableViewCell: UITableViewCell {
     @IBOutlet weak var lblTaxName: UILabel!
     @IBOutlet weak var btnUpload: UIButton!
     @IBOutlet weak var btnMakePayment: UIButton!
+    @IBOutlet weak var lblActive: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

@@ -94,7 +94,10 @@ class MenuViewController: UIViewController {
         let btnDell  = UIAlertAction(title: "Logout", style: .destructive) { (action) in
             
             defaults.set(false, forKey: "isLoggedin")
+            defaults.removeObject(forKey: "tokenString")
+            defaults.synchronize()
             print("Logged Out")
+            
             let signinVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "signinVC") as! SignInViewController
             self.present(signinVC, animated: false, completion: nil)
         }

@@ -20,6 +20,8 @@ class MakePaymentViewController: UIViewController {
     @IBOutlet weak var cvvCode: UITextField!
     
     @IBOutlet weak var scrollView: UIScrollView!
+    var activeTF:UITextField!
+
     
     var backgroundView: UIView!
     
@@ -38,17 +40,13 @@ class MakePaymentViewController: UIViewController {
         dataTableview.tag = 1
         
         nameOnCard.delegate = self
+        cardNumber.delegate = self
+        expYear.delegate = self
+        expMonth.delegate = self
+        cvvCode.delegate = self
         
         
-        setupNotification()
-        
-        // Do any additional setup after loading the view.
     }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        NotificationCenter.default.removeObserver(self)
-    }
-    
     
     func setupViewData()
     {
@@ -139,7 +137,26 @@ extension MakePaymentViewController: UITableViewDataSource, UITableViewDelegate
 
 extension MakePaymentViewController: UITextFieldDelegate
 {
-    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        switch textField.tag {
+        case 1...2:
+            scrollView.setContentOffset(CGPoint(x: 0, y: 150), animated: true)
+        default:
+            scrollView.setContentOffset(CGPoint(x: 0, y: 200), animated: true)
+        }
+    }
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+    }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        switch textField.tag {
+        case 1:
+            cardNumber.becomeFirstResponder()
+        default:
+            textField.resignFirstResponder()
+        }
+        return true
+    }
 }
 
 

@@ -21,9 +21,37 @@ class NewTaxViewController: UIViewController {
     
     var backgroundView: UIView!
     
+    var taxTypeIndex:Int?
+    
+    var taxYears = [TaxForm]()
+    var taxTypes = [TaxForm]()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let token = defaults.object(forKey: "tokenString") as! String
+        TaxForm.getTaxYear(withToken: token) { (years) in
+            
+            for year in years!
+            {
+                self.taxYears.append(year)
+                DispatchQueue.main.async(execute: { 
+                    self.dataTableview.reloadData()
+                })
+            }
+        }
+        TaxForm.getTaxTypes(withToken: token) { (types) in
+            
+            for type in types!
+            {
+                self.taxTypes.append(type)
+                DispatchQueue.main.async(execute: {
+                    self.data1Tableview.reloadData()
+                })
+            }
+            
+        }
         
         setupViewData()
         
@@ -73,10 +101,23 @@ class NewTaxViewController: UIViewController {
         case 2:
             alertMissingText(mess: "Tax Type is required", textField: nil)
         default:
-            print("Save sucessful")
             
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: notifi_closemenukey), object: nil)
-            self.dismiss(animated: true, completion: nil)
+            let token = defaults.object(forKey: "tokenString") as! String
+            TaxInfomation.postTaxes(withToken: token, year: Int(txt_SelectTaxYear.text!)!, taxtTypeString: txt_TaxType.text!, taxtype: taxTypeIndex!, completion: { (status) in
+                
+                if status == 200
+                {
+                    
+                    print("Save sucessful")
+                    self.dismiss(animated: true, completion: nil)
+                }
+                else
+                {
+                    self.alertMissingText(mess: "Authorization has been denied for this request. Please login again", textField: nil)
+                }
+                
+            })
+            
         }
         
     }
@@ -95,8 +136,8 @@ class NewTaxViewController: UIViewController {
     
     @IBAction func selctTaxYear(_ sender: UIButton) {
         
-            createAnimatePopup(from: viewData, with: backgroundView)
-    
+        createAnimatePopup(from: viewData, with: backgroundView)
+        
     }
     
     @IBAction func taxType(_ sender: UIButton) {
@@ -112,11 +153,11 @@ extension NewTaxViewController: UITableViewDataSource, UITableViewDelegate
         
         if tableView.tag == 1
         {
-            return taxYear.count
+            return taxYears.count
         }
         else if tableView.tag == 2
         {
-            return taxTypelist.count
+            return taxTypes.count
         }
         else
         {
@@ -129,13 +170,13 @@ extension NewTaxViewController: UITableViewDataSource, UITableViewDelegate
         if tableView.tag == 1
         {
             let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-            cell.textLabel?.text = taxYear[indexPath.row]
+            cell.textLabel?.text = taxYears[indexPath.row].display
             return cell
         }
         else if tableView.tag == 2
         {
             let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-            cell.textLabel?.text = taxTypelist[indexPath.row]
+            cell.textLabel?.text = taxTypes[indexPath.row].display
             return cell
         }
         else
@@ -157,7 +198,9 @@ extension NewTaxViewController: UITableViewDataSource, UITableViewDelegate
         }
         else if tableView.tag == 2
         {
-            self.txt_TaxType.text = taxTypelist[indexPath.row]
+            taxTypeIndex = taxTypes[indexPath.row].value
+            print(taxTypeIndex!)
+            self.txt_TaxType.text = taxTypes[indexPath.row].display
             self.viewData1.alpha  = 0
             self.backgroundView.alpha = 0
         }

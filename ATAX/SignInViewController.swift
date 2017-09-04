@@ -18,6 +18,7 @@ class SignInViewController: UIViewController {
     @IBOutlet weak var txt_Email: UITextField!
     @IBOutlet weak var txt_Password: UITextField!
     
+    var activeTF:UITextField!
     var userInfo = [UserInformation]()
     
     override func viewDidLoad() {
@@ -28,18 +29,8 @@ class SignInViewController: UIViewController {
         
         createTapGestureScrollview(withscrollview: scrollView)
         
-        setupNotification()
-        
-        //
-        
-        
     }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        NotificationCenter.default.removeObserver(self)
-    }
-    
-    
+       
     @IBAction func signInAction(_ sender: UIButton) {
         
         let checkKey = checkValidateTextField(tf1: txt_Email, tf2: txt_Password, tf3: nil, tf4: nil, tf5: nil, tf6: nil)
@@ -123,6 +114,14 @@ extension SignInViewController: UITextFieldDelegate
         }
         
         return true
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        scrollView.setContentOffset(CGPoint(x: 0, y: 50), animated: true)
+        
+    }
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
     }
 }
 

@@ -14,14 +14,25 @@ class MessagesViewController: UIViewController {
     @IBOutlet weak var menuButton: UIBarButtonItem!
     @IBOutlet weak var txt_SearchBar: UITextField!
     
-    let messageList = Message.initData()
+    var messageList = [Message]()
     var messageSearch = [Message]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        messageSearch = messageList
-
+        let token = defaults.object(forKey: "tokenString") as! String
+        print(token)
+        Message.getAllMessages(withToken: token) { (messages) in
+            
+            for message in messages!
+            {
+                self.messageList.append(message)
+                self.messageSearch = self.messageList
+                self.messageTableView.reloadData()
+            }
+            
+        }
+        
         messageTableView.delegate = self
         messageTableView.dataSource = self
         
@@ -39,7 +50,7 @@ class MessagesViewController: UIViewController {
         {
             for message in messageList
             {
-                let range = message.messageTitle.lowercased().range(of: textfiled.text!, options: .caseInsensitive, range: nil, locale: nil)
+                let range = message.subject.lowercased().range(of: textfiled.text!, options: .caseInsensitive, range: nil, locale: nil)
                 
                 if range != nil
                 {
@@ -52,6 +63,26 @@ class MessagesViewController: UIViewController {
             messageSearch = messageList
         }
         messageTableView.reloadData()
+    }
+    
+    func convertDateStringToDateFormat(longDate: String) -> String
+    {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS"
+        let date = dateFormatter.date(from: longDate)
+        
+        if date != nil
+        {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "MMMM dd, yyyy HH:mm"
+            let dateConvert = formatter.string(from: date!)
+            
+            return dateConvert
+        }
+        else
+        {
+            return longDate
+        }
     }
 
 }
@@ -73,14 +104,15 @@ extension MessagesViewController: UITableViewDataSource
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! MessageTableViewCell
+       
+        let messageItem = messageSearch[indexPath.section]
         
-        cell.lblmessTitle.text = messageSearch[indexPath.section].messageTitle
-        cell.lbldaySend.text = messageSearch[indexPath.section].sendDay
+        cell.lblmessTitle.text = messageItem.subject
+        cell.lbldaySend.text = convertDateStringToDateFormat(longDate: messageItem.date)
         
         return cell
     }
-    
-    
+       
     
 }
 
@@ -104,6 +136,17 @@ extension MessagesViewController: UITableViewDelegate
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
         view.endEditing(true)
+        
+        let messageItem = messageSearch[indexPath.section]
+        print(messageItem)
+        let MessDetail = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "messdetailVC") as! MessageDetailViewController
+        
+        MessDetail.messSubject = messageItem.subject
+        MessDetail.date = convertDateStringToDateFormat(longDate: messageItem.date)
+        MessDetail.messContent = messageItem.messageContent
+        
+        self.navigationController?.pushViewController(MessDetail, animated: true)
+        
     }
     
 }

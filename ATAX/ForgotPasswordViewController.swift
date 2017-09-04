@@ -9,20 +9,18 @@
 import UIKit
 
 class ForgotPasswordViewController: UIViewController {
-
+    
     @IBOutlet weak var txt_Email: UITextField!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         txt_Email.delegate = self
-
+        
         // Do any additional setup after loading the view.
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+    
     
     @IBAction func CancelAction(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
@@ -76,7 +74,7 @@ class ForgotPasswordViewController: UIViewController {
             
         }
     }
-   
+    
 }
 
 extension ForgotPasswordViewController: UITextFieldDelegate
@@ -85,4 +83,5 @@ extension ForgotPasswordViewController: UITextFieldDelegate
         txt_Email.resignFirstResponder()
         return true
     }
+    
 }

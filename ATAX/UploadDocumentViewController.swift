@@ -19,12 +19,42 @@ class UploadDocumentViewController: UIViewController {
     @IBOutlet weak var txt_selectTax: UITextField!
     @IBOutlet weak var txt_typeOfDocument: UITextField!
     
+    var listTaxes = [String]()
+    var listDocuments = [DocumentTypes]()
+    
     var backgroundView: UIView!
     var imageStatus = false
+    var taxTypeIndex:Int?
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let token = defaults.object(forKey: "tokenString") as! String
+        print(token)
+        TaxInfomation.getAllTaxes(withToken: token) { (results) in
+            
+            for result in results!
+            {
+                let tax = result.title
+                self.listTaxes.append(tax)
+                DispatchQueue.main.async(execute: { 
+                    self.dataTableview.reloadData()
+                })
+            }
+            
+        }
+        DocumentTypes.getDocumentType(withToken: token) { (results) in
+            
+            for result in results!
+            {
+                self.listDocuments.append(result)
+                DispatchQueue.main.async(execute: { 
+                    self.data1Tablview.reloadData()
+                })
+            }
+        }
+        
         
         createTapGestureScrollview(withscrollview: scrollView)
         
@@ -46,15 +76,9 @@ class UploadDocumentViewController: UIViewController {
         dataTableview.tag = 1
         data1Tablview.tag = 2
         
-        setupNotification()
         
-        
-        // Do any additional setup after loading the view.
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        NotificationCenter.default.removeObserver(self)
-    }
     
     func setupViewData()
     {
@@ -166,11 +190,9 @@ class UploadDocumentViewController: UIViewController {
             }
             else
             {
+                                
                 alertMissingText(mess: "Upload done", textField: nil)
                 
-                let tabbarContrl = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "tabbarController") as! UITabBarController
-                
-                tabbarContrl.selectedIndex = 1
                 
             }
         }
@@ -185,11 +207,15 @@ class UploadDocumentViewController: UIViewController {
 extension UploadDocumentViewController: UITextViewDelegate
 {
     func textViewDidBeginEditing(_ textView: UITextView) {
+        
+        
         if tv_Note.textColor == UIColor.lightGray
         {
             tv_Note.text = nil
             tv_Note.textColor = UIColor.black
         }
+        
+        scrollView.setContentOffset(CGPoint(x: 0, y: 150), animated: true)
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
@@ -198,6 +224,7 @@ extension UploadDocumentViewController: UITextViewDelegate
             tv_Note.text = "Note (Optional)"
             tv_Note.textColor = UIColor.lightGray
         }
+        scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
     }
     
 }
@@ -208,11 +235,11 @@ extension UploadDocumentViewController: UITableViewDataSource, UITableViewDelega
         
         if tableView.tag == 1
         {
-            return taxTypelist.count
+            return listTaxes.count
         }
         else if tableView.tag == 2
         {
-            return documentType.count
+            return listDocuments.count
         }
         else
         {
@@ -225,13 +252,13 @@ extension UploadDocumentViewController: UITableViewDataSource, UITableViewDelega
         if tableView.tag == 1
         {
             let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-            cell.textLabel?.text = taxTypelist[indexPath.row]
+            cell.textLabel?.text = listTaxes[indexPath.row]
             return cell
         }
         else if tableView.tag == 2
         {
             let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-            cell.textLabel?.text = documentType[indexPath.row]
+            cell.textLabel?.text = listDocuments[indexPath.row].text
             return cell
         }
         else
@@ -246,14 +273,15 @@ extension UploadDocumentViewController: UITableViewDataSource, UITableViewDelega
         
         if tableView.tag == 1
         {
-            self.txt_selectTax.text = taxYear[indexPath.row]
+            self.txt_selectTax.text = listTaxes[indexPath.row]
             self.viewData.alpha  = 0
             self.backgroundView.alpha = 0
             
         }
         else if tableView.tag == 2
         {
-            self.txt_typeOfDocument.text = taxTypelist[indexPath.row]
+            taxTypeIndex = indexPath.row
+            self.txt_typeOfDocument.text = listDocuments[indexPath.row].text
             self.viewData1.alpha  = 0
             self.backgroundView.alpha = 0
         }

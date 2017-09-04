@@ -14,15 +14,15 @@ class DocumentsViewController: UIViewController {
     @IBOutlet weak var menuButton: UIBarButtonItem!
     @IBOutlet weak var txt_SeachDocument: UITextField!
     
-    let documentList = Document.initData()
+    var documentList = [Documents]()
     
-    var dataSearch = [Document]()
+    var dataSearch = [Documents]()
     var searchString = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        dataSearch = documentList
+        
         txt_SeachDocument.delegate = self
         txt_SeachDocument.addTarget(self, action: #selector(self.searchResult(_:)), for: .editingChanged)
         
@@ -34,6 +34,25 @@ class DocumentsViewController: UIViewController {
         setupSlideMenu(item: menuButton, controller: self)
         
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        let token = defaults.object(forKey: "tokenString") as! String
+        print(token)
+        documentList.removeAll()
+        Documents.getAllDocuments(withToken: token) { (results) in
+            
+            for result in results!
+            {
+                self.documentList.append(result)
+                DispatchQueue.main.async(execute: {
+                    self.dataSearch = self.documentList
+                    self.documentTableView.reloadData()
+                })
+            }
+        }
+
+    }
+    
     func searchResult(_ textfiled:UITextField)
     {
         dataSearch.removeAll()
@@ -41,7 +60,7 @@ class DocumentsViewController: UIViewController {
         {
             for document in documentList
             {
-                let range = document.taxDocument.lowercased().range(of: textfiled.text!, options: .caseInsensitive, range: nil, locale: nil)
+                let range = document.title.lowercased().range(of: textfiled.text!, options: .caseInsensitive, range: nil, locale: nil)
                 
                 if range != nil
                 {
@@ -54,6 +73,26 @@ class DocumentsViewController: UIViewController {
             dataSearch = documentList
         }
         documentTableView.reloadData()
+    }
+    
+    func convertDateStringToDateFormat(longDate: String) -> String
+    {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS"
+        let date = dateFormatter.date(from: longDate)
+        
+        if date != nil
+        {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "MMMM dd, yyyy HH:mm"
+            let dateConvert = formatter.string(from: date!)
+            
+            return dateConvert
+        }
+        else
+        {
+            return longDate
+        }
     }
     
 }
@@ -79,8 +118,10 @@ extension DocumentsViewController: UITableViewDataSource
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! DocumentTableViewCell
         
-        cell.lblTaxdocument.text = dataSearch[indexPath.section].taxDocument
-        cell.lbluploadDay.text = dataSearch[indexPath.section].uploadDay
+        let documentItem = dataSearch[indexPath.row]
+        
+        cell.lblTaxdocument.text = documentItem.title
+        cell.lbluploadDay.text = convertDateStringToDateFormat(longDate: documentItem.createdDateUtc)
         
         return cell
     }
