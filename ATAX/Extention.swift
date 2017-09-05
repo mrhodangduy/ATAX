@@ -29,7 +29,7 @@ extension UIViewController
         mainView.transform = CGAffineTransform(scaleX: 0.01, y: 0.01)
         backGroundView.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
         
-        UIView.animate(withDuration: 0.3, animations: {
+        UIView.animate(withDuration: 0.2, animations: {
             mainView.transform = .identity
             backGroundView.transform = .identity
         }, completion: nil)

@@ -27,17 +27,36 @@ class ContactTaxProViewController: UIViewController {
     
     @IBAction func sendMessageAction(_ sender: UIButton) {
         
+        // Encode message content
+        
+        let queryItem = URLQueryItem(name: "messageContent", value: tv_Message.text)
+        var urlComponents = URLComponents()
+        urlComponents.queryItems = [queryItem]
+        let messContent = urlComponents.url
+        
         if Connectivity.isConnectedToInternet
         {
-            if (tv_Message.textColor == UIColor.lightGray) && tv_Message.text.isEmpty
+            if (tv_Message.textColor == UIColor.lightGray) || tv_Message.text.characters.count == 0
             {
-                alertMissingText(mess: "Message is required", textField: nil)
+                alertMissingText(mess: "Message is required.", textField: nil)
                 tv_Message.becomeFirstResponder()
             }
+                
             else
             {
-                print("Your message is sent")
-                dismiss(animated: true, completion: nil)
+                let token = defaults.object(forKey: "tokenString") as! String
+                print(token)
+                ContactTaxPro.SendMessSupport(withToken: token, messContent: "\(messContent!)", completion: { (status) in
+                    
+                    if status
+                    {
+                        self.dismiss(animated: true, completion: nil)
+                    }
+                    else
+                    {
+                        self.alertMissingText(mess: "Can not send messages.", textField: nil)
+                    }
+                })
                 
             }
             

@@ -15,7 +15,6 @@ class DocumentsViewController: UIViewController {
     @IBOutlet weak var txt_SeachDocument: UITextField!
     
     var documentList = [Documents]()
-    
     var dataSearch = [Documents]()
     var searchString = ""
     
@@ -36,21 +35,18 @@ class DocumentsViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
         let token = defaults.object(forKey: "tokenString") as! String
         print(token)
-        documentList.removeAll()
         Documents.getAllDocuments(withToken: token) { (results) in
             
-            for result in results!
-            {
-                self.documentList.append(result)
-                DispatchQueue.main.async(execute: {
-                    self.dataSearch = self.documentList
-                    self.documentTableView.reloadData()
-                })
-            }
+            self.documentList = results!
+            DispatchQueue.main.async(execute: {
+                self.dataSearch = self.documentList
+                self.documentTableView.reloadData()
+            })
         }
-
+        
     }
     
     func searchResult(_ textfiled:UITextField)
@@ -118,7 +114,7 @@ extension DocumentsViewController: UITableViewDataSource
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! DocumentTableViewCell
         
-        let documentItem = dataSearch[indexPath.row]
+        let documentItem = dataSearch[indexPath.section]
         
         cell.lblTaxdocument.text = documentItem.title
         cell.lbluploadDay.text = convertDateStringToDateFormat(longDate: documentItem.createdDateUtc)

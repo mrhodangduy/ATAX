@@ -19,7 +19,7 @@ class UploadDocumentViewController: UIViewController {
     @IBOutlet weak var txt_selectTax: UITextField!
     @IBOutlet weak var txt_typeOfDocument: UITextField!
     
-    var listTaxes = [String]()
+    var listTaxes = [Taxes]()
     var listDocuments = [DocumentTypes]()
     
     var backgroundView: UIView!
@@ -32,18 +32,21 @@ class UploadDocumentViewController: UIViewController {
         
         let token = defaults.object(forKey: "tokenString") as! String
         print(token)
-        TaxInfomation.getAllTaxes(withToken: token) { (results) in
+        
+        TaxInfomation.getAllTaxes(withToken: token, pageNumber: 1) { (results) in
             
             for result in results!
             {
-                let tax = result.title
-                self.listTaxes.append(tax)
+                let taxName = result.title
+                let taxId = result.id
+                self.listTaxes.append(Taxes(taxName: taxName, taxtId: taxId))
                 DispatchQueue.main.async(execute: { 
                     self.dataTableview.reloadData()
                 })
             }
             
         }
+        
         DocumentTypes.getDocumentType(withToken: token) { (results) in
             
             for result in results!
@@ -53,8 +56,7 @@ class UploadDocumentViewController: UIViewController {
                     self.data1Tablview.reloadData()
                 })
             }
-        }
-        
+        }        
         
         createTapGestureScrollview(withscrollview: scrollView)
         
@@ -252,7 +254,7 @@ extension UploadDocumentViewController: UITableViewDataSource, UITableViewDelega
         if tableView.tag == 1
         {
             let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-            cell.textLabel?.text = listTaxes[indexPath.row]
+            cell.textLabel?.text = listTaxes[indexPath.row].taxName
             return cell
         }
         else if tableView.tag == 2
@@ -273,9 +275,10 @@ extension UploadDocumentViewController: UITableViewDataSource, UITableViewDelega
         
         if tableView.tag == 1
         {
-            self.txt_selectTax.text = listTaxes[indexPath.row]
+            self.txt_selectTax.text = listTaxes[indexPath.row].taxName
             self.viewData.alpha  = 0
             self.backgroundView.alpha = 0
+            print(listTaxes[indexPath.row].taxtId)
             
         }
         else if tableView.tag == 2
@@ -284,6 +287,7 @@ extension UploadDocumentViewController: UITableViewDataSource, UITableViewDelega
             self.txt_typeOfDocument.text = listDocuments[indexPath.row].text
             self.viewData1.alpha  = 0
             self.backgroundView.alpha = 0
+            print(listDocuments[indexPath.row].value)
         }
         else
         {

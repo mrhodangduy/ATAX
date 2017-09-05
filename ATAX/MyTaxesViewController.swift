@@ -20,9 +20,8 @@ class MyTaxesViewController: UIViewController {
     let imageRatio: CGFloat = 556/501
     
     override func viewDidLoad() {
-        super.viewDidLoad()
+        super.viewDidLoad()        
         
-        let date = 
         
         mytaxesTableView.dataSource = self
         mytaxesTableView.delegate = self

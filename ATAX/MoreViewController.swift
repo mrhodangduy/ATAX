@@ -47,11 +47,8 @@ class MoreViewController: UIViewController {
         }
         
     }
-
     
 }
-
-
 
 extension MoreViewController: SFSafariViewControllerDelegate
 {

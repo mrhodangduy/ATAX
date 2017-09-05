@@ -12,6 +12,11 @@ import MapKit
 
 class OurOfficeViewController: UIViewController {
     
+    @IBOutlet weak var lblCompanyWEB: UILabel!
+    @IBOutlet weak var lblAddress: UILabel!
+    @IBOutlet weak var lblEmail: UILabel!
+    @IBOutlet weak var lblPhone: UILabel!
+    @IBOutlet weak var lblFax: UILabel!
     @IBOutlet weak var mapViewOffice: MKMapView!
     
     let regionRadius: CLLocationDistance = 1000
@@ -20,12 +25,34 @@ class OurOfficeViewController: UIViewController {
     
     var manager:CLLocationManager!
     
+    var companyInfomation:CompanyInfo?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        setupMapView()
+        let companyId = defaults.object(forKey: "companyId") as? Int
+        CompanyInfo.getCompanyInfo(companyId: companyId!) { (info) in
+            
+            self.companyInfomation = info!
+            DispatchQueue.main.async(execute: {
+                self.lblCompanyWEB.text = self.companyInfomation?.name
+                self.lblAddress.text = self.companyInfomation?.address
+                self.lblEmail.text = self.companyInfomation?.email
+                self.lblPhone.text = self.companyInfomation?.phone
+                self.lblFax.text = self.companyInfomation?.fax
+                self.setupMapView()                
+            })
+        }
         
         // Do any additional setup after loading the view.
+    }
+    
+    
+    @IBAction func companyAction(_ sender: UIButton) {
+        
+        let svc = SFSafariViewController(url: URL(string: (companyInfomation?.companyWebsite)!)!, entersReaderIfAvailable: false)
+        svc.delegate = self
+        self.present(svc, animated: true, completion: nil)
+
     }
     
     func setupMapView()
@@ -96,19 +123,19 @@ class OurOfficeViewController: UIViewController {
         
         if sender.tag == 1
         {
-            let svc = SFSafariViewController(url: fbLink!, entersReaderIfAvailable: false)
+            let svc = SFSafariViewController(url: URL(string: (companyInfomation?.facebookUrl)!)!, entersReaderIfAvailable: false)
             svc.delegate = self
             self.present(svc, animated: true, completion: nil)
             
         } else if sender.tag == 2
         {
-            let svc = SFSafariViewController(url: ttLink!, entersReaderIfAvailable: false)
+            let svc = SFSafariViewController(url: URL(string: (companyInfomation?.twitterUrl)!)!, entersReaderIfAvailable: false)
             svc.delegate = self
             self.present(svc, animated: true, completion: nil)
         }
         else
         {
-            let svc = SFSafariViewController(url: youtubeLink!, entersReaderIfAvailable: false)
+            let svc = SFSafariViewController(url: URL(string: (companyInfomation?.youTubeUrl)!)!, entersReaderIfAvailable: false)
             svc.delegate = self
             self.present(svc, animated: true, completion: nil)
         }

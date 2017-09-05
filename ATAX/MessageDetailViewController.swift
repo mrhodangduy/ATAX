@@ -18,6 +18,8 @@ class MessageDetailViewController: UIViewController {
     var messSubject = ""
     var date = ""
     var messContent = ""
+    var messageID:Int?
+    var userID:String?
     
     
     override func viewDidLoad() {
@@ -64,7 +66,21 @@ class MessageDetailViewController: UIViewController {
         let alert = UIAlertController(title: title, message: mess, preferredStyle: type)
         let btnDell  = UIAlertAction(title: "Delete", style: .destructive) { (action) in
             
-            print("Deleted")
+            let token = defaults.object(forKey: "tokenString") as! String
+            print(token)
+            Message.deleteMessage(withToken: token, id: self.userID!, messageId: self.messageID!, completion: { (status) in
+                
+                if status
+                {
+                    print("Deleted")
+                    self.navigationController?.popViewController(animated: true)
+                }
+                else
+                {
+                    self.alertMissingText(mess: defaults.object(forKey: "notification") as! String, textField: nil)
+                }
+                
+            })
             
         }
         let btnCan = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)

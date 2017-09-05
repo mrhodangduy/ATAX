@@ -14,6 +14,7 @@ import SVProgressHUD
 struct UserInformation
 {
     
+    let companyId: Int
     let firstName: String
     let lastName: String
     let email:String
@@ -28,6 +29,7 @@ struct UserInformation
     }
     
     init(json: [String: AnyObject]) throws {
+        guard let companyId = json["companyId"] as? Int else { throw ErrorHandle.missing("companyId is missing")}
         guard let firstName = json["firstName"] as? String else { throw ErrorHandle.missing("firstName is missing")}
         guard let lastName = json["lastName"] as? String else { throw ErrorHandle.missing("lastName is missing")}
         guard let email = json["email"] as? String else { throw ErrorHandle.missing("email is missing")}
@@ -36,7 +38,7 @@ struct UserInformation
         guard let imageAvatarLink = json["userImageFullPath"] as? String else { throw ErrorHandle.missing("imageAvatarLink is missing")}
         guard let contactId = json["contactId"] as? Int else { throw ErrorHandle.missing("contactId is missing")}
         
-        
+        self.companyId = companyId
         self.firstName = firstName
         self.lastName = lastName
         self.email = email
@@ -47,20 +49,20 @@ struct UserInformation
         
     }
     
-    static func getUserInfo(withToken token:String, completion: @escaping ([UserInformation]?)->())
+    static func getUserInfo(withToken token:String, completion: @escaping (UserInformation?)->())
     {
         let url = URL(string: URL_WS + "v1/account/loginuserinfo")
         let httpHeader: HTTPHeaders = ["Authorization":"Bearer \(token)","Content-Type":"application/x-www-form-urlencoded"]
         
         Alamofire.request(url!, method: HTTPMethod.post, parameters: nil, encoding: URLEncoding.httpBody, headers: httpHeader).responseJSON { (response) in
             
-            var userInfo = [UserInformation]()
+            var userInfo:UserInformation?
             
             if response.response?.statusCode == 200
             {
                 let jsonResult = response.result.value as? [String: AnyObject]
                 let userInfor = try? UserInformation(json: jsonResult!)
-                userInfo.append(userInfor!)
+                userInfo = userInfor
             }
             else
             {
@@ -99,15 +101,17 @@ struct UserInformation
                     getUserInfo(withToken: token, completion: { (users) in
                         
                         print(users!)
-                        let fullname = users?.last?.fullName
-                        let email = users?.last?.email
+                        let fullname = users?.fullName
+                        let email = users?.email
+                        let companyId = users?.companyId
                         
                         defaults.set(fullname, forKey: "userName")
                         defaults.set(email, forKey: "email")
+                        defaults.set(companyId, forKey: "companyId")
                         defaults.synchronize()
                         
                     })
-
+                    
                 }
                 else
                 {
@@ -127,7 +131,7 @@ struct UserInformation
     }
     
     static func signUpUser(firstName: String, lastName: String, email: String, phone: String, password: String,complete: @escaping (Bool) -> ())
-
+        
     {
         let url = URL(string: URL_WS + "v1/account/register")
         
@@ -137,7 +141,7 @@ struct UserInformation
         var isSignedUp:Bool = Bool.init()
         
         SVProgressHUD.show(withStatus: "Loading...")
-        DispatchQueue.global(qos: .default).async { 
+        DispatchQueue.global(qos: .default).async {
             Alamofire.request(url!, method: HTTPMethod.post, parameters: parameter, encoding: URLEncoding.httpBody, headers: httpHeader).responseJSON { (response) in
                 print(response)
                 
@@ -177,7 +181,7 @@ struct UserInformation
         var isSentMail: Bool = Bool.init()
         
         SVProgressHUD.show(withStatus: "Sending...")
-        DispatchQueue.global(qos: .default).async { 
+        DispatchQueue.global(qos: .default).async {
             Alamofire.request(url!, method: HTTPMethod.get, parameters: nil, encoding: URLEncoding.httpBody, headers: httpHeader).responseJSON(completionHandler: { (response) in
                 
                 print(response.response!)
@@ -197,14 +201,14 @@ struct UserInformation
                     isSentMail = false
                 }
                 compete(isSentMail)
-                DispatchQueue.main.async(execute: { 
+                DispatchQueue.main.async(execute: {
                     SVProgressHUD.dismiss()
                 })
                 
             })
         }
     }
-
+    
     
 }
 

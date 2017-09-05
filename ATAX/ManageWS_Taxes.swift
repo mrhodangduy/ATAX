@@ -13,6 +13,7 @@ import SVProgressHUD
 
 struct TaxInfomation
 {
+    let id: Int
     let contactId:Int
     let title: String
     let year: Int
@@ -26,6 +27,7 @@ struct TaxInfomation
     }
     
     init(json: [String: AnyObject]) throws {
+        guard let id = json["id"] as? Int else { throw ErrorHandle.missing("id is missing")}
         guard let contactId = json["contactId"] as? Int else { throw ErrorHandle.missing("contactId is missing")}
         guard let title = json["title"] as? String else { throw ErrorHandle.missing("title is missing")}
         guard let year = json["year"] as? Int else { throw ErrorHandle.missing("year is missing")}
@@ -33,7 +35,7 @@ struct TaxInfomation
         guard let status = json["status"] as? String else { throw ErrorHandle.missing("status is missing")}
         guard let createdDate = json["createdDate"] as? String else { throw ErrorHandle.missing("createDate is missing")}
         
-        
+        self.id = id
         self.contactId = contactId
         self.title = title
         self.year = year
@@ -43,39 +45,34 @@ struct TaxInfomation
         
     }
     
-    static func getAllTaxes(withToken token:String, completion: @escaping ([TaxInfomation]?) -> ())
+    static func getAllTaxes(withToken token:String,pageNumber:Int, completion: @escaping ([TaxInfomation]?) -> ())
     {
-        let url = URL(string: URL_WS + "v1/taxes")
+        let url = URL(string: URL_WS + "v1/taxes?pageNumber=\(pageNumber)&pageSize=20")
         let httpHeader: HTTPHeaders = ["Authorization":"Bearer \(token)"]
         
-        SVProgressHUD.show(withStatus: "Loading...")
-        DispatchQueue.global(qos: .default).async {
-            Alamofire.request(url!, method: HTTPMethod.get, parameters: nil, encoding: URLEncoding.httpBody, headers: httpHeader).responseJSON(completionHandler: { (response) in
-                
-                var taxesList = [TaxInfomation]()
-                
-                if response.response?.statusCode == 200
+        Alamofire.request(url!, method: HTTPMethod.get, parameters: nil, encoding: URLEncoding.httpBody, headers: httpHeader).responseJSON(completionHandler: { (response) in
+            
+            var taxesList = [TaxInfomation]()
+            
+            if response.response?.statusCode == 200
+            {
+                let jsonResult = response.result.value as? [[String: AnyObject]]
+                for taxeItem in jsonResult!
                 {
-                    let jsonResult = response.result.value as? [[String: AnyObject]]
-                    for taxeItem in jsonResult!
-                    {
-                        let item = try? TaxInfomation(json: taxeItem)
-                        taxesList.append(item!)
-                    }
-                    
-                }
-                else
-                {
-                    print("Loi xac thuc")
+                    let item = try? TaxInfomation(json: taxeItem)
+                    taxesList.append(item!)
                 }
                 
-                completion(taxesList)
-                DispatchQueue.main.async(execute: {
-                    SVProgressHUD.dismiss()
-                })
-            })
-        }
-        
+            }
+            else
+            {
+                print("Loi xac thuc")
+            }
+            
+            completion(taxesList)
+            
+        })
+                
     }
     
     static func postTaxes(withToken token:String, year: Int,taxtTypeString: String, taxtype: Int, completion: @escaping (Int)-> ())
@@ -87,14 +84,14 @@ struct TaxInfomation
         var uploadStatus:Int?
         
         SVProgressHUD.show()
-        DispatchQueue.global(qos: .default).async { 
+        DispatchQueue.global(qos: .default).async {
             Alamofire.request(url!, method: HTTPMethod.post, parameters: parameter, encoding: URLEncoding.httpBody, headers: httpHeader).responseJSON(completionHandler: { (response) in
                 
                 if response.response?.statusCode == 200
                 {
                     uploadStatus = 200
                 }
-                
+                    
                 else
                 {
                     uploadStatus = 401
@@ -146,7 +143,6 @@ struct TaxForm {
             Alamofire.request(url!, method: HTTPMethod.get, parameters: nil, encoding: URLEncoding.httpBody, headers: httpHeader).responseJSON(completionHandler: { (response) in
                 
                 var taxYear = [TaxForm]()
-                print(response.response?.statusCode)
                 
                 if response.response?.statusCode == 200
                 {
@@ -175,7 +171,7 @@ struct TaxForm {
                 
             })
         }
-
+        
     }
     
     static func getTaxTypes(withToken token:String, completion: @escaping ([TaxForm]?) ->())
@@ -219,8 +215,14 @@ struct TaxForm {
         }
         
     }
+    
+    
+}
 
-
+struct Taxes
+{
+    let taxName: String
+    let taxtId: Int
 }
 
 

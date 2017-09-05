@@ -191,7 +191,7 @@ extension NewTaxViewController: UITableViewDataSource, UITableViewDelegate
         
         if tableView.tag == 1
         {
-            self.txt_SelectTaxYear.text = taxYear[indexPath.row]
+            self.txt_SelectTaxYear.text = taxYears[indexPath.row].display
             self.viewData.alpha  = 0
             self.backgroundView.alpha = 0
             

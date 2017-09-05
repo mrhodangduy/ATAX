@@ -9,7 +9,7 @@
 import UIKit
 
 class MessagesViewController: UIViewController {
-
+    
     @IBOutlet weak var messageTableView: UITableView!
     @IBOutlet weak var menuButton: UIBarButtonItem!
     @IBOutlet weak var txt_SearchBar: UITextField!
@@ -20,18 +20,6 @@ class MessagesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let token = defaults.object(forKey: "tokenString") as! String
-        print(token)
-        Message.getAllMessages(withToken: token) { (messages) in
-            
-            for message in messages!
-            {
-                self.messageList.append(message)
-                self.messageSearch = self.messageList
-                self.messageTableView.reloadData()
-            }
-            
-        }
         
         messageTableView.delegate = self
         messageTableView.dataSource = self
@@ -43,6 +31,23 @@ class MessagesViewController: UIViewController {
         
         setupSlideMenu(item: menuButton, controller: self)
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        let token = defaults.object(forKey: "tokenString") as! String
+        print(token)
+        Message.getAllMessages(withToken: token) { (messages) in
+            
+            self.messageList = messages!
+            DispatchQueue.main.async {
+                self.messageSearch = self.messageList
+                self.messageTableView.reloadData()
+            }
+            
+        }
+    }
+    
     func searchResult(_ textfiled:UITextField)
     {
         messageSearch.removeAll()
@@ -84,7 +89,7 @@ class MessagesViewController: UIViewController {
             return longDate
         }
     }
-
+    
 }
 extension MessagesViewController:UITextFieldDelegate
 {
@@ -104,7 +109,7 @@ extension MessagesViewController: UITableViewDataSource
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! MessageTableViewCell
-       
+        
         let messageItem = messageSearch[indexPath.section]
         
         cell.lblmessTitle.text = messageItem.subject
@@ -112,7 +117,7 @@ extension MessagesViewController: UITableViewDataSource
         
         return cell
     }
-       
+    
     
 }
 
@@ -137,13 +142,16 @@ extension MessagesViewController: UITableViewDelegate
         tableView.deselectRow(at: indexPath, animated: false)
         view.endEditing(true)
         
+        
         let messageItem = messageSearch[indexPath.section]
-        print(messageItem)
+        print(messageItem.id)
         let MessDetail = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "messdetailVC") as! MessageDetailViewController
         
         MessDetail.messSubject = messageItem.subject
         MessDetail.date = convertDateStringToDateFormat(longDate: messageItem.date)
         MessDetail.messContent = messageItem.messageContent
+        MessDetail.messageID = messageItem.id
+        MessDetail.userID = String(messageItem.userId)
         
         self.navigationController?.pushViewController(MessDetail, animated: true)
         

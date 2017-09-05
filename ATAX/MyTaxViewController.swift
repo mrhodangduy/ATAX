@@ -7,46 +7,49 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class MyTaxViewController: UIViewController {
-
+    
     @IBOutlet weak var mytaxTableView: UITableView!
     @IBOutlet weak var txtSearch: UITextField!
     
     var myTaxesList = [TaxInfomation]()
     var searchTax = [TaxInfomation]()
+    var nextpage = 2
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-                        
+        
         txtSearch.delegate = self
         txtSearch.addTarget(self, action: #selector(self.searchResult(_:)), for: .editingChanged)
         
         mytaxTableView.dataSource = self
         mytaxTableView.delegate = self
-
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         let token = defaults.object(forKey: "tokenString") as! String
         print(token)
-        TaxInfomation.getAllTaxes(withToken: token) { (results) in
-            self.myTaxesList.removeAll()
-            for result in results!
-            {
-                self.myTaxesList.append(result)
+        SVProgressHUD.showProgress(-1, status: "Loading...")
+        DispatchQueue.global(qos: .default).async {
+            TaxInfomation.getAllTaxes(withToken: token, pageNumber: 1) { (results) in
+                
+                self.myTaxesList = results!
                 DispatchQueue.main.async(execute: {
                     self.searchTax = self.myTaxesList
                     self.mytaxTableView.reloadData()
-                    print(self.searchTax)
+                    SVProgressHUD.dismiss()
                 })
+                
             }
-            
+                        
         }
+        
     }
-    
     
     func convertDateStringToDate(longDate: String) -> String
     {
@@ -67,7 +70,7 @@ class MyTaxViewController: UIViewController {
             return longDate
         }
     }
-   
+    
     func searchResult(_ textfiled: UITextField)
     {
         searchTax.removeAll()
@@ -140,6 +143,39 @@ extension MyTaxViewController: UITableViewDataSource
         return cell
     }
     
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let lastItem = searchTax.count - 1
+        if indexPath.section == lastItem
+        {
+            loadMoreTaxes(pageNumber: nextpage)
+        }
+        nextpage += 1
+        
+    }
+    
+    func loadMoreTaxes (pageNumber: Int)
+    {
+        let token = defaults.object(forKey: "tokenString") as! String
+        
+        TaxInfomation.getAllTaxes(withToken: token, pageNumber: pageNumber) { (results) in
+            for result in results!
+            {
+                
+                print(results!)
+                self.myTaxesList.append(result)
+                DispatchQueue.main.async {
+                    self.searchTax = self.myTaxesList
+                    self.mytaxTableView.reloadData()
+                    
+                }
+                
+            }
+            print("MyList: ---\(self.myTaxesList.count)\n")
+            print("MyList: ---\(self.searchTax.count)\n")
+            
+        }
+    }
+    
 }
 
 extension MyTaxViewController: UITableViewDelegate
@@ -157,7 +193,7 @@ extension MyTaxViewController: UITableViewDelegate
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 10
     }
-
+    
 }
 
 extension MyTaxViewController: UITextFieldDelegate

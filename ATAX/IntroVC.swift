@@ -45,12 +45,15 @@ extension IntroVC: PaperOnboardingDataSource, PaperOnboardingDelegate
         
         if index == 2
         {
-            UIView.animate(withDuration: 1, animations: {
+            UIView.animate(withDuration: 0.5, animations: {
                 self.startButton.alpha = 1
+                self.skipbtn.alpha = 0
             })
+            
         } else
         {
             startButton.alpha = 0
+            skipbtn.alpha = 1
         }
         
         

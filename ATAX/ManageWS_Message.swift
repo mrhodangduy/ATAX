@@ -12,8 +12,6 @@ import SVProgressHUD
 
 struct Message
 {
-    
-    
     let id:Int
     let userId: Int
     let subject: String
@@ -39,7 +37,6 @@ struct Message
         guard let isSuccess = json["isSuccess"] as? Bool else { throw ErrorHandle.missing("isSuccess is missing")}
         guard let priority = json["priority"] as? String else { throw ErrorHandle.missing("priority is missing")}
         guard let senderProfileImageUrl = json["senderProfileImageUrl"] as? String else { throw ErrorHandle.missing("senderProfileImageUrl is missing")}
-        
         
         self.id = id
         self.userId = userId
@@ -91,20 +88,32 @@ struct Message
 
     }
     
-
+    static func deleteMessage(withToken token: String, id: String, messageId: Int, completion: @escaping (Bool) ->())
+    {
+        let url = URL(string: URL_WS + "v1/messages/\(id)?messageId=\(messageId)")
+        let httpHeader: HTTPHeaders = ["Authorization":"Bearer \(token)"]
+        
+        Alamofire.request(url!, method: HTTPMethod.delete, parameters: nil, encoding: URLEncoding.httpBody, headers: httpHeader).responseJSON { (response) in
+            
+            var delStatus:Bool?
+            
+            if response.response?.statusCode == 200
+            {
+                let jsonResult = response.result.value as? [String: AnyObject]
+                let isSuccess = jsonResult?["isSuccess"] as? Bool
+                defaults.set(jsonResult?["notification"], forKey: "notification")
+                defaults.synchronize()
+                delStatus = isSuccess!
+            }
+            else
+            {
+                print("Loi xac thuc")
+            }
+            completion(delStatus!)
+            
+        }
+    }
+    
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
