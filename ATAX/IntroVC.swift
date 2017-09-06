@@ -22,6 +22,7 @@ class IntroVC: UIViewController {
         startButton.alpha = 0
         
     }
+    
     @IBAction func getStart(_ sender: Any) {
         gotoSignInVC()
     }
@@ -30,6 +31,7 @@ class IntroVC: UIViewController {
     {
         gotoSignInVC()
     }
+    
     func gotoSignInVC()
     {
         let signinVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "signinVC") as! SignInViewController

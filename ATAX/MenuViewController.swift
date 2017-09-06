@@ -15,18 +15,19 @@ class MenuViewController: UIViewController {
     @IBOutlet weak var imageAvatar: RoundImageView!
     @IBOutlet weak var lbl_userName: UILabel!
     @IBOutlet weak var lbl_Email: UILabel!
+    var token:String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        token = defaults.object(forKey: "tokenString") as? String
+        
+        
         lbl_userName.text = UserDefaults.standard.object(forKey: "userName") as? String
         lbl_Email.text = UserDefaults.standard.object(forKey: "email") as? String
         
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     @IBAction func myTaxAction(_ sender: UIButton) {
         
         let myTaxesVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "mytaxesVC") as! MyTaxViewController
@@ -67,7 +68,7 @@ class MenuViewController: UIViewController {
             sarafi.delegate = self
             self.present(sarafi, animated: true, completion: nil)
         }
-        else            
+        else
         {
             alertMissingText(mess: "The Internet connetion appears to be offline.", textField: nil)
         }
@@ -93,21 +94,31 @@ class MenuViewController: UIViewController {
         let alert = UIAlertController(title: title, message: mess, preferredStyle: type)
         let btnDell  = UIAlertAction(title: "Logout", style: .destructive) { (action) in
             
-            defaults.set(false, forKey: "isLoggedin")
-            defaults.removeObject(forKey: "tokenString")
-            defaults.synchronize()
-            print("Logged Out")
-            
-            let signinVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "signinVC") as! SignInViewController
-            self.present(signinVC, animated: false, completion: nil)
+            UserInformation.logOut(withToken: self.token!, completion: { (done) in
+                if done
+                {
+                    defaults.set(false, forKey: "isLoggedin")
+                    defaults.removeObject(forKey: "tokenString")
+                    defaults.synchronize()
+                    print("Logged Out")
+                    
+                    let signinVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "signinVC") as! SignInViewController
+                    self.present(signinVC, animated: false, completion: nil)
+                }
+                else
+                {
+                    print("Error to logOut")
+                }
+                
+            })
         }
+        
         let btnCan = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         alert.addAction(btnDell)
         alert.addAction(btnCan)
         
         self.present(alert, animated: true, completion: nil)
     }
-    
     
 }
 

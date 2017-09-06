@@ -45,9 +45,9 @@ struct TaxInfomation
         
     }
     
-    static func getAllTaxes(withToken token:String,pageNumber:Int, completion: @escaping ([TaxInfomation]?) -> ())
+    static func getTaxeswithPage(withToken token:String,pageNumber:Int, completion: @escaping ([TaxInfomation]?) -> ())
     {
-        let url = URL(string: URL_WS + "v1/taxes?pageNumber=\(pageNumber)&pageSize=20")
+        let url = URL(string: URL_WS + "v1/taxes?pageNumber=" + "\(pageNumber)" + "&pageSize=20")
         let httpHeader: HTTPHeaders = ["Authorization":"Bearer \(token)"]
         
         Alamofire.request(url!, method: HTTPMethod.get, parameters: nil, encoding: URLEncoding.httpBody, headers: httpHeader).responseJSON(completionHandler: { (response) in
@@ -74,6 +74,37 @@ struct TaxInfomation
         })
                 
     }
+    
+    static func getAllTaxes(withToken token:String, completion: @escaping ([TaxInfomation]?) -> ())
+    {
+        let url = URL(string: URL_WS + "v1/taxes")
+        let httpHeader: HTTPHeaders = ["Authorization":"Bearer \(token)"]
+        
+        Alamofire.request(url!, method: HTTPMethod.get, parameters: nil, encoding: URLEncoding.httpBody, headers: httpHeader).responseJSON(completionHandler: { (response) in
+            
+            var taxesList = [TaxInfomation]()
+            
+            if response.response?.statusCode == 200
+            {
+                let jsonResult = response.result.value as? [[String: AnyObject]]
+                for taxItem in jsonResult!
+                {
+                    let item = try? TaxInfomation(json: taxItem)
+                    taxesList.append(item!)
+                }
+                
+            }
+            else
+            {
+                print("Loi xac thuc")
+            }
+            
+            completion(taxesList)
+            
+        })
+        
+    }
+
     
     static func postTaxes(withToken token:String, year: Int,taxtTypeString: String, taxtype: Int, completion: @escaping (Int)-> ())
     {
@@ -223,6 +254,7 @@ struct Taxes
 {
     let taxName: String
     let taxtId: Int
+    let year:Int
 }
 
 

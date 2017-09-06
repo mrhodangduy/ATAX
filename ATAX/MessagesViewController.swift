@@ -16,6 +16,8 @@ class MessagesViewController: UIViewController {
     
     var messageList = [Message]()
     var messageSearch = [Message]()
+    var currentPage:Int!
+    let token = defaults.object(forKey: "tokenString") as! String
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,10 +36,8 @@ class MessagesViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        let token = defaults.object(forKey: "tokenString") as! String
-        print(token)
-        Message.getAllMessages(withToken: token) { (messages) in
+        currentPage = 1
+        Message.getAllMessages(withToken: token, pagenumber: currentPage) { (messages) in
             
             self.messageList = messages!
             DispatchQueue.main.async {
@@ -156,8 +156,38 @@ extension MessagesViewController: UITableViewDelegate
         self.navigationController?.pushViewController(MessDetail, animated: true)
         
     }
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        
+        let lastItem = messageSearch.count - 1
+        print(lastItem)
+        print(indexPath.section)
+        if indexPath.section == lastItem
+        {
+            currentPage = currentPage + 1
+            loadMore(pageNumber: currentPage)
+        }
+        
+    }
     
+    func loadMore(pageNumber: Int)
+    {
+        
+        Message.getAllMessages(withToken: token, pagenumber: pageNumber) { (results) in
+            for result in results!
+            {
+                self.messageList.append(result)
+                DispatchQueue.main.async(execute: {
+                    self.messageSearch = self.messageList
+                    self.messageTableView.reloadData()
+                })
+            }
+        }
+        print("MyList: ---\(self.messageList.count)\n")
+        print("SearchList: ---\(self.messageSearch.count)\n")
+    }
 }
+
+
 
 
 

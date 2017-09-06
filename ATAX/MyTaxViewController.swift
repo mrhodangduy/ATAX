@@ -16,27 +16,17 @@ class MyTaxViewController: UIViewController {
     
     var myTaxesList = [TaxInfomation]()
     var searchTax = [TaxInfomation]()
-    var nextpage = 2
+    var currentPage:Int!
     
+    let token = defaults.object(forKey: "tokenString") as! String
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-        txtSearch.delegate = self
-        txtSearch.addTarget(self, action: #selector(self.searchResult(_:)), for: .editingChanged)
-        
-        mytaxTableView.dataSource = self
-        mytaxTableView.delegate = self
-        
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        let token = defaults.object(forKey: "tokenString") as! String
+        currentPage = 1
         print(token)
-        SVProgressHUD.showProgress(-1, status: "Loading...")
+        SVProgressHUD.show()
         DispatchQueue.global(qos: .default).async {
-            TaxInfomation.getAllTaxes(withToken: token, pageNumber: 1) { (results) in
+            TaxInfomation.getTaxeswithPage(withToken: self.token, pageNumber: self.currentPage!) { (results) in
                 
                 self.myTaxesList = results!
                 DispatchQueue.main.async(execute: {
@@ -46,7 +36,37 @@ class MyTaxViewController: UIViewController {
                 })
                 
             }
-                        
+            
+        }
+        
+        txtSearch.delegate = self
+        txtSearch.addTarget(self, action: #selector(self.searchResult(_:)), for: .editingChanged)
+        
+        mytaxTableView.dataSource = self
+        mytaxTableView.delegate = self
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.getTaxes), name: NSNotification.Name(rawValue: notifi_addNewTax), object: nil)
+        
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        print("Current page: \(currentPage)")
+    }
+    
+    func getTaxes()
+    {
+        currentPage = 1
+        DispatchQueue.global(qos: .default).async {
+            TaxInfomation.getTaxeswithPage(withToken: self.token, pageNumber: self.currentPage!) { (results) in
+                
+                self.myTaxesList = results!
+                DispatchQueue.main.async(execute: {
+                    self.searchTax = self.myTaxesList
+                    self.mytaxTableView.reloadData()
+                    
+                })
+                
+            }
+            
         }
         
     }
@@ -143,21 +163,24 @@ extension MyTaxViewController: UITableViewDataSource
         return cell
     }
     
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        let lastItem = searchTax.count - 1
-        if indexPath.section == lastItem
-        {
-            loadMoreTaxes(pageNumber: nextpage)
+        func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+    
+            let lastItem = searchTax.count - 1
+            print("LastItem: \(lastItem)")
+            print("Row: \(indexPath.section)")
+    
+            if lastItem == indexPath.section
+            {
+                currentPage  = currentPage + 1
+                loadMoreTaxes(pageNumber: currentPage!)
+                
+            }
+    
         }
-        nextpage += 1
-        
-    }
     
     func loadMoreTaxes (pageNumber: Int)
     {
-        let token = defaults.object(forKey: "tokenString") as! String
-        
-        TaxInfomation.getAllTaxes(withToken: token, pageNumber: pageNumber) { (results) in
+        TaxInfomation.getTaxeswithPage(withToken: token, pageNumber: pageNumber) { (results) in
             for result in results!
             {
                 
@@ -171,12 +194,13 @@ extension MyTaxViewController: UITableViewDataSource
                 
             }
             print("MyList: ---\(self.myTaxesList.count)\n")
-            print("MyList: ---\(self.searchTax.count)\n")
+            print("SearchList: ---\(self.searchTax.count)\n")
             
         }
     }
-    
+
 }
+
 
 extension MyTaxViewController: UITableViewDelegate
 {

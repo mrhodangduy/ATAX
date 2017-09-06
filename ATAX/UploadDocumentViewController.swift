@@ -25,29 +25,32 @@ class UploadDocumentViewController: UIViewController {
     var backgroundView: UIView!
     var imageStatus = false
     var taxTypeIndex:Int?
-    
+    var token:String?
+    var documenttypeId:Int?
+    var taxid:Int?
+    var year:Int?
+    var fileData:Data?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let token = defaults.object(forKey: "tokenString") as! String
-        print(token)
+        token = defaults.object(forKey: "tokenString") as? String
+        print(token!)
         
-        TaxInfomation.getAllTaxes(withToken: token, pageNumber: 1) { (results) in
-            
+        TaxInfomation.getAllTaxes(withToken: token!) { (results) in
             for result in results!
             {
                 let taxName = result.title
                 let taxId = result.id
-                self.listTaxes.append(Taxes(taxName: taxName, taxtId: taxId))
-                DispatchQueue.main.async(execute: { 
+                let year = result.year
+                self.listTaxes.append(Taxes(taxName: taxName, taxtId: taxId, year: year))
+                DispatchQueue.main.async(execute: {
                     self.dataTableview.reloadData()
                 })
             }
-            
         }
         
-        DocumentTypes.getDocumentType(withToken: token) { (results) in
+        DocumentTypes.getDocumentType(withToken: token!) { (results) in
             
             for result in results!
             {
@@ -78,9 +81,7 @@ class UploadDocumentViewController: UIViewController {
         dataTableview.tag = 1
         data1Tablview.tag = 2
         
-        
     }
-    
     
     func setupViewData()
     {
@@ -192,10 +193,20 @@ class UploadDocumentViewController: UIViewController {
             }
             else
             {
-                                
-                alertMissingText(mess: "Upload done", textField: nil)
                 
+                Documents.uploadDocumentwithImage(withToken: token!, documenttypeid: documenttypeId!, taxid: taxid!, year: year!, file: fileData!, completion: { (done) in
+                    if done
+                    {
+                        self.dismiss(animated: true, completion: nil)
+                    }
+                    else
+                    {
+                        self.alertMissingText(mess: "Upload faile", textField: nil)
+                    }
+                    
+                })
                 
+               
             }
         }
         
@@ -278,7 +289,11 @@ extension UploadDocumentViewController: UITableViewDataSource, UITableViewDelega
             self.txt_selectTax.text = listTaxes[indexPath.row].taxName
             self.viewData.alpha  = 0
             self.backgroundView.alpha = 0
-            print(listTaxes[indexPath.row].taxtId)
+            
+            taxid = listTaxes[indexPath.row].taxtId
+            year = listTaxes[indexPath.row].year
+            print(taxid!)
+            print(year!)
             
         }
         else if tableView.tag == 2
@@ -288,6 +303,7 @@ extension UploadDocumentViewController: UITableViewDataSource, UITableViewDelega
             self.viewData1.alpha  = 0
             self.backgroundView.alpha = 0
             print(listDocuments[indexPath.row].value)
+            documenttypeId = Int(listDocuments[indexPath.row].value)
         }
         else
         {
@@ -300,7 +316,28 @@ extension UploadDocumentViewController: UITableViewDataSource, UITableViewDelega
 extension UploadDocumentViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate
 {
     public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        imageStatus = true
+        
+        let chooseImg = info[UIImagePickerControllerOriginalImage] as! UIImage
+        let imgValue = max(chooseImg.size.width, chooseImg.size.height)
+        
+        if imgValue > 3000
+        {
+            fileData = UIImageJPEGRepresentation(chooseImg, 0.1)
+            imageStatus = true
+
+        }
+        else if imgValue > 2000
+        {
+            fileData = UIImageJPEGRepresentation(chooseImg, 0.3)
+            imageStatus = true
+        }
+        else
+        {
+            fileData = UIImageJPEGRepresentation(chooseImg, 0.5)
+            imageStatus = true
+        }
+        
+        print(fileData!)
         picker.dismiss(animated: true, completion: nil)
     }
 }

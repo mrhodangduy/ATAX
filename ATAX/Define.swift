@@ -15,6 +15,7 @@ let notificationKey_MyTaxFromMenu = "gotoMyTaxFromMenu"
 let notifi_documentkey = "notifi_documentkey"
 let notifi_messagekey = "notifi_messagekey"
 let notifi_closemenukey = "notifi_closemenukey"
+let notifi_addNewTax = "notifi_addnewTax"
 
 let Intro1 = "Welcome to ATAX Cloud\nLet’s Get Your Taxes Done"
 let Intro2 = "Snap Photos of Your\nTax Documents"

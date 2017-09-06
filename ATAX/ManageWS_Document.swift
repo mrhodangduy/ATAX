@@ -40,7 +40,7 @@ struct DocumentTypes
         let httpHeader: HTTPHeaders = ["Authorization":"Bearer \(token)"]
         
         SVProgressHUD.show()
-        DispatchQueue.global(qos: .default).async { 
+        DispatchQueue.global(qos: .default).async {
             Alamofire.request(url!, method: HTTPMethod.get, parameters: nil, encoding: URLEncoding.httpBody, headers: httpHeader).responseJSON(completionHandler: { (response) in
                 
                 var listDocument = [DocumentTypes]()
@@ -63,7 +63,7 @@ struct DocumentTypes
                 
                 completion(listDocument)
                 
-                DispatchQueue.main.async(execute: { 
+                DispatchQueue.main.async(execute: {
                     SVProgressHUD.dismiss()
                 })
             })
@@ -75,7 +75,7 @@ struct DocumentTypes
 struct Documents
     
 {
-    let taxDocumentId: String
+    let taxDocumentId: Int
     let taxId:Int
     let taxDocumentTypeId: Int
     let taxpayerId:Int
@@ -90,7 +90,7 @@ struct Documents
     }
     
     init(json: [String: AnyObject]) throws {
-        guard let taxDocumentId = json["taxDocumentId"] as? String else { throw ErrorHandle.missing("taxDocumentId is missing")}
+        guard let taxDocumentId = json["taxDocumentId"] as? Int else { throw ErrorHandle.missing("taxDocumentId is missing")}
         guard let taxId = json["taxId"] as? Int else { throw ErrorHandle.missing("taxId is missing")}
         guard let taxDocumentTypeId = json["taxDocumentTypeId"] as? Int else { throw ErrorHandle.missing("taxDocumentTypeId is missing")}
         guard let taxpayerId = json["taxpayerId"] as? Int else { throw ErrorHandle.missing("taxpayerId is missing")}
@@ -98,7 +98,6 @@ struct Documents
         guard let title = json["title"] as? String else { throw ErrorHandle.missing("title is missing")}
         guard let cdnPartialPath = json["cdnPartialPath"] as? String else { throw ErrorHandle.missing("cdnPartialPath is missing")}
         guard let createdDateUtc = json["createdDateUtc"] as? String else { throw ErrorHandle.missing("createdDateUtc is missing")}
-        
         
         self.taxDocumentId = taxDocumentId
         self.taxId = taxId
@@ -111,12 +110,11 @@ struct Documents
         
     }
     
-    static func getAllDocuments(withToken token: String, completion: @escaping ([Documents]?) ->())
+    static func getAllDocuments(withToken token: String,pageNumber: Int, completion: @escaping ([Documents]?) ->())
     {
-        let url = URL(string: URL_WS + "v1/documents")
+        let url = URL(string: URL_WS + "v1/documents?pageNumber=" + "\(pageNumber)" + "&pageSize=15")
         let httpHeader: HTTPHeaders = ["Authorization":"Bearer \(token)"]
-
-        SVProgressHUD.show()
+        
         DispatchQueue.global(qos: .default).async {
             Alamofire.request(url!, method: HTTPMethod.get, parameters: nil, encoding: URLEncoding.httpBody, headers: httpHeader).responseJSON(completionHandler: { (response) in
                 
@@ -127,10 +125,13 @@ struct Documents
                     let jsonResult = response.result.value as? [[String: AnyObject]]
                     for result in jsonResult!
                     {
+                        
                         if let document = try? Documents(json: result)
                         {
                             documents.append(document)
+                            print(document)
                         }
+                        
                     }
                 }
                 else
@@ -140,20 +141,117 @@ struct Documents
                 
                 completion(documents)
                 
+            })
+        }
+        
+    }
+    
+    static func uploadDocument(withToken token:String, documenttypeid: Int,taxid: Int, year: Int, file: UIImage, completion: @escaping (Bool) -> ())
+    {
+        let url = URL(string: URL_WS + "v1/documents/\(taxid)/upload")
+        let parameter: Parameters = ["documenttypeid":documenttypeid,"year":year,"taxid":taxid,"file":file]
+        let httpHeader: HTTPHeaders = ["Authorization":"Bearer \(token)"]
+        
+        SVProgressHUD.show(withStatus: "Uploading...")
+        DispatchQueue.global(qos: .default).async {
+            Alamofire.request(url!, method: HTTPMethod.post, parameters: parameter, encoding: URLEncoding.httpBody, headers: httpHeader).response(completionHandler: { (response) in
+                
+                var statusUpload:Bool?
+                
+                print((response.response?.statusCode)!, (response.request)!)
+                
+                if response.response?.statusCode == 200
+                {
+                    statusUpload = true
+                    print("Upload successful")
+                }
+                else
+                {
+                    statusUpload = false
+                    print("Upload failed")
+                }
+                
+                completion(statusUpload!)
+                
                 DispatchQueue.main.async(execute: {
                     SVProgressHUD.dismiss()
                 })
             })
         }
-        
     }
+    
+    static func uploadDocumentwithImage(withToken token: String,documenttypeid: Int,taxid: Int, year: Int, file: Data?, completion: @escaping (Bool) ->())
+    {
+        let url = URL(string: URL_WS + "v1/documents/\(taxid)/upload")
+        let parameter: Parameters = ["documenttypeid": documenttypeid,"year":year,"taxid":taxid]
+        let httpHeader: HTTPHeaders = ["Authorization":"Bearer \(token)"]
+        Alamofire.upload(multipartFormData: { (multipartFormData) in
+            
+            
+            if let data = file
+            {
+                multipartFormData.append(data, withName: "file", fileName: "image.png", mimeType: "image/png")
+            }
+            for (key , value) in parameter
+            {
+                multipartFormData.append("\(value)".data(using: String.Encoding.utf8)!, withName: key as String)
+            }
+            
+        }, usingThreshold: UInt64.init(), to: url!, method: HTTPMethod.post, headers: httpHeader) { (results) in
+            
+            var status:Bool?
 
+            switch results
+            {
+            case .success(request: let upload, streamingFromDisk: _, streamFileURL: _):
+                
+                status = true
+                upload.uploadProgress(closure: { (progress) in
+                    print("Progress: \(progress.fractionCompleted)")
+                })
+                upload.response(completionHandler: { (response) in
+                })
+                
+            case .failure(let error):
+                
+                status = false
+                print("Error in upload: \(error.localizedDescription)")
+                
+            }
+            completion(status!)
+            
+        }
+    }
+    static func deleteDocument(withToken token: String, documentId: Int, completion: @escaping (Bool) -> ())
+    {
+        let url = URL(string: URL_WS + "/documents/" + "\(documentId)")
+        let httpHeader: HTTPHeaders = ["Authorization":"Bearer \(token)"]
+        
+        SVProgressHUD.show()
+        DispatchQueue.global().async { 
+            Alamofire.request(url!, method: HTTPMethod.delete, parameters: nil, encoding: URLEncoding.httpBody, headers: httpHeader).responseJSON(completionHandler: { (response) in
+                var status:Bool?
+                print((response.response?.statusCode)!)
+                if response.response?.statusCode == 200
+                {
+                    status = true
+                    print("Deleted")
+                }
+                else
+                {
+                    status = false
+                    print("Deleted failed")
+                }
+                completion(status!)
+                DispatchQueue.main.async(execute: { 
+                    SVProgressHUD.dismiss()
+                })
+            })
+        }
+
+    }
+    
 }
-
-
-
-
-
 
 
 

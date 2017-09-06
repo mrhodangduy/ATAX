@@ -13,7 +13,6 @@
 		631E81D41F5661A300149665 /* MyTaxesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631E81D31F5661A300149665 /* MyTaxesTableViewCell.swift */; };
 		631E81D61F5669DE00149665 /* MyTaxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631E81D51F5669DE00149665 /* MyTaxViewController.swift */; };
 		631E81D81F566F9200149665 /* MyTaxTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631E81D71F566F9200149665 /* MyTaxTableViewCell.swift */; };
-		631E81DA1F5670EF00149665 /* MyTax.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631E81D91F5670EF00149665 /* MyTax.swift */; };
 		631E81DC1F567E3E00149665 /* RoundTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631E81DB1F567E3E00149665 /* RoundTextView.swift */; };
 		631E81DE1F567EDB00149665 /* ContactTaxProViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631E81DD1F567EDB00149665 /* ContactTaxProViewController.swift */; };
 		631E81E01F569B5B00149665 /* OurOfficeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631E81DF1F569B5B00149665 /* OurOfficeViewController.swift */; };
@@ -67,7 +66,6 @@
 		631E81D31F5661A300149665 /* MyTaxesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyTaxesTableViewCell.swift; sourceTree = "<group>"; };
 		631E81D51F5669DE00149665 /* MyTaxViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyTaxViewController.swift; sourceTree = "<group>"; };
 		631E81D71F566F9200149665 /* MyTaxTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyTaxTableViewCell.swift; sourceTree = "<group>"; };
-		631E81D91F5670EF00149665 /* MyTax.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyTax.swift; sourceTree = "<group>"; };
 		631E81DB1F567E3E00149665 /* RoundTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundTextView.swift; sourceTree = "<group>"; };
 		631E81DD1F567EDB00149665 /* ContactTaxProViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactTaxProViewController.swift; sourceTree = "<group>"; };
 		631E81DF1F569B5B00149665 /* OurOfficeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OurOfficeViewController.swift; sourceTree = "<group>"; };
@@ -253,7 +251,6 @@
 			isa = PBXGroup;
 			children = (
 				63A642711F55627E00436ED8 /* Define.swift */,
-				631E81D91F5670EF00149665 /* MyTax.swift */,
 				631E81ED1F56C9D100149665 /* Extention.swift */,
 				DAA3C4811F58891D001F0DC7 /* TextFieldMaxLength.swift */,
 				DA31AB481F5C5DAE0081D3A0 /* Connectivity.swift */,
@@ -311,7 +308,7 @@
 					63A8F06F1F555C40004FB344 = {
 						CreatedOnToolsVersion = 8.3.2;
 						LastSwiftMigration = 0830;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -452,7 +449,6 @@
 				DAA3C4821F58891D001F0DC7 /* TextFieldMaxLength.swift in Sources */,
 				631E81E41F56ABB800149665 /* RoundImageView.swift in Sources */,
 				DA97F9241F55DCA8002384BF /* DocumentsViewController.swift in Sources */,
-				631E81DA1F5670EF00149665 /* MyTax.swift in Sources */,
 				DA86F1131F5ACC9C00F577C6 /* ManageWS_UserInfo.swift in Sources */,
 				63A642721F55627E00436ED8 /* Define.swift in Sources */,
 				63A642701F555FBE00436ED8 /* IntroVC.swift in Sources */,
@@ -572,13 +568,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: William Saunders (JMLPG4Z7UY)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: William Saunders (JMLPG4Z7UY)";
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = ATAX/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.qtsvn.paul.ATAX;
+				PRODUCT_BUNDLE_IDENTIFIER = com.detest.ATAX;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = TT_dev2;
 				SWIFT_OBJC_BRIDGING_HEADER = "ATAX/ATAX-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -591,13 +590,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: William Saunders (JMLPG4Z7UY)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: William Saunders (JMLPG4Z7UY)";
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = ATAX/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.qtsvn.paul.ATAX;
+				PRODUCT_BUNDLE_IDENTIFIER = com.detest.ATAX;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = TT_dev2;
 				SWIFT_OBJC_BRIDGING_HEADER = "ATAX/ATAX-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};

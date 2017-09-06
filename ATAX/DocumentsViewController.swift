@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class DocumentsViewController: UIViewController {
     
@@ -17,10 +18,12 @@ class DocumentsViewController: UIViewController {
     var documentList = [Documents]()
     var dataSearch = [Documents]()
     var searchString = ""
+    var token:String?
+    var documentId:Int?
+    var currentPage:Int!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         
         txt_SeachDocument.delegate = self
         txt_SeachDocument.addTarget(self, action: #selector(self.searchResult(_:)), for: .editingChanged)
@@ -35,15 +38,17 @@ class DocumentsViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
-        let token = defaults.object(forKey: "tokenString") as! String
-        print(token)
-        Documents.getAllDocuments(withToken: token) { (results) in
+        currentPage = 1
+        token = defaults.object(forKey: "tokenString") as? String
+        print(token!)
+        SVProgressHUD.show()
+        Documents.getAllDocuments(withToken: token!, pageNumber: currentPage) { (results) in
             
             self.documentList = results!
             DispatchQueue.main.async(execute: {
                 self.dataSearch = self.documentList
                 self.documentTableView.reloadData()
+                SVProgressHUD.dismiss()
             })
         }
         
@@ -91,6 +96,24 @@ class DocumentsViewController: UIViewController {
         }
     }
     
+    func deleteDocument()
+    {
+        
+        Documents.deleteDocument(withToken: token!, documentId: documentId!) { (status) in
+            if status
+            {
+                print("Deleted")
+            }
+            else
+            {
+                
+            }
+        }
+    }
+    func downloadDocument()
+    {
+        print("Downloaded")
+    }
 }
 
 extension DocumentsViewController: UITextFieldDelegate
@@ -119,8 +142,15 @@ extension DocumentsViewController: UITableViewDataSource
         cell.lblTaxdocument.text = documentItem.title
         cell.lbluploadDay.text = convertDateStringToDateFormat(longDate: documentItem.createdDateUtc)
         
+        cell.btnDelete.addTarget(self, action: #selector(self.deleteDocument), for: .touchUpInside)
+        cell.btnDownload.addTarget(self, action: #selector(self.downloadDocument), for: .touchUpInside)
+        documentId = dataSearch[indexPath.row].taxDocumentId
+        
         return cell
     }
+    
+    
+    
 }
 
 extension DocumentsViewController: UITableViewDelegate
@@ -133,6 +163,36 @@ extension DocumentsViewController: UITableViewDelegate
     }
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 10
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        
+        let lastItem = dataSearch.count - 1
+        print(lastItem)
+        print(indexPath.section)
+        if indexPath.section == lastItem
+        {
+            currentPage = currentPage + 1
+            loadMore(pageNumber: currentPage)
+        }
+        
+    }
+    
+    func loadMore(pageNumber: Int)
+    {
+        Documents.getAllDocuments(withToken: token!, pageNumber: pageNumber) { (results) in
+            
+            for result in results!
+            {
+                self.documentList.append(result)
+                DispatchQueue.main.async(execute: {
+                    self.dataSearch = self.documentList
+                    self.documentTableView.reloadData()
+                })
+            }
+            print("MyList: ---\(self.documentList.count)\n")
+            print("SearchList: ---\(self.dataSearch.count)\n")
+        }
     }
 }
 

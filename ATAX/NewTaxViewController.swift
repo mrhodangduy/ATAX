@@ -109,11 +109,13 @@ class NewTaxViewController: UIViewController {
                 {
                     
                     print("Save sucessful")
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: notifi_addNewTax), object: self)
                     self.dismiss(animated: true, completion: nil)
                 }
                 else
                 {
-                    self.alertMissingText(mess: "Authorization has been denied for this request. Please login again", textField: nil)
+//                    self.alertMissingText(mess: "Authorization has been denied for this request. Please login again", textField: nil)
+                    self.dismiss(animated: true, completion: nil)
                 }
                 
             })

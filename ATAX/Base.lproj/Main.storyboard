@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -765,27 +765,21 @@
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RJL-8Z-oCd">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RJL-8Z-oCd" userLabel="Delete">
                                                     <rect key="frame" x="379" y="18" width="25" height="25"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="25" id="K5m-T1-iHD"/>
                                                         <constraint firstAttribute="height" constant="25" id="oN2-nF-wTO"/>
                                                     </constraints>
                                                     <state key="normal" image="ic_deletedoc"/>
-                                                    <connections>
-                                                        <action selector="deleteDocAction:" destination="AFV-T3-3n0" eventType="touchUpInside" id="LB8-kA-FTw"/>
-                                                    </connections>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1XC-b4-NAQ">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1XC-b4-NAQ" userLabel="Download">
                                                     <rect key="frame" x="344" y="18" width="25" height="25"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="25" id="95u-dK-HXs"/>
                                                         <constraint firstAttribute="width" constant="25" id="o9O-zk-RNl"/>
                                                     </constraints>
                                                     <state key="normal" image="ic_download"/>
-                                                    <connections>
-                                                        <action selector="downloadDocAction:" destination="AFV-T3-3n0" eventType="touchUpInside" id="Anz-wx-GDd"/>
-                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -806,6 +800,8 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="btnDelete" destination="RJL-8Z-oCd" id="6Uu-cv-amG"/>
+                                            <outlet property="btnDownload" destination="1XC-b4-NAQ" id="I8M-Dk-iOL"/>
                                             <outlet property="lblTaxdocument" destination="dYC-Zs-IJc" id="Bcs-h4-Gdi"/>
                                             <outlet property="lbluploadDay" destination="WLg-Xx-3EH" id="eeA-Mo-GA4"/>
                                         </connections>
@@ -3868,7 +3864,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="zTn-4D-34O" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="My Taxes" image="tab_mytaxes" selectedImage="tab_mytaxes2" id="9Ab-o3-3sZ"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="fNX-Ds-xH0">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="fNX-Ds-xH0">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -3887,7 +3883,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="quu-L5-yP6" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Documents" image="tab_documents" selectedImage="tab_documents2" id="cI0-Fv-SHp"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="n1g-lz-fpT">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="n1g-lz-fpT">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -3906,7 +3902,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Cqr-Bh-NLq" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Messages" image="tab_messages" selectedImage="tab_messages2" id="qUc-Gx-c0t"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="97V-Od-gfm">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="97V-Od-gfm">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -3925,7 +3921,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="zDL-Od-1lV" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="More" image="tab_more" selectedImage="tab_more2" id="vHd-ma-qTO"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="uHs-ah-UYy">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="uHs-ah-UYy">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

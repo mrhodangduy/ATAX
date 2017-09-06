@@ -33,7 +33,6 @@ class SignUpViewController: UIViewController {
         
     }
     
-    
     @IBAction func mobilePhoneformat(_ sender: UITextField) {
         sender.text = formattedNumber(number: txt_Mobilephone.text!)
         

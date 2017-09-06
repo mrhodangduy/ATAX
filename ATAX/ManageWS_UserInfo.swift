@@ -209,6 +209,29 @@ struct UserInformation
         }
     }
     
+    static func logOut(withToken token: String, completion: @escaping (Bool) ->())
+    {
+        let url = URL(string: URL_WS + "v1/account/logout")
+        let httpHeader: HTTPHeaders = ["Authorization":"Bearer \(token)"]
+        
+        
+        Alamofire.request(url!, method: HTTPMethod.get, parameters: nil, encoding: URLEncoding.default, headers: httpHeader).response { (response) in
+            var status:Bool!
+            
+            if response.response?.statusCode == 200
+            {
+                status = true
+                
+            }
+            else
+            {
+                status = false
+            }
+            completion(status)
+        }
+        
+    }
+    
     
 }
 

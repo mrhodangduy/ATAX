@@ -50,9 +50,9 @@ struct Message
         
     }
     
-    static func getAllMessages(withToken token:String, completion: @escaping ([Message]?)-> ())
+    static func getAllMessages(withToken token:String,pagenumber:Int, completion: @escaping ([Message]?)-> ())
     {
-        let url = URL(string: URL_WS + "v1/messages")
+        let url = URL(string: URL_WS + "v1/messages?pageNumber=" + "\(pagenumber)" + "&pageSize=20")
         let httpHeader: HTTPHeaders = ["Authorization":"Bearer \(token)"]
         
         SVProgressHUD.show()
