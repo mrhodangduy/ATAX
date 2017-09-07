@@ -1,5 +1,5 @@
 //
-//  Text.swift
+//  Define.swift
 //  ATAX
 //
 //  Created by QTS Coder on 8/29/17.

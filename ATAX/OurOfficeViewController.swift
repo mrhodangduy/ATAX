@@ -143,9 +143,6 @@ class OurOfficeViewController: UIViewController {
     }
 }
 
-
-
-
 extension OurOfficeViewController: SFSafariViewControllerDelegate
 {
     func safariViewControllerDidFinish(_ controller: SFSafariViewController) {

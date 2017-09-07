@@ -95,6 +95,30 @@ class DocumentsViewController: UIViewController {
         }
     }
     
+    func displayAlert(title: String?, mess: String?,indexPath: IndexPath, type: UIAlertControllerStyle)
+    {
+        let alert = UIAlertController(title: title, message: mess, preferredStyle: type)
+        let btnDell  = UIAlertAction(title: "Delete", style: .destructive) { (action) in
+            
+            Documents.deleteDocument(withToken: self.token!, documentId: self.dataSearch[indexPath.section].taxDocumentId) { (done) in
+                
+                if done
+                {
+                    self.dataSearch.remove(at: indexPath.section)
+                    self.documentTableView.reloadData()
+                }
+                
+            }
+            
+        }
+        let btnCan = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alert.addAction(btnDell)
+        alert.addAction(btnCan)
+        
+        self.present(alert, animated: true, completion: nil)
+    }
+
+    
 }
 
 extension DocumentsViewController: UITextFieldDelegate
@@ -181,16 +205,8 @@ extension DocumentsViewController: UITableViewDelegate
 extension DocumentsViewController: DocumentCellDelegate
 {
     func didDeleteTap(cell: DocumentTableViewCell, indexPath: IndexPath) {
+        self.displayAlert(title: nil, mess: "Do you want to delete?", indexPath: indexPath, type: .actionSheet)
         
-        Documents.deleteDocument(withToken: token!, documentId: dataSearch[indexPath.section].taxDocumentId) { (done) in
-            
-            if done
-            {
-                self.dataSearch.remove(at: indexPath.section)
-                self.documentTableView.reloadData()
-            }
-            
-        }
     }
     func didDownloadTap(cell: DocumentTableViewCell, indexPath: IndexPath) {
         print("Download")

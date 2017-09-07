@@ -173,19 +173,19 @@ struct Documents
             {
             case .success(request: let upload, streamingFromDisk: _, streamFileURL: _):
                 
-                
+                status = true
                 upload.uploadProgress(closure: { (progress) in
                     print("Progress: \(progress.fractionCompleted)")
                     
-                    while progress.fractionCompleted < 1.0
+                    if progress.fractionCompleted == 1.0
                     {
-                        print("Uploading...")
+                        Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { (time) in
+                            completion(status)
+                        })
+                        
                     }
-                    status = true
-                    completion(status)
-                    
                 })
-                
+               
             case .failure(let error):
                 
                 status = false
@@ -193,7 +193,6 @@ struct Documents
                 completion(status)
                 
             }
-            
             
         }
         
