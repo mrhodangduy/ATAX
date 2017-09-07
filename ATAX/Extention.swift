@@ -16,11 +16,13 @@ extension UIViewController
     
     func setupSlideMenu(item : UIBarButtonItem, controller: UIViewController)
     {
+        
+        revealViewController().delegate = controller
         item.target = revealViewController()
         item.action = #selector(SWRevealViewController.revealToggle(_:))
         
-        controller.view.addGestureRecognizer(controller.revealViewController().tapGestureRecognizer())
-        controller.view.addGestureRecognizer(controller.revealViewController().panGestureRecognizer())
+        revealViewController().panGestureRecognizer()
+        revealViewController().tapGestureRecognizer()
     }
     
     func createAnimatePopup(from mainView: UIView, with backGroundView: UIView)
@@ -121,10 +123,27 @@ extension UIViewController
     func createTapGestureScrollview(withscrollview scrollView:UIScrollView)
     {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(UIViewController.tapToClose))
+        
         scrollView.addGestureRecognizer(tapGesture)
     }
     
-  
     
 }
+
+extension UIViewController: SWRevealViewControllerDelegate
+{
+    public func revealController(_ revealController: SWRevealViewController!, willMoveTo position: FrontViewPosition) {
+        
+        if position == FrontViewPosition.left
+        {
+            revealController.frontViewController.view.isUserInteractionEnabled = true
+        }
+        else
+        {
+            revealController.frontViewController.view.isUserInteractionEnabled = false
+        }
+    }
+}
+
+
 

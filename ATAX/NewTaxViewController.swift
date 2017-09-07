@@ -14,8 +14,7 @@ class NewTaxViewController: UIViewController {
     @IBOutlet var viewDataTaxType: UIView!
     @IBOutlet weak var dataTableview: UITableView!
     @IBOutlet weak var txt_SelectTaxYear: UITextField!
-    @IBOutlet weak var txt_TaxType: UITextField!
-    
+    @IBOutlet weak var txt_TaxType: UITextField!    
     @IBOutlet weak var data1Tableview: UITableView!
     @IBOutlet var viewData1: UIView!
     
@@ -30,13 +29,15 @@ class NewTaxViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        
         let token = defaults.object(forKey: "tokenString") as! String
         TaxForm.getTaxYear(withToken: token) { (years) in
             
             for year in years!
             {
                 self.taxYears.append(year)
-                DispatchQueue.main.async(execute: { 
+                DispatchQueue.main.async(execute: {
                     self.dataTableview.reloadData()
                 })
             }
@@ -66,6 +67,8 @@ class NewTaxViewController: UIViewController {
         
         dataTableview.tag = 1
         data1Tableview.tag = 2
+        dataTableview.tableFooterView = UIView(frame: .zero)
+        data1Tableview.tableFooterView = UIView(frame: .zero)
     }
     
     func setupViewData()
@@ -112,10 +115,14 @@ class NewTaxViewController: UIViewController {
                     NotificationCenter.default.post(name: NSNotification.Name(rawValue: notifi_addNewTax), object: self)
                     self.dismiss(animated: true, completion: nil)
                 }
+                else if status == 400
+                {
+                    print("Tax already exist for \(self.txt_SelectTaxYear.text!) and \(self.txt_TaxType.text!). Please Try another")
+                    self.alertMissingText(mess: defaults.object(forKey: "notification") as! String , textField: nil)
+                }
                 else
                 {
-//                    self.alertMissingText(mess: "Authorization has been denied for this request. Please login again", textField: nil)
-                    self.dismiss(animated: true, completion: nil)
+                    self.alertMissingText(mess: "Authorization has been denied for this request. Please login again", textField: nil)
                 }
                 
             })

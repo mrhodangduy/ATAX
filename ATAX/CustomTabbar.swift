@@ -9,11 +9,10 @@
 import UIKit
 
 class CustomTabbar: UITabBarController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
+                
         UINavigationBar.appearance().tintColor = .white
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         UINavigationBar.appearance().barTintColor = UIColor(red: 62/225, green: 109/255, blue: 223/255, alpha: 1)
@@ -51,9 +50,10 @@ class CustomTabbar: UITabBarController {
         
         self.navigationController?.pushViewController(myTaxesVC, animated: true)
     }
-
-
+    
+    
 }
+
 
 
 

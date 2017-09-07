@@ -31,7 +31,6 @@ class MyTaxesViewController: UIViewController {
         setupSlideMenu(item: menuButton, controller: self)
         revealViewController().rearViewRevealWidth = (self.view.bounds.size.width) * CGFloat(0.7)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(MyTaxesViewController.pushtoMyTax), name: NSNotification.Name(rawValue: notifi_closemenukey), object: nil)
         
     }
     
@@ -43,8 +42,8 @@ class MyTaxesViewController: UIViewController {
     
     func pushtoMyTax()
     {
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: notifi_addNewTax), object: self)
         let myTaxesVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "mytaxesVC") as! MyTaxViewController
-        
         self.navigationController?.pushViewController(myTaxesVC, animated: true)
     }
         
@@ -83,7 +82,7 @@ extension MyTaxesViewController: UITableViewDataSource
         
         switch indexPath.row {
         case 0:
-            return 44
+            return 54
             
         case 1:
             return ((((self.view.frame.size.width - CGFloat(45)) / CGFloat(2)) / imageRatio) * CGFloat(3)) + CGFloat(20)
@@ -93,7 +92,6 @@ extension MyTaxesViewController: UITableViewDataSource
         }
         
     }
-    
     
 }
 
@@ -200,15 +198,6 @@ extension MyTaxesViewController: SFSafariViewControllerDelegate
         
     }
 }
-
-
-
-
-
-
-
-
-
 
 
 

@@ -110,6 +110,7 @@ struct TaxInfomation
     {
         let url = URL(string: URL_WS + "v1/taxes/")
         let parameter: Parameters = ["title":"\(taxtTypeString) for \(year)","year": year,"taxtype":taxtype]
+        print(parameter)
         
         let httpHeader: HTTPHeaders = ["Authorization":"Bearer \(token)","Content-Type":"application/x-www-form-urlencoded"]
         var uploadStatus:Int?
@@ -117,15 +118,23 @@ struct TaxInfomation
         SVProgressHUD.show()
         DispatchQueue.global(qos: .default).async {
             Alamofire.request(url!, method: HTTPMethod.post, parameters: parameter, encoding: URLEncoding.httpBody, headers: httpHeader).responseJSON(completionHandler: { (response) in
-                
+                print((response.response?.statusCode)!)
+                print((response.result.value)!)
                 if response.response?.statusCode == 200
                 {
                     uploadStatus = 200
                 }
                     
+                else if response.response?.statusCode == 400
+                {
+                    uploadStatus = 400
+                    let message = (response.result.value as? [String: AnyObject])?["message"] as? String
+                    defaults.set(message!, forKey: "notification")
+                    defaults.synchronize()
+                }
                 else
                 {
-                    uploadStatus = 401
+                    uploadStatus = (response.response?.statusCode)!
                     print("Loi xac thuc")
                 }
                 
@@ -246,8 +255,7 @@ struct TaxForm {
         }
         
     }
-    
-    
+        
 }
 
 struct Taxes
@@ -256,13 +264,6 @@ struct Taxes
     let taxtId: Int
     let year:Int
 }
-
-
-
-
-
-
-
 
 
 

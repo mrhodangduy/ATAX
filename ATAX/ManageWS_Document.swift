@@ -146,45 +146,13 @@ struct Documents
         
     }
     
-    static func uploadDocument(withToken token:String, documenttypeid: Int,taxid: Int, year: Int, file: UIImage, completion: @escaping (Bool) -> ())
-    {
-        let url = URL(string: URL_WS + "v1/documents/\(taxid)/upload")
-        let parameter: Parameters = ["documenttypeid":documenttypeid,"year":year,"taxid":taxid,"file":file]
-        let httpHeader: HTTPHeaders = ["Authorization":"Bearer \(token)"]
-        
-        SVProgressHUD.show(withStatus: "Uploading...")
-        DispatchQueue.global(qos: .default).async {
-            Alamofire.request(url!, method: HTTPMethod.post, parameters: parameter, encoding: URLEncoding.httpBody, headers: httpHeader).response(completionHandler: { (response) in
-                
-                var statusUpload:Bool?
-                
-                print((response.response?.statusCode)!, (response.request)!)
-                
-                if response.response?.statusCode == 200
-                {
-                    statusUpload = true
-                    print("Upload successful")
-                }
-                else
-                {
-                    statusUpload = false
-                    print("Upload failed")
-                }
-                
-                completion(statusUpload!)
-                
-                DispatchQueue.main.async(execute: {
-                    SVProgressHUD.dismiss()
-                })
-            })
-        }
-    }
-    
     static func uploadDocumentwithImage(withToken token: String,documenttypeid: Int,taxid: Int, year: Int, file: Data?, completion: @escaping (Bool) ->())
     {
         let url = URL(string: URL_WS + "v1/documents/\(taxid)/upload")
         let parameter: Parameters = ["documenttypeid": documenttypeid,"year":year,"taxid":taxid]
         let httpHeader: HTTPHeaders = ["Authorization":"Bearer \(token)"]
+        
+        
         Alamofire.upload(multipartFormData: { (multipartFormData) in
             
             
@@ -199,36 +167,45 @@ struct Documents
             
         }, usingThreshold: UInt64.init(), to: url!, method: HTTPMethod.post, headers: httpHeader) { (results) in
             
-            var status:Bool?
-
+            var status:Bool!
+            
             switch results
             {
             case .success(request: let upload, streamingFromDisk: _, streamFileURL: _):
                 
-                status = true
+                
                 upload.uploadProgress(closure: { (progress) in
                     print("Progress: \(progress.fractionCompleted)")
-                })
-                upload.response(completionHandler: { (response) in
+                    
+                    while progress.fractionCompleted < 1.0
+                    {
+                        print("Uploading...")
+                    }
+                    status = true
+                    completion(status)
+                    
                 })
                 
             case .failure(let error):
                 
                 status = false
                 print("Error in upload: \(error.localizedDescription)")
+                completion(status)
                 
             }
-            completion(status!)
+            
             
         }
+        
     }
+    
     static func deleteDocument(withToken token: String, documentId: Int, completion: @escaping (Bool) -> ())
     {
-        let url = URL(string: URL_WS + "/documents/" + "\(documentId)")
+        let url = URL(string: URL_WS + "v1/documents/" + "\(documentId)")
         let httpHeader: HTTPHeaders = ["Authorization":"Bearer \(token)"]
         
         SVProgressHUD.show()
-        DispatchQueue.global().async { 
+        DispatchQueue.global().async {
             Alamofire.request(url!, method: HTTPMethod.delete, parameters: nil, encoding: URLEncoding.httpBody, headers: httpHeader).responseJSON(completionHandler: { (response) in
                 var status:Bool?
                 print((response.response?.statusCode)!)
@@ -243,12 +220,12 @@ struct Documents
                     print("Deleted failed")
                 }
                 completion(status!)
-                DispatchQueue.main.async(execute: { 
+                DispatchQueue.main.async(execute: {
                     SVProgressHUD.dismiss()
                 })
             })
         }
-
+        
     }
     
 }

@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>$(PRODUCT_NAME) media library use </string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
@@ -30,11 +32,9 @@
 		<true/>
 	</dict>
 	<key>NSAppleMusicUsageDescription</key>
-	<string>Select photo from Library</string>
+	<string>$(PRODUCT_NAME) media library use </string>
 	<key>NSCameraUsageDescription</key>
-	<string>Take picture for TAX</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Select photo from Library</string>
+	<string>$(PRODUCT_NAME) camera use</string>
 	<key>UILaunchStoryboardName</key>
 	<string>Main</string>
 	<key>UIMainStoryboardFile</key>

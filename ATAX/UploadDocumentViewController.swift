@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class UploadDocumentViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
@@ -55,11 +56,11 @@ class UploadDocumentViewController: UIViewController {
             for result in results!
             {
                 self.listDocuments.append(result)
-                DispatchQueue.main.async(execute: { 
+                DispatchQueue.main.async(execute: {
                     self.data1Tablview.reloadData()
                 })
             }
-        }        
+        }
         
         createTapGestureScrollview(withscrollview: scrollView)
         
@@ -80,6 +81,8 @@ class UploadDocumentViewController: UIViewController {
         
         dataTableview.tag = 1
         data1Tablview.tag = 2
+        dataTableview.tableFooterView = UIView(frame: .zero)
+        data1Tablview.tableFooterView = UIView(frame: .zero)
         
     }
     
@@ -120,7 +123,6 @@ class UploadDocumentViewController: UIViewController {
     @IBAction func typeOfDocumentAction(_ sender: UIButton) {
         
         createAnimatePopup(from: viewData1, with: backgroundView)
-        
     }
     
     @IBAction func getPicture(_ sender: Any) {
@@ -153,7 +155,7 @@ class UploadDocumentViewController: UIViewController {
         }
         let btnLib  = UIAlertAction(title: "Select from Library", style: .default) { (action) in
             
-            print("Select from Library")            
+            print("Select from Library")
             self.getPhotoFrom(type: .photoLibrary)
             
         }
@@ -193,20 +195,24 @@ class UploadDocumentViewController: UIViewController {
             }
             else
             {
-                
-                Documents.uploadDocumentwithImage(withToken: token!, documenttypeid: documenttypeId!, taxid: taxid!, year: year!, file: fileData!, completion: { (done) in
+                SVProgressHUD.show(withStatus: "Uploading...")
+                Documents.uploadDocumentwithImage(withToken: self.token!, documenttypeid: self.documenttypeId!, taxid: self.taxid!, year: self.year!, file: self.fileData!, completion: { (done) in
                     if done
                     {
                         self.dismiss(animated: true, completion: nil)
+                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: notifi_documentkey), object: self)
+                        
                     }
                     else
                     {
                         self.alertMissingText(mess: "Upload faile", textField: nil)
                     }
+                    DispatchQueue.main.async(execute: {
+                        SVProgressHUD.dismiss()
+                    })
                     
                 })
-                
-               
+                                
             }
         }
         
@@ -324,7 +330,7 @@ extension UploadDocumentViewController: UIImagePickerControllerDelegate, UINavig
         {
             fileData = UIImageJPEGRepresentation(chooseImg, 0.1)
             imageStatus = true
-
+            
         }
         else if imgValue > 2000
         {

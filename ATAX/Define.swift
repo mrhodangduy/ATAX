@@ -31,7 +31,6 @@ let ataxLink = URL(string: "http://atax.com/abn")
 let taxnewLink = URL(string: "http://atax.com/blog")
 let irsWebLink = URL(string: "https://www.irs.gov/")
 
-
 let invoiceList:[String] = ["Invoice #7845 - $149.99"]
 
 

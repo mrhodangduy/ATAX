@@ -49,7 +49,7 @@ class MyTaxViewController: UIViewController {
         
     }
     override func viewWillAppear(_ animated: Bool) {
-        print("Current page: \(currentPage)")
+        print("Current page: \(currentPage!)")
     }
     
     func getTaxes()
@@ -168,7 +168,7 @@ extension MyTaxViewController: UITableViewDataSource
             let lastItem = searchTax.count - 1
             print("LastItem: \(lastItem)")
             print("Row: \(indexPath.section)")
-    
+            
             if lastItem == indexPath.section
             {
                 currentPage  = currentPage + 1
@@ -180,42 +180,45 @@ extension MyTaxViewController: UITableViewDataSource
     
     func loadMoreTaxes (pageNumber: Int)
     {
+        let activity = UIActivityIndicatorView(activityIndicatorStyle: .white)
+        activity.center = self.view.center
+        activity.color = .red
+        activity.hidesWhenStopped = true
+        view.addSubview(activity)
+        
         TaxInfomation.getTaxeswithPage(withToken: token, pageNumber: pageNumber) { (results) in
             for result in results!
             {
-                
-                print(results!)
+                activity.startAnimating()
                 self.myTaxesList.append(result)
                 DispatchQueue.main.async {
                     self.searchTax = self.myTaxesList
                     self.mytaxTableView.reloadData()
+                    activity.stopAnimating()
+                    activity.removeFromSuperview()
                     
                 }
                 
             }
-            print("MyList: ---\(self.myTaxesList.count)\n")
-            print("SearchList: ---\(self.searchTax.count)\n")
-            
         }
     }
 
 }
 
-
 extension MyTaxViewController: UITableViewDelegate
 {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80
+        return 85
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 10))
+        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 13))
         headerView.backgroundColor = UIColor.clear
         
         return headerView
     }
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 10
+        return 13
     }
     
 }

@@ -17,7 +17,6 @@ class DocumentsViewController: UIViewController {
     
     var documentList = [Documents]()
     var dataSearch = [Documents]()
-    var searchString = ""
     var token:String?
     var documentId:Int?
     var currentPage:Int!
@@ -96,24 +95,6 @@ class DocumentsViewController: UIViewController {
         }
     }
     
-    func deleteDocument()
-    {
-        
-        Documents.deleteDocument(withToken: token!, documentId: documentId!) { (status) in
-            if status
-            {
-                print("Deleted")
-            }
-            else
-            {
-                
-            }
-        }
-    }
-    func downloadDocument()
-    {
-        print("Downloaded")
-    }
 }
 
 extension DocumentsViewController: UITextFieldDelegate
@@ -141,14 +122,15 @@ extension DocumentsViewController: UITableViewDataSource
         
         cell.lblTaxdocument.text = documentItem.title
         cell.lbluploadDay.text = convertDateStringToDateFormat(longDate: documentItem.createdDateUtc)
+        cell.delegateCell = self
+        cell.indexPath = indexPath
         
-        cell.btnDelete.addTarget(self, action: #selector(self.deleteDocument), for: .touchUpInside)
-        cell.btnDownload.addTarget(self, action: #selector(self.downloadDocument), for: .touchUpInside)
-        documentId = dataSearch[indexPath.row].taxDocumentId
         
         return cell
     }
-    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 55
+    }
     
     
 }
@@ -195,6 +177,26 @@ extension DocumentsViewController: UITableViewDelegate
         }
     }
 }
+
+extension DocumentsViewController: DocumentCellDelegate
+{
+    func didDeleteTap(cell: DocumentTableViewCell, indexPath: IndexPath) {
+        
+        Documents.deleteDocument(withToken: token!, documentId: dataSearch[indexPath.section].taxDocumentId) { (done) in
+            
+            if done
+            {
+                self.dataSearch.remove(at: indexPath.section)
+                self.documentTableView.reloadData()
+            }
+            
+        }
+    }
+    func didDownloadTap(cell: DocumentTableViewCell, indexPath: IndexPath) {
+        print("Download")
+    }
+}
+
 
 
 

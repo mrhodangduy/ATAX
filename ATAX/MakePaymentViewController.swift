@@ -38,13 +38,13 @@ class MakePaymentViewController: UIViewController {
         dataTableview.delegate = self        
         
         dataTableview.tag = 1
+        dataTableview.tableFooterView = UIView(frame: .zero)
         
         nameOnCard.delegate = self
         cardNumber.delegate = self
         expYear.delegate = self
         expMonth.delegate = self
         cvvCode.delegate = self
-        
         
     }
     
