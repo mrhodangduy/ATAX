@@ -172,7 +172,7 @@ extension DocumentsViewController: UITableViewDelegate
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         
-        let lastItem = dataSearch.count - 1
+        let lastItem = dataSearch.count - 2
         if indexPath.section == lastItem
         {
             currentPage = currentPage + 1

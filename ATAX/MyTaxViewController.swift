@@ -163,7 +163,7 @@ extension MyTaxViewController: UITableViewDataSource
     
         func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
     
-            let lastItem = searchTax.count - 1
+            let lastItem = searchTax.count - 2
             
             if lastItem == indexPath.section
             {

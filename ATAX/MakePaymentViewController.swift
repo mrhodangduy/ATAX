@@ -125,27 +125,52 @@ class MakePaymentViewController: UIViewController {
             
         default:
             
-            self.view.endEditing(true)
-            
-            Payment.makePayment(withToken: token, invoiceid: invoiceId!, cardholdername: nameOnCard.text!, cardnumber: cardNumber.text!, expirationmonth: Int(expMonth.text!)!, expirationyear: Int(expYear.text!)!, cvc: cvvCode.text!, completion: { (done) in
-                
-                if done
-                {
-                   self.dismiss(animated: true, completion: { 
-                    self.alertMissingText(mess: "Payment successful", textField: nil)
-                   })
-                    
-                }
-                else
-                {
-                    self.alertMissingText(mess: (defaults.object(forKey: "notification") as? String)!, textField: nil)
-                }
-                
-            })
-            
-            
+            checkValidateValueAndMakePayment()
         }
         
+    }
+    func callPaymentAPI()
+    {
+        Payment.makePayment(withToken: token, invoiceid: invoiceId!, cardholdername: nameOnCard.text!, cardnumber: cardNumber.text!, expirationmonth: Int(expMonth.text!)!, expirationyear: Int(expYear.text!)!, cvc: cvvCode.text!, completion: { (done) in
+            
+            if done
+            {
+                self.dismiss(animated: true, completion: {
+                    self.alertMissingText(mess: "Payment successful", textField: nil)
+                })
+                
+            }
+            else
+            {
+                self.alertMissingText(mess: (defaults.object(forKey: "notification") as? String)!, textField: nil)
+            }
+            
+        })
+    }
+    
+    func checkValidateValueAndMakePayment()
+    {
+        if (cardNumber.text?.characters.count)! < 14
+        {
+            self.alertMissingText(mess: "Card Number invalid format. Range is 14-16.", textField: cardNumber)
+        }
+        else if Int(expMonth.text!)! < 1 || Int(expMonth.text!)! > 12
+        {
+            self.alertMissingText(mess: "Expiration Month invalid format. Range is 1-12.", textField: expMonth)
+        }
+        else if (expYear.text?.characters.count)! < 4
+        {
+            self.alertMissingText(mess: "Expiration Year invalid format. Field should have 4 digits.", textField: expYear)
+        }
+        else if (cvvCode.text?.characters.count)! < 3
+        {
+            self.alertMissingText(mess: "CVC code invalid format. Must be 3 or 4 digits.", textField: cvvCode)
+        }
+        else
+        {
+            self.view.endEditing(true)
+            callPaymentAPI()
+        }
     }
     
     @IBAction func CancelAction(_ sender: Any) {
@@ -173,7 +198,7 @@ extension MakePaymentViewController: UITableViewDataSource, UITableViewDelegate
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! InvoiceTableViewCell
-        cell.lblInvoice.text = listInvoice[indexPath.row].invoiceNumber
+        cell.lblInvoice.text = "\(listInvoice[indexPath.row].invoiceNumber)" + " - $" + "\(listInvoice[indexPath.row].subTotalAmount)"
         return cell
         
     }

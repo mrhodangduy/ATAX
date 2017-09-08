@@ -52,6 +52,7 @@
 		DA31AB491F5C5DAE0081D3A0 /* Connectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA31AB481F5C5DAE0081D3A0 /* Connectivity.swift */; };
 		DA5FD22A1F5E6AA600F8EC88 /* ManageWS_Company.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5FD2291F5E6AA600F8EC88 /* ManageWS_Company.swift */; };
 		DA5FD22C1F5EEF8900F8EC88 /* ManageWS_ContactTaxPro.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5FD22B1F5EEF8900F8EC88 /* ManageWS_ContactTaxPro.swift */; };
+		DA68B0C91F62DD510028C022 /* LiveCall+FileNewTaxTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA68B0C81F62DD510028C022 /* LiveCall+FileNewTaxTableViewCell.swift */; };
 		DA694B0E1F5728D800457AF4 /* LiveCallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA694B0D1F5728D800457AF4 /* LiveCallViewController.swift */; };
 		DA86F1131F5ACC9C00F577C6 /* ManageWS_UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA86F1121F5ACC9C00F577C6 /* ManageWS_UserInfo.swift */; };
 		DA97F91B1F55D1D3002384BF /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA97F91A1F55D1D3002384BF /* ForgotPasswordViewController.swift */; };
@@ -117,6 +118,7 @@
 		DA31AB481F5C5DAE0081D3A0 /* Connectivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Connectivity.swift; sourceTree = "<group>"; };
 		DA5FD2291F5E6AA600F8EC88 /* ManageWS_Company.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageWS_Company.swift; sourceTree = "<group>"; };
 		DA5FD22B1F5EEF8900F8EC88 /* ManageWS_ContactTaxPro.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageWS_ContactTaxPro.swift; sourceTree = "<group>"; };
+		DA68B0C81F62DD510028C022 /* LiveCall+FileNewTaxTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LiveCall+FileNewTaxTableViewCell.swift"; sourceTree = "<group>"; };
 		DA694B0D1F5728D800457AF4 /* LiveCallViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveCallViewController.swift; sourceTree = "<group>"; };
 		DA86F1121F5ACC9C00F577C6 /* ManageWS_UserInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageWS_UserInfo.swift; sourceTree = "<group>"; };
 		DA97F91A1F55D1D3002384BF /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
@@ -235,6 +237,7 @@
 				63C8BAD51F6232D100B00CA8 /* TaxTableViewCell.swift */,
 				63C8BAD71F6232DE00B00CA8 /* TypeDocumentTableViewCell.swift */,
 				63C8BAD91F6232E700B00CA8 /* InvoiceTableViewCell.swift */,
+				DA68B0C81F62DD510028C022 /* LiveCall+FileNewTaxTableViewCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -447,6 +450,7 @@
 				63A6429A1F55718D00436ED8 /* SignUpViewController.swift in Sources */,
 				631E81EE1F56C9D100149665 /* Extention.swift in Sources */,
 				63A642981F556AC900436ED8 /* SignInViewController.swift in Sources */,
+				DA68B0C91F62DD510028C022 /* LiveCall+FileNewTaxTableViewCell.swift in Sources */,
 				63A6429C1F55735100436ED8 /* RoundView.swift in Sources */,
 				631E81D01F564D0600149665 /* CustomTabbar.swift in Sources */,
 				631E81E81F56B26B00149665 /* MessageTableViewCell.swift in Sources */,

@@ -58,12 +58,12 @@ extension MyTaxesViewController: UITableViewDataSource
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.row {
         case 0:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "firstcell")
+            let cell = tableView.dequeueReusableCell(withIdentifier: "firstcell") as! LiveCall_FileNewTaxTableViewCell
             
-            cell?.backgroundColor = #colorLiteral(red: 0.3514387012, green: 0.721385479, blue: 0.02334157191, alpha: 1)
+            cell.selectionStyle = .none
+            cell.delegateCell = self
             
-            
-            return cell!
+            return cell
             
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: "secondcell") as! MyTaxesTableViewCell
@@ -98,19 +98,7 @@ extension MyTaxesViewController: UITableViewDataSource
 extension MyTaxesViewController: UITableViewDelegate
 {
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row == 0
-        {
-            let livecalVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "livecalVC") as! LiveCallViewController
-            
-            self.navigationController?.pushViewController(livecalVC, animated: true)
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: false)
-    }
-    
+        
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
         let headerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 10))
@@ -195,6 +183,23 @@ extension MyTaxesViewController: SFSafariViewControllerDelegate
     func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
         controller.dismiss(animated: true, completion: nil)
         
+    }
+}
+
+extension MyTaxesViewController: LiveCall_FileNewTaxDelegate
+{
+    func didLiveCalltap(cell: LiveCall_FileNewTaxTableViewCell) {
+        
+        let livecalVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "livecalVC") as! LiveCallViewController
+        
+        self.navigationController?.pushViewController(livecalVC, animated: true)
+
+    }
+    func didFileNewTaxtap(cell: LiveCall_FileNewTaxTableViewCell) {
+        
+        let newTaxVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "newtax") as! NewTaxViewController
+        
+        self.present(newTaxVC, animated: true, completion: nil)
     }
 }
 

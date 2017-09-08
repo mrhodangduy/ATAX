@@ -22,42 +22,33 @@ class SplashVC: UIViewController {
         launchTime = appDell.currenTimesOfOpenApp
         print(launchTime!)
         
-        
-        let signinVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "signinVC") as! SignInViewController
-        let introVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "introVC") as! IntroVC
-
-        
-        
-        
-        UIView.animate(withDuration: 3, animations: {
+        UIView.animate(withDuration: 1.5, animations: {
             self.imageAtax.alpha = 1
         }) { (action) in
             
-            if self.launchTime == 1
-            {
-                self.present(introVC, animated: false, completion: nil)
-            }
-            else if defaults.bool(forKey: "isLoggedin")
-            {
-                let homeVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeVC")
-                self.present(homeVC, animated: false, completion: nil)
-                
-            } else
-            {
-                self.present(signinVC, animated: false, completion: nil)
-            }
-            
-            
-            
-            
+            Timer.scheduledTimer(timeInterval: 1.5, target: self, selector: #selector(self.gotoNextScreen), userInfo: nil, repeats: false)
         }
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+   func gotoNextScreen()
+   {
+    let signinVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "signinVC") as! SignInViewController
+    let introVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "introVC") as! IntroVC
+    
+    if self.launchTime == 1
+    {
+        self.present(introVC, animated: false, completion: nil)
     }
-
+    else if defaults.bool(forKey: "isLoggedin")
+    {
+        let homeVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeVC")
+        self.present(homeVC, animated: false, completion: nil)
+        
+    } else
+    {
+        self.present(signinVC, animated: false, completion: nil)
+    }
+    }
 
 }
 
