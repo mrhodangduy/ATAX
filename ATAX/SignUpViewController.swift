@@ -83,6 +83,7 @@ class SignUpViewController: UIViewController {
             else
             {
                 
+                self.view.endEditing(true)
                 if Connectivity.isConnectedToInternet
                 {
                     UserInformation.signUpUser(firstName: txt_Firstname.text!, lastName: txt_Lastname.text!, email: txt_Email.text!, phone: txt_Mobilephone.text!, password: txt_password.text!, complete: { (status) in

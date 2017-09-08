@@ -129,7 +129,6 @@ struct Documents
                         if let document = try? Documents(json: result)
                         {
                             documents.append(document)
-                            print(document)
                         }
                         
                     }
@@ -153,8 +152,7 @@ struct Documents
         let httpHeader: HTTPHeaders = ["Authorization":"Bearer \(token)"]
         
         
-        Alamofire.upload(multipartFormData: { (multipartFormData) in
-            
+        Alamofire.upload(multipartFormData: { (multipartFormData) in            
             
             if let data = file
             {
@@ -179,7 +177,7 @@ struct Documents
                     
                     if progress.fractionCompleted == 1.0
                     {
-                        Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { (time) in
+                        Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: { (time) in
                             completion(status)
                         })
                         
@@ -207,7 +205,6 @@ struct Documents
         DispatchQueue.global().async {
             Alamofire.request(url!, method: HTTPMethod.delete, parameters: nil, encoding: URLEncoding.httpBody, headers: httpHeader).responseJSON(completionHandler: { (response) in
                 var status:Bool?
-                print((response.response?.statusCode)!)
                 if response.response?.statusCode == 200
                 {
                     status = true

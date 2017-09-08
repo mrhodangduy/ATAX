@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class MessagesViewController: UIViewController {
     
@@ -22,7 +23,6 @@ class MessagesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         messageTableView.delegate = self
         messageTableView.dataSource = self
         
@@ -37,15 +37,21 @@ class MessagesViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         currentPage = 1
-        Message.getAllMessages(withToken: token, pagenumber: currentPage) { (messages) in
-            
-            self.messageList = messages!
-            DispatchQueue.main.async {
-                self.messageSearch = self.messageList
-                self.messageTableView.reloadData()
+        SVProgressHUD.show()
+        DispatchQueue.global(qos: .background).async { 
+            Message.getAllMessages(withToken: self.token, pagenumber: self.currentPage) { (messages) in
+                
+                self.messageList = messages!
+                DispatchQueue.main.async {
+                    self.messageSearch = self.messageList
+                    self.messageTableView.reloadData()
+                    SVProgressHUD.dismiss()
+                    
+                }
+                
             }
-            
         }
+        
     }
     
     func searchResult(_ textfiled:UITextField)
@@ -114,6 +120,8 @@ extension MessagesViewController: UITableViewDataSource
         
         cell.lblmessTitle.text = messageItem.subject
         cell.lbldaySend.text = convertDateStringToDateFormat(longDate: messageItem.date)
+        cell.imgAvatar.downloadImage(url: URL_Image + messageItem.senderProfileImageUrl)
+        print(URL_Image + messageItem.senderProfileImageUrl)
         
         return cell
     }
@@ -144,7 +152,6 @@ extension MessagesViewController: UITableViewDelegate
         
         
         let messageItem = messageSearch[indexPath.section]
-        print(messageItem.id)
         let MessDetail = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "messdetailVC") as! MessageDetailViewController
         
         MessDetail.messSubject = messageItem.subject
@@ -152,6 +159,7 @@ extension MessagesViewController: UITableViewDelegate
         MessDetail.messContent = messageItem.messageContent
         MessDetail.messageID = messageItem.id
         MessDetail.userID = String(messageItem.userId)
+        MessDetail.imageLink = messageItem.senderProfileImageUrl
         
         self.navigationController?.pushViewController(MessDetail, animated: true)
         
@@ -159,8 +167,6 @@ extension MessagesViewController: UITableViewDelegate
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         
         let lastItem = messageSearch.count - 1
-        print(lastItem)
-        print(indexPath.section)
         if indexPath.section == lastItem
         {
             currentPage = currentPage + 1
@@ -182,8 +188,6 @@ extension MessagesViewController: UITableViewDelegate
                 })
             }
         }
-        print("MyList: ---\(self.messageList.count)\n")
-        print("SearchList: ---\(self.messageSearch.count)\n")
     }
 }
 

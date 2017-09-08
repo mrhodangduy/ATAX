@@ -42,6 +42,12 @@
 		63A8F0761F555C40004FB344 /* SplashVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A8F0751F555C40004FB344 /* SplashVC.swift */; };
 		63A8F0791F555C40004FB344 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63A8F0771F555C40004FB344 /* Main.storyboard */; };
 		63A8F07B1F555C40004FB344 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63A8F07A1F555C40004FB344 /* Assets.xcassets */; };
+		63C8BAD21F6232B600B00CA8 /* TaxYearTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C8BAD11F6232B600B00CA8 /* TaxYearTableViewCell.swift */; };
+		63C8BAD41F6232C100B00CA8 /* TaxTypeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C8BAD31F6232C100B00CA8 /* TaxTypeTableViewCell.swift */; };
+		63C8BAD61F6232D100B00CA8 /* TaxTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C8BAD51F6232D100B00CA8 /* TaxTableViewCell.swift */; };
+		63C8BAD81F6232DE00B00CA8 /* TypeDocumentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C8BAD71F6232DE00B00CA8 /* TypeDocumentTableViewCell.swift */; };
+		63C8BADA1F6232E700B00CA8 /* InvoiceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C8BAD91F6232E700B00CA8 /* InvoiceTableViewCell.swift */; };
+		63C8BADC1F6245F000B00CA8 /* ManageWS_Invoice+Payment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C8BADB1F6245F000B00CA8 /* ManageWS_Invoice+Payment.swift */; };
 		DA08ED431F5CEC0D00FF9C4B /* ManageWS_Taxes.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA08ED421F5CEC0D00FF9C4B /* ManageWS_Taxes.swift */; };
 		DA31AB491F5C5DAE0081D3A0 /* Connectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA31AB481F5C5DAE0081D3A0 /* Connectivity.swift */; };
 		DA5FD22A1F5E6AA600F8EC88 /* ManageWS_Company.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5FD2291F5E6AA600F8EC88 /* ManageWS_Company.swift */; };
@@ -99,6 +105,12 @@
 		63A8F0781F555C40004FB344 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		63A8F07A1F555C40004FB344 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		63A8F07F1F555C40004FB344 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		63C8BAD11F6232B600B00CA8 /* TaxYearTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaxYearTableViewCell.swift; sourceTree = "<group>"; };
+		63C8BAD31F6232C100B00CA8 /* TaxTypeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaxTypeTableViewCell.swift; sourceTree = "<group>"; };
+		63C8BAD51F6232D100B00CA8 /* TaxTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaxTableViewCell.swift; sourceTree = "<group>"; };
+		63C8BAD71F6232DE00B00CA8 /* TypeDocumentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypeDocumentTableViewCell.swift; sourceTree = "<group>"; };
+		63C8BAD91F6232E700B00CA8 /* InvoiceTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvoiceTableViewCell.swift; sourceTree = "<group>"; };
+		63C8BADB1F6245F000B00CA8 /* ManageWS_Invoice+Payment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ManageWS_Invoice+Payment.swift"; sourceTree = "<group>"; };
 		B7D3AD4986722D605028410D /* Pods-ATAX.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ATAX.release.xcconfig"; path = "Pods/Target Support Files/Pods-ATAX/Pods-ATAX.release.xcconfig"; sourceTree = "<group>"; };
 		CF27E2C936776EE1113740EE /* Pods-ATAX.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ATAX.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ATAX/Pods-ATAX.debug.xcconfig"; sourceTree = "<group>"; };
 		DA08ED421F5CEC0D00FF9C4B /* ManageWS_Taxes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageWS_Taxes.swift; sourceTree = "<group>"; };
@@ -218,6 +230,11 @@
 				631E81E11F56A49300149665 /* DocumentTableViewCell.swift */,
 				631E81E31F56ABB800149665 /* RoundImageView.swift */,
 				631E81E71F56B26B00149665 /* MessageTableViewCell.swift */,
+				63C8BAD11F6232B600B00CA8 /* TaxYearTableViewCell.swift */,
+				63C8BAD31F6232C100B00CA8 /* TaxTypeTableViewCell.swift */,
+				63C8BAD51F6232D100B00CA8 /* TaxTableViewCell.swift */,
+				63C8BAD71F6232DE00B00CA8 /* TypeDocumentTableViewCell.swift */,
+				63C8BAD91F6232E700B00CA8 /* InvoiceTableViewCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -260,6 +277,7 @@
 				DAC0A0021F5DAC8E0054AF0B /* ManageWS_Message.swift */,
 				DA5FD2291F5E6AA600F8EC88 /* ManageWS_Company.swift */,
 				DA5FD22B1F5EEF8900F8EC88 /* ManageWS_ContactTaxPro.swift */,
+				63C8BADB1F6245F000B00CA8 /* ManageWS_Invoice+Payment.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -412,6 +430,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				631E81EA1F56B5FC00149665 /* UploadDocumentViewController.swift in Sources */,
+				63C8BAD61F6232D100B00CA8 /* TaxTableViewCell.swift in Sources */,
 				DA97F9201F55DB83002384BF /* CustomNavi.swift in Sources */,
 				DA694B0E1F5728D800457AF4 /* LiveCallViewController.swift in Sources */,
 				631E81E61F56AD4700149665 /* MessageDetailViewController.swift in Sources */,
@@ -423,6 +442,7 @@
 				631E81D41F5661A300149665 /* MyTaxesTableViewCell.swift in Sources */,
 				631E81DE1F567EDB00149665 /* ContactTaxProViewController.swift in Sources */,
 				632F85EB1F57ADAA00D0E88D /* MenuViewController.swift in Sources */,
+				63C8BAD41F6232C100B00CA8 /* TaxTypeTableViewCell.swift in Sources */,
 				632F85EE1F57F2D700D0E88D /* SWRevealViewController.m in Sources */,
 				63A6429A1F55718D00436ED8 /* SignUpViewController.swift in Sources */,
 				631E81EE1F56C9D100149665 /* Extention.swift in Sources */,
@@ -433,6 +453,7 @@
 				631E81E01F569B5B00149665 /* OurOfficeViewController.swift in Sources */,
 				63A8F0761F555C40004FB344 /* SplashVC.swift in Sources */,
 				DA97F9281F55DCCD002384BF /* MoreViewController.swift in Sources */,
+				63C8BAD81F6232DE00B00CA8 /* TypeDocumentTableViewCell.swift in Sources */,
 				DA97F9221F55DC9D002384BF /* MyTaxesViewController.swift in Sources */,
 				DA5FD22A1F5E6AA600F8EC88 /* ManageWS_Company.swift in Sources */,
 				DA31AB491F5C5DAE0081D3A0 /* Connectivity.swift in Sources */,
@@ -447,9 +468,12 @@
 				631E81D21F56592000149665 /* MyTaxesCollectionViewcell.swift in Sources */,
 				DA08ED431F5CEC0D00FF9C4B /* ManageWS_Taxes.swift in Sources */,
 				DAA3C4821F58891D001F0DC7 /* TextFieldMaxLength.swift in Sources */,
+				63C8BADA1F6232E700B00CA8 /* InvoiceTableViewCell.swift in Sources */,
 				631E81E41F56ABB800149665 /* RoundImageView.swift in Sources */,
 				DA97F9241F55DCA8002384BF /* DocumentsViewController.swift in Sources */,
+				63C8BAD21F6232B600B00CA8 /* TaxYearTableViewCell.swift in Sources */,
 				DA86F1131F5ACC9C00F577C6 /* ManageWS_UserInfo.swift in Sources */,
+				63C8BADC1F6245F000B00CA8 /* ManageWS_Invoice+Payment.swift in Sources */,
 				63A642721F55627E00436ED8 /* Define.swift in Sources */,
 				63A642701F555FBE00436ED8 /* IntroVC.swift in Sources */,
 			);

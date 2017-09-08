@@ -39,7 +39,6 @@ class DocumentsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         currentPage = 1
         token = defaults.object(forKey: "tokenString") as? String
-        print(token!)
         SVProgressHUD.show()
         Documents.getAllDocuments(withToken: token!, pageNumber: currentPage) { (results) in
             
@@ -174,8 +173,6 @@ extension DocumentsViewController: UITableViewDelegate
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         
         let lastItem = dataSearch.count - 1
-        print(lastItem)
-        print(indexPath.section)
         if indexPath.section == lastItem
         {
             currentPage = currentPage + 1
@@ -196,8 +193,7 @@ extension DocumentsViewController: UITableViewDelegate
                     self.documentTableView.reloadData()
                 })
             }
-            print("MyList: ---\(self.documentList.count)\n")
-            print("SearchList: ---\(self.dataSearch.count)\n")
+            
         }
     }
 }

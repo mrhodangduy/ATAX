@@ -12,14 +12,15 @@ class MessageDetailViewController: UIViewController {
     
     @IBOutlet weak var lblMeaageTitle: UILabel!
     @IBOutlet weak var lblMessageDay: UILabel!
-    @IBOutlet weak var imgAvatar: RoundImageView!
     @IBOutlet weak var tv_message: UITextView!
+    @IBOutlet weak var imgAvatarSender: RoundImageView!
     
     var messSubject = ""
     var date = ""
     var messContent = ""
     var messageID:Int?
     var userID:String?
+    var imageLink:String?
     
     
     override func viewDidLoad() {
@@ -27,6 +28,7 @@ class MessageDetailViewController: UIViewController {
         
         lblMeaageTitle.text = messSubject
         lblMessageDay.text = date
+        imgAvatarSender.downloadImage(url: imageLink!)
         
         do
         {
@@ -67,7 +69,6 @@ class MessageDetailViewController: UIViewController {
         let btnDell  = UIAlertAction(title: "Delete", style: .destructive) { (action) in
             
             let token = defaults.object(forKey: "tokenString") as! String
-            print(token)
             Message.deleteMessage(withToken: token, id: self.userID!, messageId: self.messageID!, completion: { (status) in
                 
                 if status

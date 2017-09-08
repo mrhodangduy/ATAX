@@ -15,7 +15,6 @@ class ContactTaxPro
     static func SendMessSupport(withToken token: String, messContent: String, completion: @escaping (Bool) -> ())
     {
         let url = URL(string: URL_WS + "v1/support" + messContent)
-        print(url!)
         let httpHeader: HTTPHeaders = ["Authorization":"Bearer \(token)"]
 
         SVProgressHUD.show(withStatus: "Sending...")

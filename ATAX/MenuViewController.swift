@@ -22,9 +22,9 @@ class MenuViewController: UIViewController {
         
         token = defaults.object(forKey: "tokenString") as? String
         
-        
-        lbl_userName.text = UserDefaults.standard.object(forKey: "userName") as? String
-        lbl_Email.text = UserDefaults.standard.object(forKey: "email") as? String
+        lbl_userName.text = defaults.object(forKey: "userName") as? String
+        lbl_Email.text = defaults.object(forKey: "email") as? String
+        imageAvatar.downloadImage(url: (defaults.object(forKey: "avatarLink") as? String)!)
         
     }
     

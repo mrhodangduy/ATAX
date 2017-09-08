@@ -36,7 +36,6 @@ class UploadDocumentViewController: UIViewController {
         super.viewDidLoad()
         
         token = defaults.object(forKey: "tokenString") as? String
-        print(token!)
         
         TaxInfomation.getAllTaxes(withToken: token!) { (results) in
             for result in results!
@@ -195,6 +194,7 @@ class UploadDocumentViewController: UIViewController {
             }
             else
             {
+                self.view.endEditing(true)
                 SVProgressHUD.show(withStatus: "Uploading...")
                 Documents.uploadDocumentwithImage(withToken: self.token!, documenttypeid: self.documenttypeId!, taxid: self.taxid!, year: self.year!, file: self.fileData!, completion: { (done) in
                     if done
@@ -270,14 +270,14 @@ extension UploadDocumentViewController: UITableViewDataSource, UITableViewDelega
         
         if tableView.tag == 1
         {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-            cell.textLabel?.text = listTaxes[indexPath.row].taxName
+            let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! TaxTableViewCell
+            cell.lblTax.text = listTaxes[indexPath.row].taxName
             return cell
         }
         else if tableView.tag == 2
         {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-            cell.textLabel?.text = listDocuments[indexPath.row].text
+            let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! TypeDocumentTableViewCell
+            cell.lblTypeofDoc.text = listDocuments[indexPath.row].text
             return cell
         }
         else
@@ -298,8 +298,6 @@ extension UploadDocumentViewController: UITableViewDataSource, UITableViewDelega
             
             taxid = listTaxes[indexPath.row].taxtId
             year = listTaxes[indexPath.row].year
-            print(taxid!)
-            print(year!)
             
         }
         else if tableView.tag == 2
@@ -308,7 +306,6 @@ extension UploadDocumentViewController: UITableViewDataSource, UITableViewDelega
             self.txt_typeOfDocument.text = listDocuments[indexPath.row].text
             self.viewData1.alpha  = 0
             self.backgroundView.alpha = 0
-            print(listDocuments[indexPath.row].value)
             documenttypeId = Int(listDocuments[indexPath.row].value)
         }
         else
@@ -341,7 +338,7 @@ extension UploadDocumentViewController: UIImagePickerControllerDelegate, UINavig
         {
             fileData = UIImageJPEGRepresentation(chooseImg, 0.5)
             imageStatus = true
-        }
+        }        
         
         print(fileData!)
         picker.dismiss(animated: true, completion: nil)

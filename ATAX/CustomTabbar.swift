@@ -36,12 +36,10 @@ class CustomTabbar: UITabBarController {
     
     func gotoDocumentTab()
     {
-        print("Document tab")
         self.selectedViewController = self.viewControllers?[1]
     }
     func gotoMessageTab()
     {
-        print("Message tab")
         self.selectedViewController = self.viewControllers?[2]
     }
     func pushtoMyTax()

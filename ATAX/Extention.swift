@@ -11,6 +11,36 @@ import UIKit
 import Alamofire
 import SVProgressHUD
 
+extension UIImageView
+{
+    func downloadImage(url: String)
+    {
+        let activity = UIActivityIndicatorView(activityIndicatorStyle: .white)
+        activity.frame = CGRect(x: self.frame.size.width/2, y: self.frame.size.height/2, width: 0, height: 0)
+        activity.color = UIColor.cyan
+        self.addSubview(activity)
+        activity.startAnimating()
+        DispatchQueue.global(qos: .background).async { 
+            Alamofire.request(url).responseData(completionHandler: { (response) in
+                if response.error == nil{
+                    print(response.result)
+                    if let data = response.data
+                    {
+                        DispatchQueue.main.async(execute: { 
+                            self.image = UIImage(data: data)
+                            activity.stopAnimating()
+                        })
+                        
+                    }
+                }
+                
+            })
+        }
+
+    }
+    
+}
+
 extension UIViewController
 {
     

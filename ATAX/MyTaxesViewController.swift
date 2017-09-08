@@ -146,7 +146,6 @@ extension MyTaxesViewController: UICollectionViewDelegate
 {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        print(indexPath.row)
         switch indexPath.row {
             
         case 0:

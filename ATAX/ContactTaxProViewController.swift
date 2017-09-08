@@ -34,6 +34,7 @@ class ContactTaxProViewController: UIViewController {
         urlComponents.queryItems = [queryItem]
         let messContent = urlComponents.url
         
+        self.view.endEditing(true)
         if Connectivity.isConnectedToInternet
         {
             if (tv_Message.textColor == UIColor.lightGray) || tv_Message.text.characters.count == 0
@@ -45,7 +46,6 @@ class ContactTaxProViewController: UIViewController {
             else
             {
                 let token = defaults.object(forKey: "tokenString") as! String
-                print(token)
                 ContactTaxPro.SendMessSupport(withToken: token, messContent: "\(messContent!)", completion: { (status) in
                     
                     if status

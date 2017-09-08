@@ -117,7 +117,6 @@ class NewTaxViewController: UIViewController {
                 }
                 else if status == 400
                 {
-                    print("Tax already exist for \(self.txt_SelectTaxYear.text!) and \(self.txt_TaxType.text!). Please Try another")
                     self.alertMissingText(mess: defaults.object(forKey: "notification") as! String , textField: nil)
                 }
                 else
@@ -178,14 +177,14 @@ extension NewTaxViewController: UITableViewDataSource, UITableViewDelegate
         
         if tableView.tag == 1
         {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-            cell.textLabel?.text = taxYears[indexPath.row].display
+            let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! TaxYearTableViewCell
+            cell.lblTaxyear.text = taxYears[indexPath.row].display
             return cell
         }
         else if tableView.tag == 2
         {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-            cell.textLabel?.text = taxTypes[indexPath.row].display
+            let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! TaxTypeTableViewCell
+            cell.lbltaxType.text = taxTypes[indexPath.row].display
             return cell
         }
         else
@@ -208,7 +207,6 @@ extension NewTaxViewController: UITableViewDataSource, UITableViewDelegate
         else if tableView.tag == 2
         {
             taxTypeIndex = taxTypes[indexPath.row].value
-            print(taxTypeIndex!)
             self.txt_TaxType.text = taxTypes[indexPath.row].display
             self.viewData1.alpha  = 0
             self.backgroundView.alpha = 0

@@ -54,6 +54,7 @@ class SignInViewController: UIViewController {
             else
             {
                 
+                self.view.endEditing(true)
                 if Connectivity.isConnectedToInternet
                 {
                     UserInformation.login(username: txt_Email.text!, password: txt_Password.text!, complete: { (status) in

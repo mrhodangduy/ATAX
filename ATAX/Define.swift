@@ -7,6 +7,7 @@
 //
 
 let URL_WS = "https://api.mytaxesdonelive.com/"
+let URL_Image = "https://admin.mytaxesdonelive.com"
 
 let defaults = UserDefaults.standard
 let appDell = UIApplication.shared.delegate as! AppDelegate
@@ -30,8 +31,6 @@ let refundLink = URL(string: "https://sa.www4.irs.gov/irfof/lang/en/irfofgetstat
 let ataxLink = URL(string: "http://atax.com/abn")
 let taxnewLink = URL(string: "http://atax.com/blog")
 let irsWebLink = URL(string: "https://www.irs.gov/")
-
-let invoiceList:[String] = ["Invoice #7845 - $149.99"]
 
 
 

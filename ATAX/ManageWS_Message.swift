@@ -55,37 +55,32 @@ struct Message
         let url = URL(string: URL_WS + "v1/messages?pageNumber=" + "\(pagenumber)" + "&pageSize=20")
         let httpHeader: HTTPHeaders = ["Authorization":"Bearer \(token)"]
         
-        SVProgressHUD.show()
-        DispatchQueue.global(qos: .default).async {
-            Alamofire.request(url!, method: HTTPMethod.get, parameters: nil, encoding: URLEncoding.httpBody, headers: httpHeader).responseJSON(completionHandler: { (response) in
-                
-                var messages = [Message]()
-                
-                if response.response?.statusCode == 200
+        Alamofire.request(url!, method: HTTPMethod.get, parameters: nil, encoding: URLEncoding.httpBody, headers: httpHeader).responseJSON(completionHandler: { (response) in
+            
+            var messages = [Message]()
+            
+            if response.response?.statusCode == 200
+            {
+                let jsonResults = response.result.value as? [String: AnyObject]
+                let json = jsonResults?["messages"] as? [[String: AnyObject]]
+                for result in json!
                 {
-                    let jsonResults = response.result.value as? [String: AnyObject]
-                    let json = jsonResults?["messages"] as? [[String: AnyObject]]
-                    for result in json!
+                    if let message = try? Message(json: result)
                     {
-                        if let message = try? Message(json: result)
-                        {
-                            messages.append(message)
-                        }
+                        messages.append(message)
                     }
                 }
-                else
-                {
-                    print("Loi xac thuc")
-                }
-                
-                completion(messages)
-                
-                DispatchQueue.main.async(execute: {
-                    SVProgressHUD.dismiss()
-                })
-            })
-        }
-
+            }
+            else
+            {
+                print("Loi xac thuc")
+            }
+            
+            completion(messages)
+            
+        })
+        
+        
     }
     
     static func deleteMessage(withToken token: String, id: String, messageId: Int, completion: @escaping (Bool) ->())

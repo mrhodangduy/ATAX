@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class MakePaymentViewController: UIViewController {
     
@@ -18,15 +19,48 @@ class MakePaymentViewController: UIViewController {
     @IBOutlet weak var expMonth: UITextField!
     @IBOutlet weak var expYear: UITextField!
     @IBOutlet weak var cvvCode: UITextField!
+    @IBOutlet weak var btn_SelectInvoice: UIButton!
+    @IBOutlet weak var imgDownlist: UIImageView!
+    @IBOutlet weak var lblPay: UILabel!
     
     @IBOutlet weak var scrollView: UIScrollView!
     var activeTF:UITextField!
 
+    let token = defaults.object(forKey: "tokenString") as! String
+    let contactId = defaults.object(forKey: "contactId") as! Int
+    let taxid = defaults.object(forKey: "taxId") as! Int
+    var listInvoice = [Invoice]()
+    var invoiceId:Int?
     
     var backgroundView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print(contactId,taxid)
+        
+        SVProgressHUD.show()
+        DispatchQueue.global(qos: .background).async { 
+            Invoice.getInvoice(withToken: self.token, contactId: self.contactId, taxId: self.taxid, completion: { (lists) in
+                
+                    self.listInvoice = lists!
+                    DispatchQueue.main.async(execute: {
+                        SVProgressHUD.dismiss()
+                        self.dataTableview.reloadData()
+                        if self.listInvoice.count == 0
+                        {
+                            self.txt_taxinfo.placeholder = "No invoices to pay"
+                            self.txt_taxinfo.isUserInteractionEnabled = false
+                            self.btn_SelectInvoice.isUserInteractionEnabled = false
+                            self.imgDownlist.isHidden = true
+                        }
+                        else
+                        {
+                            self.txt_taxinfo.placeholder = "Select an invoice"
+                        }
+                    })
+              })
+        }
         
         createTapGestureScrollview(withscrollview: scrollView)
         
@@ -88,8 +122,28 @@ class MakePaymentViewController: UIViewController {
             
         case 6:
             alertMissingText(mess: "Security code is required", textField: cvvCode)
+            
         default:
-            alertMissingText(mess: "Maked payment", textField: nil)
+            
+            self.view.endEditing(true)
+            
+            Payment.makePayment(withToken: token, invoiceid: invoiceId!, cardholdername: nameOnCard.text!, cardnumber: cardNumber.text!, expirationmonth: Int(expMonth.text!)!, expirationyear: Int(expYear.text!)!, cvc: cvvCode.text!, completion: { (done) in
+                
+                if done
+                {
+                   self.dismiss(animated: true, completion: { 
+                    self.alertMissingText(mess: "Payment successful", textField: nil)
+                   })
+                    
+                }
+                else
+                {
+                    self.alertMissingText(mess: (defaults.object(forKey: "notification") as? String)!, textField: nil)
+                }
+                
+            })
+            
+            
         }
         
     }
@@ -114,12 +168,12 @@ extension MakePaymentViewController: UITableViewDataSource, UITableViewDelegate
 {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return invoiceList.count
+        return listInvoice.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = invoiceList[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! InvoiceTableViewCell
+        cell.lblInvoice.text = listInvoice[indexPath.row].invoiceNumber
         return cell
         
     }
@@ -127,7 +181,9 @@ extension MakePaymentViewController: UITableViewDataSource, UITableViewDelegate
         
         tableView.deselectRow(at: indexPath, animated: true)
         
-        self.txt_taxinfo.text = invoiceList[indexPath.row]
+        self.txt_taxinfo.text = "\(listInvoice[indexPath.row].invoiceNumber)" + " - $" + "\(listInvoice[indexPath.row].subTotalAmount)"
+        self.lblPay.text = "Pay $" + "\(listInvoice[indexPath.row].subTotalAmount)"
+        self.invoiceId = listInvoice[indexPath.row].id
         self.viewData.alpha  = 0
         self.backgroundView.alpha = 0
         

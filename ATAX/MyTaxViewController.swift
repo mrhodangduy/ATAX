@@ -23,7 +23,6 @@ class MyTaxViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         currentPage = 1
-        print(token)
         SVProgressHUD.show()
         DispatchQueue.global(qos: .default).async {
             TaxInfomation.getTaxeswithPage(withToken: self.token, pageNumber: self.currentPage!) { (results) in
@@ -47,9 +46,6 @@ class MyTaxViewController: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.getTaxes), name: NSNotification.Name(rawValue: notifi_addNewTax), object: nil)
         
-    }
-    override func viewWillAppear(_ animated: Bool) {
-        print("Current page: \(currentPage!)")
     }
     
     func getTaxes()
@@ -123,12 +119,12 @@ class MyTaxViewController: UIViewController {
         
         self.present(newTaxVC, animated: true, completion: nil)
     }
-    func uploadDoc()
-    {
-        let uploadVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "uploaddocument") as! UploadDocumentViewController
-        
-        self.present(uploadVC, animated: true, completion: nil)
-    }
+//    func uploadDoc()
+//    {
+//        let uploadVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "uploaddocument") as! UploadDocumentViewController
+//        
+//        self.present(uploadVC, animated: true, completion: nil)
+//    }
     func makePayment()
     {
         let makePaymentVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "makepayment") as! MakePaymentViewController
@@ -156,9 +152,11 @@ extension MyTaxViewController: UITableViewDataSource
         cell.lblTaxName.text = taxItem.title
         cell.lblActive.text = taxItem.status
         cell.lblCreateday.text = "\(taxItem.year) - Created on \(convertDateStringToDate(longDate: taxItem.createdDate))"
+        cell.delegateCell = self
+        cell.indexPath = indexPath
         
-        cell.btnUpload.addTarget(self, action: #selector(MyTaxViewController.uploadDoc), for: .touchUpInside)
-        cell.btnMakePayment.addTarget(self, action: #selector(MyTaxViewController.makePayment), for: .touchUpInside)
+//        cell.btnUpload.addTarget(self, action: #selector(MyTaxViewController.uploadDoc), for: .touchUpInside)
+//        cell.btnMakePayment.addTarget(self, action: #selector(MyTaxViewController.makePayment), for: .touchUpInside)
         
         return cell
     }
@@ -166,8 +164,6 @@ extension MyTaxViewController: UITableViewDataSource
         func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
     
             let lastItem = searchTax.count - 1
-            print("LastItem: \(lastItem)")
-            print("Row: \(indexPath.section)")
             
             if lastItem == indexPath.section
             {
@@ -228,5 +224,24 @@ extension MyTaxViewController: UITextFieldDelegate
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.txtSearch.resignFirstResponder()
         return true
+    }
+}
+
+extension MyTaxViewController: MyTaxDelegate
+{
+    func uploadDocument(cell: MyTaxTableViewCell) {
+        let uploadVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "uploaddocument") as! UploadDocumentViewController
+        
+        self.present(uploadVC, animated: true, completion: nil)
+    }
+    func makePayment(cell: MyTaxTableViewCell, indexPath: IndexPath) {
+        
+        print(searchTax[indexPath.section].id)
+        let taxid = searchTax[indexPath.section].id
+        defaults.set(taxid, forKey: "taxId")
+        
+        let makePaymentVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "makepayment") as! MakePaymentViewController
+        
+        self.present(makePaymentVC, animated: true, completion: nil)
     }
 }

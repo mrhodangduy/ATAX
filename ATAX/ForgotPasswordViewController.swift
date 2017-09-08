@@ -44,6 +44,7 @@ class ForgotPasswordViewController: UIViewController {
         else
         {
             
+            self.view.endEditing(true)
             if Connectivity.isConnectedToInternet
             {
                 UserInformation.ForgotPassword(email: txt_Email.text!, compete: { (status) in
@@ -53,7 +54,6 @@ class ForgotPasswordViewController: UIViewController {
                         
                         let alert = UIAlertController(title: "ATAX", message: (defaults.object(forKey: "notification") as? String)!, preferredStyle: .alert)
                         let btnOK = UIAlertAction(title: "OK", style: .default) { (action) in
-                            print("Reset Password send")
                             self.dismiss(animated: true, completion: nil)
                         }
                         

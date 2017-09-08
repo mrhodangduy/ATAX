@@ -90,10 +90,7 @@ struct UserInformation
                     
                     let json = response.result.value as! [String: AnyObject]
                     UserDefaults.standard.set(json["access_token"]!, forKey: "tokenString")
-                    print(json["access_token"]!)
-                    
-                    print("=====\(UserDefaults.standard.object(forKey: "tokenString") as! String)\n\n")
-                    
+                   
                     let token = defaults.object(forKey: "tokenString") as! String
                     defaults.synchronize()
                     isLoggedIn = true
@@ -101,15 +98,19 @@ struct UserInformation
                     getUserInfo(withToken: token, completion: { (users) in
                         
                         print(users!)
+                        
                         let fullname = users?.fullName
                         let email = users?.email
                         let companyId = users?.companyId
+                        let avatarLink = users?.imageAvatarLink
+                        let contactId = users?.contactId
                         
                         defaults.set(fullname, forKey: "userName")
                         defaults.set(email, forKey: "email")
                         defaults.set(companyId, forKey: "companyId")
+                        defaults.set(avatarLink, forKey: "avatarLink")
+                        defaults.set(contactId, forKey: "contactId")
                         defaults.synchronize()
-                        
                     })
                     
                 }
@@ -143,7 +144,6 @@ struct UserInformation
         SVProgressHUD.show(withStatus: "Loading...")
         DispatchQueue.global(qos: .default).async {
             Alamofire.request(url!, method: HTTPMethod.post, parameters: parameter, encoding: URLEncoding.httpBody, headers: httpHeader).responseJSON { (response) in
-                print(response)
                 
                 if response.response?.statusCode == 200
                 {
@@ -183,9 +183,7 @@ struct UserInformation
         SVProgressHUD.show(withStatus: "Sending...")
         DispatchQueue.global(qos: .default).async {
             Alamofire.request(url!, method: HTTPMethod.get, parameters: nil, encoding: URLEncoding.httpBody, headers: httpHeader).responseJSON(completionHandler: { (response) in
-                
-                print(response.response!)
-                
+                               
                 let jsonResult = response.result.value as? [String: AnyObject]
                 let isSuccess = jsonResult?["isSuccess"] as? Bool
                 let notificationforgot  = jsonResult?["notification"] as? String
