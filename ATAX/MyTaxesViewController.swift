@@ -19,6 +19,10 @@ class MyTaxesViewController: UIViewController {
     
     let imageRatio: CGFloat = 556/501
     
+    var liveCallSession:LiveCall?
+    let token = defaults.object(forKey: "tokenString") as! String
+    let contactId = defaults.object(forKey: "contactId") as! Int
+    
     override func viewDidLoad() {
         super.viewDidLoad()        
         
@@ -190,10 +194,27 @@ extension MyTaxesViewController: LiveCall_FileNewTaxDelegate
 {
     func didLiveCalltap(cell: LiveCall_FileNewTaxTableViewCell) {
         
-        let livecalVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "livecalVC") as! LiveCallViewController
         
-        self.navigationController?.pushViewController(livecalVC, animated: true)
-
+      DispatchQueue.global(qos: .background).async { 
+        
+        LiveCall.getVideoSession(withToken: self.token, contactId: self.contactId, completion: { (result) in
+            
+            if result != nil
+            {
+                self.liveCallSession = result!
+                print(self.liveCallSession!)
+                DispatchQueue.main.async(execute: {
+                    
+                    let livecalVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "livecalVC") as! LiveCallViewController
+                    
+                    self.navigationController?.pushViewController(livecalVC, animated: true)
+                })
+            }
+            
+        })
+        
+        
+        }
     }
     func didFileNewTaxtap(cell: LiveCall_FileNewTaxTableViewCell) {
         

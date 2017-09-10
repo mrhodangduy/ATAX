@@ -28,12 +28,9 @@
 		632F85EE1F57F2D700D0E88D /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 632F85ED1F57F2D700D0E88D /* SWRevealViewController.m */; };
 		63A642701F555FBE00436ED8 /* IntroVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A6426F1F555FBE00436ED8 /* IntroVC.swift */; };
 		63A642721F55627E00436ED8 /* Define.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A642711F55627E00436ED8 /* Define.swift */; };
-		63A642771F55663C00436ED8 /* OpenSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 63A642741F55663C00436ED8 /* OpenSans-Light.ttf */; };
-		63A642781F55663C00436ED8 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 63A642751F55663C00436ED8 /* OpenSans-Regular.ttf */; };
-		63A642791F55663C00436ED8 /* OpenSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 63A642761F55663C00436ED8 /* OpenSans-SemiBold.ttf */; };
-		63A642941F55664E00436ED8 /* SourceSansPro-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 63A642861F55664E00436ED8 /* SourceSansPro-Light.ttf */; };
-		63A642951F55664E00436ED8 /* SourceSansPro-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 63A642871F55664E00436ED8 /* SourceSansPro-Regular.ttf */; };
-		63A642961F55664E00436ED8 /* SourceSansPro-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 63A642881F55664E00436ED8 /* SourceSansPro-SemiBold.ttf */; };
+		63A642771F55663C00436ED8 /* OpenSansLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 63A642741F55663C00436ED8 /* OpenSansLight.ttf */; };
+		63A642781F55663C00436ED8 /* OpenSansRegular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 63A642751F55663C00436ED8 /* OpenSansRegular.ttf */; };
+		63A642791F55663C00436ED8 /* OpenSansSemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 63A642761F55663C00436ED8 /* OpenSansSemiBold.ttf */; };
 		63A642981F556AC900436ED8 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A642971F556AC900436ED8 /* SignInViewController.swift */; };
 		63A6429A1F55718D00436ED8 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A642991F55718D00436ED8 /* SignUpViewController.swift */; };
 		63A6429C1F55735100436ED8 /* RoundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A6429B1F55735100436ED8 /* RoundView.swift */; };
@@ -48,6 +45,8 @@
 		63C8BAD81F6232DE00B00CA8 /* TypeDocumentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C8BAD71F6232DE00B00CA8 /* TypeDocumentTableViewCell.swift */; };
 		63C8BADA1F6232E700B00CA8 /* InvoiceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C8BAD91F6232E700B00CA8 /* InvoiceTableViewCell.swift */; };
 		63C8BADC1F6245F000B00CA8 /* ManageWS_Invoice+Payment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C8BADB1F6245F000B00CA8 /* ManageWS_Invoice+Payment.swift */; };
+		DA05B3171F6576B9005ACEFE /* LaoUI.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DA05B3161F6576B9005ACEFE /* LaoUI.ttf */; };
+		DA05B3191F658FC3005ACEFE /* ManageWS_LiveCall.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA05B3181F658FC3005ACEFE /* ManageWS_LiveCall.swift */; };
 		DA08ED431F5CEC0D00FF9C4B /* ManageWS_Taxes.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA08ED421F5CEC0D00FF9C4B /* ManageWS_Taxes.swift */; };
 		DA31AB491F5C5DAE0081D3A0 /* Connectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA31AB481F5C5DAE0081D3A0 /* Connectivity.swift */; };
 		DA5FD22A1F5E6AA600F8EC88 /* ManageWS_Company.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5FD2291F5E6AA600F8EC88 /* ManageWS_Company.swift */; };
@@ -90,12 +89,9 @@
 		632F85ED1F57F2D700D0E88D /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		63A6426F1F555FBE00436ED8 /* IntroVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroVC.swift; sourceTree = "<group>"; };
 		63A642711F55627E00436ED8 /* Define.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Define.swift; sourceTree = "<group>"; };
-		63A642741F55663C00436ED8 /* OpenSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Light.ttf"; sourceTree = "<group>"; };
-		63A642751F55663C00436ED8 /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
-		63A642761F55663C00436ED8 /* OpenSans-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-SemiBold.ttf"; sourceTree = "<group>"; };
-		63A642861F55664E00436ED8 /* SourceSansPro-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Light.ttf"; sourceTree = "<group>"; };
-		63A642871F55664E00436ED8 /* SourceSansPro-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Regular.ttf"; sourceTree = "<group>"; };
-		63A642881F55664E00436ED8 /* SourceSansPro-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-SemiBold.ttf"; sourceTree = "<group>"; };
+		63A642741F55663C00436ED8 /* OpenSansLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = OpenSansLight.ttf; sourceTree = "<group>"; };
+		63A642751F55663C00436ED8 /* OpenSansRegular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = OpenSansRegular.ttf; sourceTree = "<group>"; };
+		63A642761F55663C00436ED8 /* OpenSansSemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = OpenSansSemiBold.ttf; sourceTree = "<group>"; };
 		63A642971F556AC900436ED8 /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		63A642991F55718D00436ED8 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		63A6429B1F55735100436ED8 /* RoundView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundView.swift; sourceTree = "<group>"; };
@@ -114,6 +110,8 @@
 		63C8BADB1F6245F000B00CA8 /* ManageWS_Invoice+Payment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ManageWS_Invoice+Payment.swift"; sourceTree = "<group>"; };
 		B7D3AD4986722D605028410D /* Pods-ATAX.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ATAX.release.xcconfig"; path = "Pods/Target Support Files/Pods-ATAX/Pods-ATAX.release.xcconfig"; sourceTree = "<group>"; };
 		CF27E2C936776EE1113740EE /* Pods-ATAX.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ATAX.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ATAX/Pods-ATAX.debug.xcconfig"; sourceTree = "<group>"; };
+		DA05B3161F6576B9005ACEFE /* LaoUI.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = LaoUI.ttf; path = ../../LaoUI.ttf; sourceTree = "<group>"; };
+		DA05B3181F658FC3005ACEFE /* ManageWS_LiveCall.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageWS_LiveCall.swift; sourceTree = "<group>"; };
 		DA08ED421F5CEC0D00FF9C4B /* ManageWS_Taxes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageWS_Taxes.swift; sourceTree = "<group>"; };
 		DA31AB481F5C5DAE0081D3A0 /* Connectivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Connectivity.swift; sourceTree = "<group>"; };
 		DA5FD2291F5E6AA600F8EC88 /* ManageWS_Company.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageWS_Company.swift; sourceTree = "<group>"; };
@@ -174,12 +172,10 @@
 		63A642731F55661800436ED8 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
-				63A642861F55664E00436ED8 /* SourceSansPro-Light.ttf */,
-				63A642871F55664E00436ED8 /* SourceSansPro-Regular.ttf */,
-				63A642881F55664E00436ED8 /* SourceSansPro-SemiBold.ttf */,
-				63A642741F55663C00436ED8 /* OpenSans-Light.ttf */,
-				63A642751F55663C00436ED8 /* OpenSans-Regular.ttf */,
-				63A642761F55663C00436ED8 /* OpenSans-SemiBold.ttf */,
+				DA05B3161F6576B9005ACEFE /* LaoUI.ttf */,
+				63A642741F55663C00436ED8 /* OpenSansLight.ttf */,
+				63A642751F55663C00436ED8 /* OpenSansRegular.ttf */,
+				63A642761F55663C00436ED8 /* OpenSansSemiBold.ttf */,
 			);
 			name = Resource;
 			sourceTree = "<group>";
@@ -281,6 +277,7 @@
 				DA5FD2291F5E6AA600F8EC88 /* ManageWS_Company.swift */,
 				DA5FD22B1F5EEF8900F8EC88 /* ManageWS_ContactTaxPro.swift */,
 				63C8BADB1F6245F000B00CA8 /* ManageWS_Invoice+Payment.swift */,
+				DA05B3181F658FC3005ACEFE /* ManageWS_LiveCall.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -356,14 +353,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				63A642951F55664E00436ED8 /* SourceSansPro-Regular.ttf in Resources */,
-				63A642781F55663C00436ED8 /* OpenSans-Regular.ttf in Resources */,
-				63A642941F55664E00436ED8 /* SourceSansPro-Light.ttf in Resources */,
+				DA05B3171F6576B9005ACEFE /* LaoUI.ttf in Resources */,
+				63A642781F55663C00436ED8 /* OpenSansRegular.ttf in Resources */,
 				63A8F07B1F555C40004FB344 /* Assets.xcassets in Resources */,
-				63A642771F55663C00436ED8 /* OpenSans-Light.ttf in Resources */,
-				63A642791F55663C00436ED8 /* OpenSans-SemiBold.ttf in Resources */,
+				63A642771F55663C00436ED8 /* OpenSansLight.ttf in Resources */,
+				63A642791F55663C00436ED8 /* OpenSansSemiBold.ttf in Resources */,
 				63A8F0791F555C40004FB344 /* Main.storyboard in Resources */,
-				63A642961F55664E00436ED8 /* SourceSansPro-SemiBold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -475,6 +470,7 @@
 				63C8BADA1F6232E700B00CA8 /* InvoiceTableViewCell.swift in Sources */,
 				631E81E41F56ABB800149665 /* RoundImageView.swift in Sources */,
 				DA97F9241F55DCA8002384BF /* DocumentsViewController.swift in Sources */,
+				DA05B3191F658FC3005ACEFE /* ManageWS_LiveCall.swift in Sources */,
 				63C8BAD21F6232B600B00CA8 /* TaxYearTableViewCell.swift in Sources */,
 				DA86F1131F5ACC9C00F577C6 /* ManageWS_UserInfo.swift in Sources */,
 				63C8BADC1F6245F000B00CA8 /* ManageWS_Invoice+Payment.swift in Sources */,

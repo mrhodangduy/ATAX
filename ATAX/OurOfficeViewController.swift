@@ -68,18 +68,39 @@ class OurOfficeViewController: UIViewController {
         manager.requestWhenInUseAuthorization()
         
         
-        let location = CLLocationCoordinate2D(latitude: lat, longitude: long)
-        let span = MKCoordinateSpan(latitudeDelta: 0.007, longitudeDelta: 0.007)
-        let region = MKCoordinateRegion(center: location, span: span)
+        let location = lblAddress.text!
+        let geocoder:CLGeocoder = CLGeocoder()
+        geocoder.geocodeAddressString(location) { (placeMarks, error) in
+            
+            if (placeMarks?.count)! > 0
+            {
+                let topResult:CLPlacemark = placeMarks![0]
+                let placemark = MKPlacemark(placemark: topResult)
+                
+                var region: MKCoordinateRegion = self.mapViewOffice.region
+                region.center = (placemark.location?.coordinate)!
+                region.span.latitudeDelta = 0.007
+                region.span.longitudeDelta = 0.007
+                self.mapViewOffice.setRegion(region, animated: true)
+                self.mapViewOffice.addAnnotation(placemark)
+                self.mapViewOffice.selectAnnotation(placemark, animated: true)
+            }
+        }
         
-        mapViewOffice.setRegion(region, animated: false)
         
-        let dropPin = MKPointAnnotation()
-        dropPin.coordinate = location
-        dropPin.title = "5536 Broadway"
-        dropPin.subtitle = "Bronx, NY 10463"
-        mapViewOffice.addAnnotation(dropPin)
-        mapViewOffice.selectAnnotation(dropPin, animated: false)
+        
+//        let location = CLLocationCoordinate2D(latitude: lat, longitude: long)
+//        let span = MKCoordinateSpan(latitudeDelta: 0.007, longitudeDelta: 0.007)
+//        let region = MKCoordinateRegion(center: location, span: span)
+//        
+//        mapViewOffice.setRegion(region, animated: false)
+        
+//        let dropPin = MKPointAnnotation()
+//        dropPin.coordinate = location
+//        dropPin.title = "5536 Broadway"
+//        dropPin.subtitle = "Bronx, NY 10463"
+//        mapViewOffice.addAnnotation(dropPin)
+//        mapViewOffice.selectAnnotation(dropPin, animated: false)
         
     }
     
@@ -87,16 +108,21 @@ class OurOfficeViewController: UIViewController {
         
         if Connectivity.isConnectedToInternet
         {
-            let location = CLLocationCoordinate2DMake(lat, long)
-            let span = MKCoordinateRegionMakeWithDistance(location, regionRadius, regionRadius)
+//            let location = CLLocationCoordinate2DMake(lat, long)
+//            let span = MKCoordinateRegionMakeWithDistance(location, regionRadius, regionRadius)
+//            
+//            let options = [MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: span.center), MKLaunchOptionsMapSpanKey: NSValue(mkCoordinateSpan: span.span)]
+//            
+//            let placeMark = MKPlacemark(coordinate: location)
+//            let mapItem = MKMapItem(placemark: placeMark)
+//            mapItem.name = "5536 Broadway, Bronx, NY 10463"
+//            mapItem.openInMaps(launchOptions: options)
+//            
             
-            let options = [MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: span.center), MKLaunchOptionsMapSpanKey: NSValue(mkCoordinateSpan: span.span)]
-            
-            let placeMark = MKPlacemark(coordinate: location)
-            let mapItem = MKMapItem(placemark: placeMark)
-            mapItem.name = "5536 Broadway, Bronx, NY 10463"
-            mapItem.openInMaps(launchOptions: options)
-            
+            var address = lblAddress.text!
+            address = address.replacingOccurrences(of: " ", with: "%20")
+            let url = URL(string: "http://maps.apple.com/?address=\(address)")
+            UIApplication.shared.open(url!, options: [:], completionHandler: nil)
         }
         else
         {

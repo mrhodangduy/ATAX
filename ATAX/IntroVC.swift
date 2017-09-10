@@ -58,8 +58,8 @@ extension IntroVC: PaperOnboardingDataSource, PaperOnboardingDelegate
             skipbtn.alpha = 1
         }
         
-        
     }
+    
     func onboardingDidTransitonToIndex(_ index: Int) {
         
     }
@@ -74,9 +74,8 @@ extension IntroVC: PaperOnboardingDataSource, PaperOnboardingDelegate
     
     func onboardingItemAtIndex(_ index: Int) -> OnboardingItemInfo {
         
-        let titleFont = UIFont(name: "OpenSans-SemiBold", size: 20) ?? UIFont.boldSystemFont(ofSize: 20)
-        let descriptionFont = UIFont(name: "SourceSansPro-Light", size: 12) ?? UIFont.boldSystemFont(ofSize: 12)
-        
+        let titleFont: UIFont = UIFont(name: "LaoUI", size: 20) ?? UIFont.boldSystemFont(ofSize: 20)
+        let descriptionFont: UIFont = UIFont(name: "LaoUI", size: 12) ?? UIFont.boldSystemFont(ofSize: 12)
         
         var items = [OnboardingItemInfo]()
         items = [

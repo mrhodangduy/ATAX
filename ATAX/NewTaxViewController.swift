@@ -153,6 +153,8 @@ class NewTaxViewController: UIViewController {
         createAnimatePopup(from: viewData1, with: backgroundView)
     }
     
+    
+    
 }
 
 extension NewTaxViewController: UITableViewDataSource, UITableViewDelegate

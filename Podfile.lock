@@ -1,10 +1,12 @@
 PODS:
   - Alamofire (4.5.0)
+  - CardIO (5.4.1)
   - paper-onboarding (2.2)
   - SVProgressHUD (2.1.2)
 
 DEPENDENCIES:
   - Alamofire
+  - CardIO
   - paper-onboarding
   - SVProgressHUD (from `https://github.com/SVProgressHUD/SVProgressHUD.git`)
 
@@ -19,9 +21,10 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
+  CardIO: 56983b39b62f495fc6dae9ad7cf875143df06443
   paper-onboarding: 7fcb8f2737edb32bd345d6e890578fff1a073fef
   SVProgressHUD: d65371a8e4482380deddb9fe60e14e59ddb30eb3
 
-PODFILE CHECKSUM: c1bee24d3968d751353783cfd775ff653bb8e869
+PODFILE CHECKSUM: f58bae969096cca83508ba9c6e07b947d4df9a51
 
 COCOAPODS: 1.3.1

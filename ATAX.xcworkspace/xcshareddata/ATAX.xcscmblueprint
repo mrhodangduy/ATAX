@@ -1,0 +1,100 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "B4BD6A1A996D11C74B93E84D2AB37328659BEB02",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "6B1F6E9C1FB73F8324F7E2F9E2E8C37BBBC9EF11" : 9223372036854775807,
+    "759876BCC648557EE25E567C615CE2DBCE7C2AEA" : 9223372036854775807,
+    "1A5847F61C2A6E262B18FD6114DABD1A9FA9989B" : 9223372036854775807,
+    "B4BD6A1A996D11C74B93E84D2AB37328659BEB02" : 9223372036854775807,
+    "E472353307E79C1817142A5D01DBE9406233EB42" : 9223372036854775807,
+    "60F7FA5FF38198AB5D9D1A2BF26AD14976CF72B7" : 9223372036854775807,
+    "7BB7B5D3EB211437FCF4FA60DA436942E8CE91AD" : 9223372036854775807,
+    "C638D6EA342EF5711B7155B292CB78D956820EA7" : 9223372036854775807,
+    "AE62F3A37CDD8171344C0F95771513A1A939DA7E" : 9223372036854775807,
+    "15CEB82F4D8486CF7C3453FAB0EE2CF72733CF8F" : 9223372036854775807,
+    "78A227A89E7075C0BEB8CAF5C4EBC423D048A2BA" : 9223372036854775807,
+    "1C47B753E73CF32FF7B6E350C707ED3ABEA0BFE7" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "11DF52D4-E3B3-4BA6-9866-EF0AD95F4A5A",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "6B1F6E9C1FB73F8324F7E2F9E2E8C37BBBC9EF11" : "Working-With-JSon\/",
+    "759876BCC648557EE25E567C615CE2DBCE7C2AEA" : "Weather-App\/",
+    "1A5847F61C2A6E262B18FD6114DABD1A9FA9989B" : "CollectionView_Youtube\/",
+    "B4BD6A1A996D11C74B93E84D2AB37328659BEB02" : "ATAX\/",
+    "E472353307E79C1817142A5D01DBE9406233EB42" : "coinsecure\/",
+    "60F7FA5FF38198AB5D9D1A2BF26AD14976CF72B7" : "LoginwithWoduleAPI\/",
+    "7BB7B5D3EB211437FCF4FA60DA436942E8CE91AD" : "JSON\/",
+    "C638D6EA342EF5711B7155B292CB78D956820EA7" : "LoadCustomJson\/",
+    "AE62F3A37CDD8171344C0F95771513A1A939DA7E" : "PremierLeague\/",
+    "15CEB82F4D8486CF7C3453FAB0EE2CF72733CF8F" : "SaveJsontoCoreData\/",
+    "78A227A89E7075C0BEB8CAF5C4EBC423D048A2BA" : "ThoTay\/",
+    "1C47B753E73CF32FF7B6E350C707ED3ABEA0BFE7" : "SelfSignedMoya\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "ATAX",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "ATAX.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/mrhodangduy\/SaveJsontoCoreData.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "15CEB82F4D8486CF7C3453FAB0EE2CF72733CF8F"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/mrhodangduy\/CollectionView_Youtube.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "1A5847F61C2A6E262B18FD6114DABD1A9FA9989B"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/pedrovereza\/SelfSignedMoya.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "1C47B753E73CF32FF7B6E350C707ED3ABEA0BFE7"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/mrhodangduy\/LoginwithWoduleAPI.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "60F7FA5FF38198AB5D9D1A2BF26AD14976CF72B7"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/mrhodangduy\/Working-With-JSon.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "6B1F6E9C1FB73F8324F7E2F9E2E8C37BBBC9EF11"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/mrhodangduy\/Weather-App.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "759876BCC648557EE25E567C615CE2DBCE7C2AEA"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/mrhodangduy\/ThoTay.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "78A227A89E7075C0BEB8CAF5C4EBC423D048A2BA"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/mrhodangduy\/DemoJSON.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "7BB7B5D3EB211437FCF4FA60DA436942E8CE91AD"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/mrhodangduy\/PremierLeague.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "AE62F3A37CDD8171344C0F95771513A1A939DA7E"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/mrhodangduy\/ATAX.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "B4BD6A1A996D11C74B93E84D2AB37328659BEB02"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/mrhodangduy\/LoadCustomJson.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "C638D6EA342EF5711B7155B292CB78D956820EA7"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/mrhodangduy\/coinsecure.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "E472353307E79C1817142A5D01DBE9406233EB42"
+    }
+  ]
+}

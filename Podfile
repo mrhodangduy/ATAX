@@ -9,6 +9,7 @@ target 'ATAX' do
 	pod 'paper-onboarding'
     pod "SVProgressHUD", :git => 'https://github.com/SVProgressHUD/SVProgressHUD.git'
     pod 'Alamofire'
+    pod 'CardIO'
 
 
 end

@@ -11,6 +11,11 @@
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="OpenSansRegular.ttf">
+            <string>OpenSans-Regular</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--SplashVC-->
         <scene sceneID="tne-QT-ifu">
@@ -75,7 +80,7 @@
                                     <constraint firstAttribute="width" constant="50" id="Hrx-BP-ikn"/>
                                     <constraint firstAttribute="height" constant="40" id="mGD-G2-sb8"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="17"/>
                                 <state key="normal" title="Skip">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -88,7 +93,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="kF8-FD-618"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="20"/>
                                 <state key="normal" title="Get Start" backgroundImage="bg_blue">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -2180,6 +2185,12 @@
                                             <view alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w4b-3u-Axw" userLabel="Scanyourcar">
                                                 <rect key="frame" x="20" y="324.5" width="335" height="44"/>
                                                 <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5E8-OV-Go5">
+                                                        <rect key="frame" x="-0.5" y="-0.5" width="335" height="44"/>
+                                                        <connections>
+                                                            <action selector="scanYourCard:" destination="L13-8g-sm1" eventType="touchUpInside" id="h4S-AT-px4"/>
+                                                        </connections>
+                                                    </button>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_camera" translatesAutoresizingMaskIntoConstraints="NO" id="en9-7z-2AX">
                                                         <rect key="frame" x="80.5" y="10" width="30" height="25"/>
                                                         <constraints>
@@ -2196,16 +2207,20 @@
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
+                                                    <constraint firstItem="5E8-OV-Go5" firstAttribute="width" secondItem="w4b-3u-Axw" secondAttribute="width" id="GuZ-m8-cjN"/>
                                                     <constraint firstItem="9Et-0A-2sH" firstAttribute="centerY" secondItem="w4b-3u-Axw" secondAttribute="centerY" id="Hzt-H6-IIb"/>
                                                     <constraint firstItem="en9-7z-2AX" firstAttribute="centerY" secondItem="w4b-3u-Axw" secondAttribute="centerY" id="OSg-Nf-mYI"/>
                                                     <constraint firstItem="9Et-0A-2sH" firstAttribute="leading" secondItem="en9-7z-2AX" secondAttribute="trailing" id="QpF-Y6-7e0"/>
+                                                    <constraint firstItem="5E8-OV-Go5" firstAttribute="centerX" secondItem="w4b-3u-Axw" secondAttribute="centerX" id="V3d-Ij-UOg"/>
                                                     <constraint firstItem="9Et-0A-2sH" firstAttribute="centerX" secondItem="w4b-3u-Axw" secondAttribute="centerX" id="bew-Tk-CWp"/>
+                                                    <constraint firstItem="5E8-OV-Go5" firstAttribute="centerY" secondItem="w4b-3u-Axw" secondAttribute="centerY" id="io6-pV-KJf"/>
+                                                    <constraint firstItem="5E8-OV-Go5" firstAttribute="height" secondItem="w4b-3u-Axw" secondAttribute="height" id="oIi-Og-3dz"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="feO-9S-nvm" customClass="RoundView" customModule="ATAX" customModuleProvider="target">
                                                 <rect key="frame" x="20" y="452.5" width="335" height="44"/>
                                                 <subviews>
-                                                    <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Card Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Hmf-w8-9wS">
+                                                    <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Card Number" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Hmf-w8-9wS">
                                                         <rect key="frame" x="5" y="0.0" width="330" height="44"/>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -2262,7 +2277,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ohe-ze-8RM" customClass="RoundView" customModule="ATAX" customModuleProvider="target">
                                                 <rect key="frame" x="20" y="506.5" width="157.5" height="44"/>
                                                 <subviews>
-                                                    <textField opaque="NO" clipsSubviews="YES" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Exp Month" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pE8-3M-Vbc">
+                                                    <textField opaque="NO" clipsSubviews="YES" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Exp Month" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="pE8-3M-Vbc">
                                                         <rect key="frame" x="5" y="0.0" width="152.5" height="44"/>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -2306,7 +2321,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Oh-3Z-8gX" customClass="RoundView" customModule="ATAX" customModuleProvider="target">
                                                 <rect key="frame" x="197.5" y="506.5" width="157.5" height="44"/>
                                                 <subviews>
-                                                    <textField opaque="NO" clipsSubviews="YES" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Exp year" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UQ6-Ke-IW1">
+                                                    <textField opaque="NO" clipsSubviews="YES" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Exp year" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="UQ6-Ke-IW1">
                                                         <rect key="frame" x="5" y="0.0" width="152.5" height="44"/>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -2340,7 +2355,7 @@
                                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="kEi-Ek-ah8">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="kEi-Ek-ah8">
                                                 <rect key="frame" x="20" y="653.5" width="335" height="15"/>
                                                 <attributedString key="attributedText">
                                                     <fragment content="By submitting this form, you're agreeing to our ">
@@ -2370,7 +2385,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pmW-Kv-cju" customClass="RoundView" customModule="ATAX" customModuleProvider="target">
                                                 <rect key="frame" x="20" y="560.5" width="335" height="44"/>
                                                 <subviews>
-                                                    <textField opaque="NO" clipsSubviews="YES" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Security Code (CVV)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="McW-RW-Hup">
+                                                    <textField opaque="NO" clipsSubviews="YES" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Security Code (CVV)" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="McW-RW-Hup">
                                                         <rect key="frame" x="5" y="0.0" width="330" height="44"/>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -4235,7 +4250,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="zTn-4D-34O" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="My Taxes" image="tab_mytaxes" selectedImage="tab_mytaxes2" id="9Ab-o3-3sZ"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="fNX-Ds-xH0">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="fNX-Ds-xH0">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -4254,7 +4269,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="quu-L5-yP6" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Documents" image="tab_documents" selectedImage="tab_documents2" id="cI0-Fv-SHp"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="n1g-lz-fpT">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="n1g-lz-fpT">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -4273,7 +4288,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Cqr-Bh-NLq" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Messages" image="tab_messages" selectedImage="tab_messages2" id="qUc-Gx-c0t"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="97V-Od-gfm">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="97V-Od-gfm">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -4292,7 +4307,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="zDL-Od-1lV" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="More" image="tab_more" selectedImage="tab_more2" id="vHd-ma-qTO"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="uHs-ah-UYy">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="uHs-ah-UYy">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

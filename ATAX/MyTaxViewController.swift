@@ -119,18 +119,6 @@ class MyTaxViewController: UIViewController {
         
         self.present(newTaxVC, animated: true, completion: nil)
     }
-//    func uploadDoc()
-//    {
-//        let uploadVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "uploaddocument") as! UploadDocumentViewController
-//        
-//        self.present(uploadVC, animated: true, completion: nil)
-//    }
-    func makePayment()
-    {
-        let makePaymentVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "makepayment") as! MakePaymentViewController
-        
-        self.present(makePaymentVC, animated: true, completion: nil)
-    }
 }
 
 extension MyTaxViewController: UITableViewDataSource
@@ -155,8 +143,6 @@ extension MyTaxViewController: UITableViewDataSource
         cell.delegateCell = self
         cell.indexPath = indexPath
         
-//        cell.btnUpload.addTarget(self, action: #selector(MyTaxViewController.uploadDoc), for: .touchUpInside)
-//        cell.btnMakePayment.addTarget(self, action: #selector(MyTaxViewController.makePayment), for: .touchUpInside)
         
         return cell
     }

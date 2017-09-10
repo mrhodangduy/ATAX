@@ -27,7 +27,7 @@ class ContactTaxProViewController: UIViewController {
     
     @IBAction func sendMessageAction(_ sender: UIButton) {
         
-        // Encode message content
+        // Encode message content, avoid killing app when return line.
         
         let queryItem = URLQueryItem(name: "messageContent", value: tv_Message.text)
         var urlComponents = URLComponents()
@@ -51,6 +51,7 @@ class ContactTaxProViewController: UIViewController {
                     if status
                     {
                         self.dismiss(animated: true, completion: nil)
+                        self.alertMissingText(mess: "Messages sent.", textField: nil)
                     }
                     else
                     {

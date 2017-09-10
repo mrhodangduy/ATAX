@@ -26,7 +26,7 @@ class SplashVC: UIViewController {
             self.imageAtax.alpha = 1
         }) { (action) in
             
-            Timer.scheduledTimer(timeInterval: 1.5, target: self, selector: #selector(self.gotoNextScreen), userInfo: nil, repeats: false)
+            Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(self.gotoNextScreen), userInfo: nil, repeats: false)
         }
     }
 

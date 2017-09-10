@@ -54,8 +54,7 @@ class MessageDetailViewController: UIViewController {
     @IBAction func backAction(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
         
-    }
-    
+    }    
     
     @IBAction func deleteMessageAction(_ sender: Any) {
         

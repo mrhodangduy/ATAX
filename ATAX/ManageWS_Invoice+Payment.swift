@@ -42,6 +42,7 @@ struct Invoice
     let taxAmount: Int
     let discountAmount: Int
     let subTotalAmount: Int
+    let totalAmount: Int
     let refundAmount: Int
     let status: Int
     let paymentStatus: Int
@@ -65,6 +66,7 @@ struct Invoice
         guard let taxAmount = json["taxAmount"] as? Int else { throw ErrorHandle.missing("taxAmount is missing")}
         guard let discountAmount = json["discountAmount"] as? Int else { throw ErrorHandle.missing("discountAmount is missing")}
         guard let subTotalAmount = json["subTotalAmount"] as? Int else { throw ErrorHandle.missing("subTotalAmount is missing")}
+        guard let totalAmount = json["totalAmount"] as? Int else { throw ErrorHandle.missing("totalAmount is missing")}
         guard let refundAmount = json["refundAmount"] as? Int else { throw ErrorHandle.missing("refundAmount is missing")}
         guard let status = json["status"] as? Int else { throw ErrorHandle.missing("status is missing")}
         guard let paymentStatus = json["paymentStatus"] as? Int else { throw ErrorHandle.missing("paymentStatus is missing")}
@@ -82,6 +84,7 @@ struct Invoice
         self.taxAmount = taxAmount
         self.discountAmount = discountAmount
         self.subTotalAmount = subTotalAmount
+        self.totalAmount = totalAmount
         self.refundAmount = refundAmount
         self.status = status
         self.paymentStatus = paymentStatus
